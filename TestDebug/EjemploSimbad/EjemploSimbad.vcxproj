@@ -24,6 +24,7 @@
     <ProjectGuid>{3cdef33d-d194-4e7f-acc3-9e9e9f2be352}</ProjectGuid>
     <RootNamespace>EjemploSimbad</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>Practica_JulianSerrano_AdrianDelPozo</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -135,10 +136,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="EjemploSimbad.cpp" />
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="IG2Object.cpp" />
+    <ClCompile Include="MazeCreator.cpp" />
+    <ClCompile Include="MazeManager.cpp" />
     <ClCompile Include="SinbadExample.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="IG2Object.h" />
+    <ClInclude Include="MazeCreator.h" />
+    <ClInclude Include="MazeManager.h" />
     <ClInclude Include="SinbadExample.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

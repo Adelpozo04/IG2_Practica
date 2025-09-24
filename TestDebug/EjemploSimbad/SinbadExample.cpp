@@ -1,4 +1,5 @@
 #include "SinbadExample.h"
+#include "IG2Object.h"
 
 using namespace std;
 using namespace Ogre;
@@ -99,6 +100,12 @@ void SinbadExample::setupScene(void) {
 
     // Show bounding box
     mSinbadNode->showBoundingBox(true);
+
+    mCubeNode = mSM->getRootSceneNode()->createChildSceneNode("nCube");
+
+    IG2Object* cubo = new IG2Object(Ogre::Vector3{0, 0, 0}, mCubeNode, mSM, "cube.mesh");
+
+    
 
     // Set position of Sinbad
     //mSinbadNode->setPosition(x, y, z);
