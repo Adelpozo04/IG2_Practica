@@ -3,6 +3,10 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/main/VisualStudio.gitignore
 
+*ogre-14.3.4-build
+*ogre-14.3.4-debug
+*ogre-14.3.4-src
+
 # User-specific files
 *.rsuser
 *.suo
