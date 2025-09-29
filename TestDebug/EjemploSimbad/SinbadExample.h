@@ -17,6 +17,8 @@
 #include <OgreWindowEventUtilities.h>
 #include <SDL_keycode.h>
 
+class LabMan;
+
 
 class SinbadExample: public OgreBites::ApplicationContext, OgreBites::InputListener {
 
@@ -42,6 +44,8 @@ protected:
 
     Ogre::SceneNode* mCamNode = nullptr;
     OgreBites::CameraMan* mCamMgr = nullptr;
+
+    LabMan* labMan;
 };
 
 #endif

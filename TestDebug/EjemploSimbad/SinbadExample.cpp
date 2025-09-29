@@ -1,5 +1,7 @@
 #include "SinbadExample.h"
 
+#include "LabMan.h"
+
 using namespace std;
 using namespace Ogre;
 
@@ -16,6 +18,7 @@ bool SinbadExample::keyPressed(const OgreBites::KeyboardEvent& evt) {
 
 
 void SinbadExample::shutdown() {
+    delete labMan;
 
     mShaderGenerator->removeSceneManager(mSM);
     mSM->removeRenderQueueListener(mOverlaySystem);
@@ -93,12 +96,12 @@ void SinbadExample::setupScene(void) {
     //------------------------------------------------------------------------
     // Creating Sinbad
 
-    Ogre::Entity* ent = mSM->createEntity("Sinbad.mesh");
+    /*Ogre::Entity* ent = mSM->createEntity("Sinbad.mesh");
     mSinbadNode = mSM->getRootSceneNode()->createChildSceneNode("nSinbad");
     mSinbadNode->attachObject(ent);
 
     // Show bounding box
-    mSinbadNode->showBoundingBox(true);
+    mSinbadNode->showBoundingBox(true);*/
 
     // Set position of Sinbad
     //mSinbadNode->setPosition(x, y, z);
@@ -107,5 +110,7 @@ void SinbadExample::setupScene(void) {
     //mSinbadNode->setScale(20, 20, 20);
 
     //mSinbadNode->yaw(Ogre::Degree(-45));
-    //mSinbadNode->setVisible(false);    
+    //mSinbadNode->setVisible(false);   
+    //
+    labMan = new LabMan(mSM->getRootSceneNode()->createChildSceneNode("laberinto"),mSM,"stage1.txt");
 }
