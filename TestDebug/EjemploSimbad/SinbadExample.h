@@ -17,6 +17,7 @@
 #include <OgreWindowEventUtilities.h>
 #include <SDL_keycode.h>
 
+#include "MazeCreator.h"
 
 class SinbadExample: public OgreBites::ApplicationContext, OgreBites::InputListener {
 
@@ -32,7 +33,8 @@ protected:
 
 
     Ogre::SceneNode* mSinbadNode = nullptr;
-    Ogre::SceneNode* mCubeNode = nullptr;
+
+    Ogre::SceneNode* mTestNode = nullptr;
 
     Ogre::SceneManager* mSM = nullptr;
     OgreBites::TrayManager* mTrayMgr = nullptr;
@@ -43,6 +45,9 @@ protected:
 
     Ogre::SceneNode* mCamNode = nullptr;
     OgreBites::CameraMan* mCamMgr = nullptr;
+
+    MazeCreator* mCreator = nullptr;
+
 };
 
 #endif

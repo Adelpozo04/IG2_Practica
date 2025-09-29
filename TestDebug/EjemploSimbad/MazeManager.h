@@ -19,7 +19,7 @@ public:
 	 * @param map 
 	 * @param SM 
 	*/
-	MazeManager(std::string map, Ogre::SceneManager& SM) {}
+	MazeManager(std::string map, Ogre::SceneManager* SM);
 
 	/**
 	 * @brief Destructor de la clase
@@ -27,6 +27,16 @@ public:
 	~MazeManager();
 
 private:
+
+	void InitMaze();
+
+	int _sizeX = 0;
+	int _sizeZ = 0;
+
+	std::vector<std::vector<IG2Object>>* _maze = nullptr;
+
+	std::string _map = "";
+	Ogre::SceneManager* mSM = nullptr;
 
 };
 

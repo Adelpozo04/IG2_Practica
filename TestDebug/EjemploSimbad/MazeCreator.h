@@ -5,15 +5,23 @@
 #include <OgreSceneManager.h>
 #include <string>
 #include "Ogre.h"
+#include "IG2Object.h"
 
 class MazeCreator
 {
 public:
-	MazeCreator(std::string map, Ogre::SceneManager& SM) {}
+
+	MazeCreator(Ogre::SceneManager* SM) : mSM(SM) {}
+
+	/**
+	 * @brief Funcion para generar un laberinto
+	 * @param map Nombre del fichero txt que represente el laberinto
+	 * @return Vector bidimensional con referencias a los distintos IGObjects usados para su contruccion.
+	 */
+	std::vector<std::vector<IG2Object>>* GenerateMaze(std::string map);
 
 private:
 
-	std::string _map;
 	Ogre::SceneManager* mSM;
 
 };
