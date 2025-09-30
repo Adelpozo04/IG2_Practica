@@ -33,7 +33,7 @@ private:
 	int _sizeX = 0;
 	int _sizeZ = 0;
 
-	std::vector<std::vector<IG2Object>>* _maze = nullptr;
+	std::vector<std::vector<IG2Object*>> _maze = std::vector<std::vector<IG2Object*>>(0, std::vector<IG2Object*>(0));
 
 	std::string _map = "";
 	Ogre::SceneManager* mSM = nullptr;
