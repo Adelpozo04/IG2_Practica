@@ -98,11 +98,6 @@ void SinbadExample::setupScene(void) {
     mSinbadNode = mSM->getRootSceneNode()->createChildSceneNode("nSinbad");
     mSinbadNode->attachObject(ent);
 
-    Ogre::Entity* ent1 = mSM->createEntity("Sinbad.mesh");
-    mTestNode = mSM->getRootSceneNode()->createChildSceneNode("nDragon");
-    mTestNode->attachObject(ent1);
-    mTestNode->setPosition(Ogre::Vector3(-100, 0, 0));
-
     // Show bounding box
     mSinbadNode->showBoundingBox(true);
 

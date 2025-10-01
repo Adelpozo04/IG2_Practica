@@ -28,8 +28,12 @@ public:
 
 private:
 
+	/**
+	 * @brief Inicializa el laberinto y almacena los Tiles de este
+	 */
 	void InitMaze();
 
+	//Cambiar las variables para inicializarlas en constructor por defecto
 	int _sizeX = 0;
 	int _sizeZ = 0;
 
