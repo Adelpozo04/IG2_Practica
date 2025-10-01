@@ -5,7 +5,7 @@
 #include <OgreSceneManager.h>
 #include <string>
 #include "Ogre.h"
-#include "IG2Object.h"
+#include "Tile.h"
 
 class MazeCreator
 {
@@ -18,7 +18,7 @@ public:
 	 * @param map Nombre del fichero txt que represente el laberinto
 	 * @return Vector bidimensional con referencias a los distintos IGObjects usados para su contruccion.
 	 */
-	std::vector<std::vector<IG2Object*>> GenerateMaze(std::string map);
+	std::vector<std::vector<Tile*>> GenerateMaze(std::string map);
 
 private:
 

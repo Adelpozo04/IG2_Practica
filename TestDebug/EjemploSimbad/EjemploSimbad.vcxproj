@@ -136,6 +136,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Character.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="IG2Object.cpp" />
     <ClCompile Include="MazeCreator.cpp" />
@@ -144,6 +145,7 @@
     <ClCompile Include="Tile.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Character.h" />
     <ClInclude Include="IG2Object.h" />
     <ClInclude Include="MazeCreator.h" />
     <ClInclude Include="MazeManager.h" />

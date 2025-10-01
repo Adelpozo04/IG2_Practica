@@ -2,7 +2,7 @@
 #include <fstream>
 #include "MazeCreator.h"
 
-std::vector<std::vector<IG2Object*>> MazeCreator::GenerateMaze(std::string map)
+std::vector<std::vector<Tile*>> MazeCreator::GenerateMaze(std::string map)
 {
     ifstream mapFile;
     mapFile.open(map);
@@ -21,11 +21,15 @@ std::vector<std::vector<IG2Object*>> MazeCreator::GenerateMaze(std::string map)
         //Calculo de tamanyo de un cubo
 
         Ogre::SceneNode* test = mSM->getRootSceneNode()->createChildSceneNode("nCube");
-        IG2Object* cube = new IG2Object(Ogre::Vector3{ 0, 0, 0 }, test, mSM, "cube.mesh");
+        Tile* cube = new Tile(Ogre::Vector3{ 0, 0, 0 }, test, mSM, "cube.mesh", false);
         Ogre::Vector3 cubeSize = cube->calculateBoxSize();
 
+        delete cube;
+
         //Vector solucion
-        std::vector<std::vector<IG2Object*>> maze = std::vector<std::vector<IG2Object*>>(sizeX, std::vector<IG2Object*>(sizeZ));
+        std::vector<std::vector<Tile*>> maze = std::vector<std::vector<Tile*>>(sizeX, std::vector<Tile*>(sizeZ));
+
+        Ogre::SceneNode* mazeNode = mSM->getRootSceneNode()->createChildSceneNode("Maze");
 
         //Bucle de rellenado de laberinto.
         for (int i = 0; i < sizeX; ++i) {
@@ -40,12 +44,12 @@ std::vector<std::vector<IG2Object*>> MazeCreator::GenerateMaze(std::string map)
 
                 if (mapFloor == 'x') {
                     
-                    nodes[index] = mSM->getRootSceneNode()->createChildSceneNode(id);
-                    maze[i][j] = new IG2Object(Ogre::Vector3{cubeSize.x * i, 0, cubeSize.z * j}, nodes[index], mSM, "cube.mesh");
+                    nodes[index] = mazeNode->createChildSceneNode(id);
+                    maze[i][j] = new Tile(Ogre::Vector3{cubeSize.x * i, 0, cubeSize.z * j}, nodes[index], mSM, "cube.mesh", false);
                 }
                 else if(mapFloor == 'o'){
-                    nodes[index] = mSM->getRootSceneNode()->createChildSceneNode(id);
-                    maze[i][j] = new IG2Object(Ogre::Vector3{ cubeSize.x * i, 0, cubeSize.z * j }, nodes[index], mSM);
+                    nodes[index] = mazeNode->createChildSceneNode(id);
+                    maze[i][j] = new Tile(Ogre::Vector3{ cubeSize.x * i, 0, cubeSize.z * j }, nodes[index], mSM, true);
                 }
                 
             }  
@@ -55,7 +59,7 @@ std::vector<std::vector<IG2Object*>> MazeCreator::GenerateMaze(std::string map)
     }
     else {
 
-        std::vector<std::vector<IG2Object*>> mazeEmpty = std::vector<std::vector<IG2Object*>>(0, std::vector<IG2Object*>(0));
+        std::vector<std::vector<Tile*>> mazeEmpty = std::vector<std::vector<Tile*>>(0, std::vector<Tile*>(0));
 
         return mazeEmpty;
 

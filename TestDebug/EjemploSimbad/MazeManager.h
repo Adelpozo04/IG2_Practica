@@ -7,7 +7,7 @@
 #include <string>
 
 #include "Ogre.h"
-#include "IG2Object.h"
+#include "Tile.h"
 
 class MazeManager
 {
@@ -33,7 +33,7 @@ private:
 	int _sizeX = 0;
 	int _sizeZ = 0;
 
-	std::vector<std::vector<IG2Object*>> _maze = std::vector<std::vector<IG2Object*>>(0, std::vector<IG2Object*>(0));
+	std::vector<std::vector<Tile*>> _maze = std::vector<std::vector<Tile*>>(0, std::vector<Tile*>(0));
 
 	std::string _map = "";
 	Ogre::SceneManager* mSM = nullptr;
