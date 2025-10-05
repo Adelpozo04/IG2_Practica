@@ -23,37 +23,40 @@ void PlayerManager::CreatePlayer(Ogre::Vector3 initPos, String mesh)
 
 bool PlayerManager::keyPressed(const OgreBites::KeyboardEvent& evt) {
 
-	Ogre::Vector3 newPos;
-
 	switch (evt.keysym.sym)
 	{
 	case SDLK_UP:
 
-		newPos = _player->getPosition() + (Ogre::Vector3::UNIT_Z * _player->getSpeed());
-		_player->setPosition(newPos);
-
+		_nextDir = Ogre::Vector3::UNIT_Z;
 		break;
+
 	case SDLK_DOWN:
 
-		newPos = _player->getPosition() + (Ogre::Vector3::NEGATIVE_UNIT_Z * _player->getSpeed());
-		_player->setPosition(newPos);
-
+		_nextDir = Ogre::Vector3::NEGATIVE_UNIT_Z;
 		break;
+
 	case SDLK_RIGHT:
 
-		newPos = _player->getPosition() + (Ogre::Vector3::NEGATIVE_UNIT_X * _player->getSpeed());
-		_player->setPosition(newPos);
-
+		_nextDir = Ogre::Vector3::NEGATIVE_UNIT_X;
 		break;
+
 	case SDLK_LEFT:
 
-		newPos = _player->getPosition() + (Ogre::Vector3::UNIT_X * _player->getSpeed());
-		_player->setPosition(newPos);
-
+		_nextDir = Ogre::Vector3::UNIT_X;
 		break;
+
 	}
 
 	return true;
+
+}
+
+void PlayerManager::frameRendered(const Ogre::FrameEvent& evt) {
+
+	
+
+	Ogre::Vector3 newPos = _player->getPosition() + (_currentDir * _player->getSpeed());
+	_player->setPosition(newPos);
 
 }
 

@@ -1,3 +1,5 @@
+#include <math.h>
+
 #include "MazeManager.h"
 #include "MazeCreator.h"
 
@@ -17,6 +19,13 @@ MazeManager::~MazeManager()
 
 }
 
+bool MazeManager::IsTrasferable(Ogre::Vector3 position)
+{
+	std::pair<int, int> index = FromPositionToIndex(position);
+
+	return _maze[index.first][index.second]->GetTransferable();
+}
+
 void MazeManager::InitMaze()
 {
 	MazeCreator mc = MazeCreator(mSM);
@@ -27,4 +36,15 @@ void MazeManager::InitMaze()
 		_sizeZ = _maze[0].size();
 	}
 	
+}
+
+std::pair<int, int> MazeManager::FromPositionToIndex(Ogre::Vector3 position)
+{
+
+	int indexX = std::trunc(position.x / _sizeX);
+	int indexZ = std::trunc(position.z / _sizeZ);
+
+	std::pair<int, int> sol = std::pair<int, int>(indexX, indexZ);
+
+	return sol;
 }
