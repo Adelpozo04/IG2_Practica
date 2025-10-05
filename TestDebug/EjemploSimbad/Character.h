@@ -4,14 +4,15 @@
 #include "IG2Object.h"
 class Character : public IG2Object
 {
-
 public:
 
-	Character();
-	Character(Vector3 initPos, SceneNode* node, SceneManager* sceneMng, int lifes, int speed);
-	Character(Vector3 initPos, SceneNode* node, SceneManager* sceneMng, String mesh, int lifes, int speed);
+	
 
 protected:
+
+	Character();
+	Character(Vector3 initPos, SceneNode* node, SceneManager* sceneMng);
+	Character(Vector3 initPos, SceneNode* node, SceneManager* sceneMng, String mesh);
 
 	int _lifes;
 	float _speed;

@@ -1,5 +1,6 @@
 #include "SinbadExample.h"
 #include "IG2Object.h"
+#include "constantes.h"
 
 using namespace std;
 using namespace Ogre;
@@ -94,14 +95,9 @@ void SinbadExample::setupScene(void) {
     //------------------------------------------------------------------------
     // Creating Sinbad
 
-    Ogre::Entity* ent = mSM->createEntity("Sinbad.mesh");
-    mSinbadNode = mSM->getRootSceneNode()->createChildSceneNode("nSinbad");
-    mSinbadNode->attachObject(ent);
-
-    // Show bounding box
-    mSinbadNode->showBoundingBox(true);
-
-    mMazeMgr = new MazeManager("../../media/maps/stage1.txt", mSM);
+    //mMazeMgr = new MazeManager(MAP_LAYOUT, mSM);
+    mPlayerMgr = new PlayerManager(mSM, INITIAL_POS, "Sinbad.mesh");
+    addInputListener(mPlayerMgr);
 
     // Set position of Sinbad
     //mSinbadNode->setPosition(x, y, z);

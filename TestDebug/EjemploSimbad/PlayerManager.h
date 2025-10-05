@@ -11,18 +11,16 @@ class PlayerManager : public OgreBites::InputListener
 public:
 
 	PlayerManager();
+	PlayerManager(Ogre::SceneManager* SM, Ogre::Vector3 initPos, String mesh);
 
 private:
 
 	virtual bool keyPressed(const OgreBites::KeyboardEvent& evt);
 
-	void CreatePlayer();
+	void CreatePlayer(Ogre::Vector3 initPos, String mesh);
 
 	Player* _player;
 	Ogre::SceneManager* mSM;
-
-	Ogre::Vector3 _initPos;
-	String mesh;
 };
 
 #endif // !PLAYERMANAGER_H
