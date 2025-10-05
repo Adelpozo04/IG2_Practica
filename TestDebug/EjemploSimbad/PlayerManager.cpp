@@ -1,6 +1,6 @@
 #include "PlayerManager.h"
 
-PlayerManager::PlayerManager()
+PlayerManager::PlayerManager() : _player(nullptr), mSM(nullptr)
 {
 
 
@@ -9,7 +9,11 @@ PlayerManager::PlayerManager()
 void PlayerManager::CreatePlayer()
 {
 
-    _player = new Player()
+}
+
+bool PlayerManager::keyPressed(const OgreBites::KeyboardEvent& evt) {
+
+	return false;
 
 }
 

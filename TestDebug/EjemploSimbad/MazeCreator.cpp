@@ -32,28 +32,8 @@ std::vector<std::vector<Tile*>> MazeCreator::GenerateMaze(std::string map)
         Ogre::SceneNode* mazeNode = mSM->getRootSceneNode()->createChildSceneNode("Maze");
 
         //Bucle de rellenado de laberinto.
-        for (int i = 0; i < sizeX; ++i) {
-
-            for (int j = 0; j < sizeZ; ++j) {
-
-                char mapFloor;
-                mapFile >> mapFloor;
-
-                int index = (i * sizeZ) + j;
-                Ogre::String id = "nCube" + Ogre::StringConverter::toString(index);
-
-                if (mapFloor == 'x') {
-                    
-                    nodes[index] = mazeNode->createChildSceneNode(id);
-                    maze[i][j] = new Tile(Ogre::Vector3{cubeSize.x * i, 0, cubeSize.z * j}, nodes[index], mSM, "cube.mesh", false);
-                }
-                else if(mapFloor == 'o'){
-                    nodes[index] = mazeNode->createChildSceneNode(id);
-                    maze[i][j] = new Tile(Ogre::Vector3{ cubeSize.x * i, 0, cubeSize.z * j }, nodes[index], mSM, true);
-                }
-                
-            }  
-        }
+        
+        ReadMaze(sizeX, sizeZ, cubeSize, mapFile, nodes, maze, mazeNode);
 
         return maze;
     }
@@ -65,4 +45,33 @@ std::vector<std::vector<Tile*>> MazeCreator::GenerateMaze(std::string map)
 
     }
     
+}
+
+void MazeCreator::ReadMaze(int sizeX, int sizeZ, Ogre::Vector3& cubeSize, ifstream& mapFile, std::vector<Ogre::SceneNode*>& nodes,
+    std::vector<std::vector<Tile*>>& maze, Ogre::SceneNode* mazeNode)
+{
+
+    for (int i = 0; i < sizeX; ++i) {
+
+        for (int j = 0; j < sizeZ; ++j) {
+
+            char mapFloor;
+            mapFile >> mapFloor;
+
+            int index = (i * sizeZ) + j;
+            Ogre::String id = "nCube" + Ogre::StringConverter::toString(index);
+
+            if (mapFloor == 'x') {
+
+                nodes[index] = mazeNode->createChildSceneNode(id);
+                maze[i][j] = new Tile(Ogre::Vector3{ cubeSize.x * i, 0, cubeSize.z * j}, nodes[index], mSM, "cube.mesh", false);
+            }
+            else if (mapFloor == 'o') {
+                nodes[index] = mazeNode->createChildSceneNode(id);
+                maze[i][j] = new Tile(Ogre::Vector3{ cubeSize.x * i, 0, cubeSize.z * j }, nodes[index], mSM, true);
+            }
+
+        }
+    }
+
 }
