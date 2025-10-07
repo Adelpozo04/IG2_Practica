@@ -64,8 +64,15 @@ bool PlayerManager::keyPressed(const OgreBites::KeyboardEvent& evt) {
 void PlayerManager::frameRendered(const Ogre::FrameEvent& evt) {
 
 	if (CanGo(_nextDir)) {
-		_currentDir = _nextDir;
+
+		if (_nextDir != Ogre::Vector3::ZERO) {
+			_currentDir = _nextDir;
+		}	
 		_nextDir = { 0, 0, 0 };
+	}
+
+	if (!CanGo(_currentDir)) {
+		_currentDir = { 0, 0, 0 };
 	}
 
 	Ogre::Vector3 newPos = _player->getPosition() + (_currentDir * _player->getSpeed());

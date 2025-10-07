@@ -79,7 +79,7 @@ void MazeCreator::ReadMaze(int sizeX, int sizeZ, Ogre::Vector3& cubeSize, ifstre
             else if (mapFloor == 'h') {
                 nodes[index] = mazeNode->createChildSceneNode(id);
                 maze[i][j] = new Tile(Ogre::Vector3{ cubeSize.x * i, 0, cubeSize.z * j }, nodes[index], mSM, true);
-                initPos = Ogre::Vector3(cubeSize.x * i, 0, cubeSize.z * j);
+                initPos = Ogre::Vector3(cubeSize.x * i + (cubeSize.x / 2), 0, cubeSize.z * j + (cubeSize.z / 2));
             }
 
         }
