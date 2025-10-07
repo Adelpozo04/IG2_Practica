@@ -30,6 +30,8 @@ private:
 
 	void InitMaze();
 
+	void centraLab();
+
 	int _sizeX = 0;
 	int _sizeZ = 0;
 
@@ -37,7 +39,6 @@ private:
 
 	std::string _map = "";
 	Ogre::SceneManager* mSM = nullptr;
-
 };
 
 #endif // !MAZE_MANAGER

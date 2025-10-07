@@ -146,6 +146,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Character.h" />
+    <ClInclude Include="Constants.h" />
     <ClInclude Include="IG2Object.h" />
     <ClInclude Include="MazeCreator.h" />
     <ClInclude Include="MazeManager.h" />

@@ -106,7 +106,7 @@ void SinbadExample::setupScene(void) {
     // Show bounding box
     mSinbadNode->showBoundingBox(true);
 
-    mMazeMgr = new MazeManager("../../media/maps/stage1.txt", mSM);
+    mMazeMgr = new MazeManager("stage1.txt", mSM);
 
     // Set position of Sinbad
     //mSinbadNode->setPosition(x, y, z);
