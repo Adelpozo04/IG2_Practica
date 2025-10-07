@@ -17,6 +17,21 @@ class MazeManager
 
 public:
 
+	struct MazeData {
+
+		std::vector<std::vector<Tile*>> maze;
+		Ogre::Vector3 initialPos;
+		
+		MazeData() {
+			maze = std::vector<std::vector<Tile*>>(0, std::vector<Tile*>(0));
+			initialPos = Ogre::Vector3::ZERO;
+		}
+
+		MazeData(std::vector<std::vector<Tile*>> m, Ogre::Vector3 pos) : maze(m), initialPos(pos) {
+
+		}
+	};
+
 	/**
 	 * @brief 
 	 * @param map 
@@ -35,6 +50,8 @@ public:
 	 * @return Si es traspasable o no
 	 */
 	bool IsTrasferable(Ogre::Vector3 position);
+
+	Ogre::Vector3 GetPlayerInitialPos();
 
 private:
 
@@ -55,7 +72,7 @@ private:
 	int _sizeZ = 0;
 
 	//Vector bidimensional con las casillas del laberinto
-	std::vector<std::vector<Tile*>> _maze = std::vector<std::vector<Tile*>>(0, std::vector<Tile*>(0));
+	MazeData _mazeData;
 
 	//Nombre del mapa a cargar
 	std::string _map = "";

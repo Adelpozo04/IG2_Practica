@@ -11,9 +11,9 @@ MazeManager::MazeManager(std::string map, Ogre::SceneManager* SM) : mSM(SM), _ma
 MazeManager::~MazeManager()
 {
 
-	for (int i = 0; i < _maze.size(); ++i) {
-		for (int j = 0; j < _maze[i].size(); ++j) {
-			delete _maze[i][j];
+	for (int i = 0; i < _mazeData.maze.size(); ++i) {
+		for (int j = 0; j < _mazeData.maze[i].size(); ++j) {
+			delete _mazeData.maze[i][j];
 		}
 	}
 
@@ -23,17 +23,22 @@ bool MazeManager::IsTrasferable(Ogre::Vector3 position)
 {
 	std::pair<int, int> index = FromPositionToIndex(position);
 
-	return _maze[index.first][index.second]->GetTransferable();
+	return _mazeData.maze[index.first][index.second]->GetTransferable();
+}
+
+Ogre::Vector3 MazeManager::GetPlayerInitialPos()
+{
+	return _mazeData.initialPos;
 }
 
 void MazeManager::InitMaze()
 {
 	MazeCreator mc = MazeCreator(mSM);
-	_maze = mc.GenerateMaze(_map);
+	_mazeData = mc.GenerateMaze(_map);
 
-	if (_maze.size() != 0) {
-		_sizeX = _maze.size();
-		_sizeZ = _maze[0].size();
+	if (_mazeData.maze.size() != 0) {
+		_sizeX = _mazeData.maze.size();
+		_sizeZ = _mazeData.maze[0].size();
 	}
 	
 }

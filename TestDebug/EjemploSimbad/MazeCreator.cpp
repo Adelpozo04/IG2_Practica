@@ -2,7 +2,7 @@
 #include <fstream>
 #include "MazeCreator.h"
 
-std::vector<std::vector<Tile*>> MazeCreator::GenerateMaze(std::string map)
+MazeManager::MazeData MazeCreator::GenerateMaze(std::string map)
 {
     ifstream mapFile;
     mapFile.open(map);
@@ -33,22 +33,26 @@ std::vector<std::vector<Tile*>> MazeCreator::GenerateMaze(std::string map)
 
         //Bucle de rellenado de laberinto.
         
-        ReadMaze(sizeX, sizeZ, cubeSize, mapFile, nodes, maze, mazeNode);
+        Ogre::Vector3 initPos = Ogre::Vector3::ZERO;
 
-        return maze;
+        ReadMaze(sizeX, sizeZ, cubeSize, mapFile, nodes, maze, mazeNode, initPos);
+
+        MazeManager::MazeData mazeData = MazeManager::MazeData(maze, initPos);
+
+        return mazeData;
     }
     else {
 
-        std::vector<std::vector<Tile*>> mazeEmpty = std::vector<std::vector<Tile*>>(0, std::vector<Tile*>(0));
+        MazeManager::MazeData mazeData = MazeManager::MazeData();
 
-        return mazeEmpty;
+        return mazeData;
 
     }
     
 }
 
 void MazeCreator::ReadMaze(int sizeX, int sizeZ, Ogre::Vector3& cubeSize, ifstream& mapFile, std::vector<Ogre::SceneNode*>& nodes,
-    std::vector<std::vector<Tile*>>& maze, Ogre::SceneNode* mazeNode)
+    std::vector<std::vector<Tile*>>& maze, Ogre::SceneNode* mazeNode, Ogre::Vector3& initPos)
 {
 
     for (int i = 0; i < sizeX; ++i) {
@@ -69,6 +73,11 @@ void MazeCreator::ReadMaze(int sizeX, int sizeZ, Ogre::Vector3& cubeSize, ifstre
             else if (mapFloor == 'o') {
                 nodes[index] = mazeNode->createChildSceneNode(id);
                 maze[i][j] = new Tile(Ogre::Vector3{ cubeSize.x * i, 0, cubeSize.z * j }, nodes[index], mSM, true);
+            }
+            else if (mapFloor == 'h') {
+                nodes[index] = mazeNode->createChildSceneNode(id);
+                maze[i][j] = new Tile(Ogre::Vector3{ cubeSize.x * i, 0, cubeSize.z * j }, nodes[index], mSM, true);
+                initPos = Ogre::Vector3(cubeSize.x * i, 0, cubeSize.z * j);
             }
 
         }

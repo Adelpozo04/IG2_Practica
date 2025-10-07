@@ -6,6 +6,7 @@
 #include <string>
 #include "Ogre.h"
 #include "Tile.h"
+#include "MazeManager.h"
 
 class MazeCreator
 {
@@ -18,12 +19,12 @@ public:
 	 * @param map Nombre del fichero txt que represente el laberinto
 	 * @return Vector bidimensional con referencias a los distintos IGObjects usados para su contruccion.
 	 */
-	std::vector<std::vector<Tile*>> GenerateMaze(std::string map);
+	MazeManager::MazeData GenerateMaze(std::string map);
 
 private:
 
 	void ReadMaze(int sizeX, int sizeZ, Ogre::Vector3& cubeSize, ifstream& mapFile, std::vector<Ogre::SceneNode*>& nodes,
-		std::vector<std::vector<Tile*>>& maze, Ogre::SceneNode* mazeNode);
+		std::vector<std::vector<Tile*>>& maze, Ogre::SceneNode* mazeNode, Ogre::Vector3& initPos);
 
 	Ogre::SceneManager* mSM;
 

@@ -12,7 +12,7 @@ class PlayerManager : public OgreBites::InputListener
 public:
 
 	PlayerManager();
-	PlayerManager(Ogre::SceneManager* SM, Ogre::Vector3 initPos, String mesh, MazeManager* MM);
+	PlayerManager(Ogre::SceneManager* SM, String mesh, MazeManager* MM);
 
 private:
 

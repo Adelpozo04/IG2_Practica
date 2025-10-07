@@ -6,10 +6,10 @@ PlayerManager::PlayerManager() : _player(nullptr), mSM(nullptr), _MM(nullptr)
 
 }
 
-PlayerManager::PlayerManager(Ogre::SceneManager* SM, Ogre::Vector3 initPos, String mesh, MazeManager* MM) : mSM (SM), _MM(MM)
+PlayerManager::PlayerManager(Ogre::SceneManager* SM, String mesh, MazeManager* MM) : mSM (SM), _MM(MM)
 {
 
-	CreatePlayer(initPos, mesh);
+	CreatePlayer(_MM->GetPlayerInitialPos(), mesh);
 
 }
 
@@ -58,13 +58,13 @@ bool PlayerManager::keyPressed(const OgreBites::KeyboardEvent& evt) {
 
 void PlayerManager::frameRendered(const Ogre::FrameEvent& evt) {
 
-	/*if (CanGo(_nextDir)) {
+	if (CanGo(_nextDir)) {
 		_currentDir = _nextDir;
 		_nextDir = { 0, 0, 0 };
 	}
 
 	Ogre::Vector3 newPos = _player->getPosition() + (_currentDir * _player->getSpeed());
-	_player->setPosition(newPos);*/
+	_player->setPosition(newPos);
 
 }
 
