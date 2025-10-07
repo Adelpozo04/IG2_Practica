@@ -99,6 +99,13 @@ void SinbadExample::setupScene(void) {
     mPlayerMgr = new PlayerManager(mSM, "Sinbad.mesh", mMazeMgr);
     addInputListener(mPlayerMgr);
 
+
+    Ogre::Entity* ent1 = mSM->createEntity("Sinbad.mesh");
+    mTestNode = mSM->getRootSceneNode()->createChildSceneNode("nTest");
+    mTestNode->attachObject(ent1);
+    mTestNode->setScale(8, 20, 8);
+    mTestNode->setPosition(Ogre::Vector3(0, 0, 0));
+
     // Set position of Sinbad
     //mSinbadNode->setPosition(x, y, z);
 

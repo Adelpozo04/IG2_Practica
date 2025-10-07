@@ -26,6 +26,8 @@ private:
 	void ReadMaze(int sizeX, int sizeZ, Ogre::Vector3& cubeSize, ifstream& mapFile, std::vector<Ogre::SceneNode*>& nodes,
 		std::vector<std::vector<Tile*>>& maze, Ogre::SceneNode* mazeNode, Ogre::Vector3& initPos);
 
+	void ConfigMaze(Ogre::SceneNode* mazeNode, Ogre::Vector3& cubeSize);
+
 	Ogre::SceneManager* mSM;
 
 };

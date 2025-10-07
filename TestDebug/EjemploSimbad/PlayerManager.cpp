@@ -21,9 +21,14 @@ void PlayerManager::CreatePlayer(Ogre::Vector3 initPos, String mesh)
 
 bool PlayerManager::CanGo(Ogre::Vector3 dir)
 {
-	Ogre::Vector3 nextPos = _player->getPosition() + (dir * _player->getSpeed());
-
-	return _MM->IsTrasferable(nextPos);
+	if (dir != Ogre::Vector3::ZERO) {
+		Ogre::Vector3 nextPos = _player->getPosition() + (dir * _player->getSpeed());
+		return _MM->IsTrasferable(nextPos);
+	}
+	else {
+		return _MM->IsTrasferable(_player->getPosition());
+	}
+	
 }
 
 bool PlayerManager::keyPressed(const OgreBites::KeyboardEvent& evt) {

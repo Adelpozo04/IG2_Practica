@@ -70,6 +70,7 @@ private:
 	//Cambiar las variables para inicializarlas en constructor por defecto
 	int _sizeX = 0;
 	int _sizeZ = 0;
+	Ogre::Vector3 _sizeMesh;
 
 	//Vector bidimensional con las casillas del laberinto
 	MazeData _mazeData;

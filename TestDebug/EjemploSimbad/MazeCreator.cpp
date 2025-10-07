@@ -39,6 +39,8 @@ MazeManager::MazeData MazeCreator::GenerateMaze(std::string map)
 
         MazeManager::MazeData mazeData = MazeManager::MazeData(maze, initPos);
 
+        ConfigMaze(mazeNode, cubeSize);
+
         return mazeData;
     }
     else {
@@ -82,5 +84,13 @@ void MazeCreator::ReadMaze(int sizeX, int sizeZ, Ogre::Vector3& cubeSize, ifstre
 
         }
     }
+
+}
+
+void MazeCreator::ConfigMaze(Ogre::SceneNode* mazeNode, Ogre::Vector3& cubeSize)
+{
+
+    Ogre::Vector3 newPos = mazeNode->getPosition() + Ogre::Vector3(cubeSize.x / 2, 0, cubeSize.z / 2);
+    mazeNode->setPosition(newPos);
 
 }
