@@ -94,7 +94,7 @@ void SinbadExample::setupScene(void) {
     //------------------------------------------------------------------------
     // Creating Sinbad
 
-    Ogre::Entity* ent = mSM->createEntity("Sinbad.mesh");
+    /*Ogre::Entity* ent = mSM->createEntity("Sinbad.mesh");
     mSinbadNode = mSM->getRootSceneNode()->createChildSceneNode("nSinbad");
     mSinbadNode->attachObject(ent);
 
@@ -104,7 +104,7 @@ void SinbadExample::setupScene(void) {
     mTestNode->setPosition(Ogre::Vector3(-100, 0, 0));
 
     // Show bounding box
-    mSinbadNode->showBoundingBox(true);
+    mSinbadNode->showBoundingBox(true);*/
 
     mMazeMgr = new MazeManager("stage1.txt", mSM);
 
