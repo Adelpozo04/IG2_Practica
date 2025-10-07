@@ -30,8 +30,6 @@ private:
 
 	void InitMaze();
 
-	void centraLab();
-
 	int _sizeX = 0;
 	int _sizeZ = 0;
 
