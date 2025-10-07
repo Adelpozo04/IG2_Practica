@@ -95,8 +95,8 @@ void SinbadExample::setupScene(void) {
     //------------------------------------------------------------------------
     // Creating Sinbad
 
-    //mMazeMgr = new MazeManager(MAP_LAYOUT, mSM);
-    mPlayerMgr = new PlayerManager(mSM, INITIAL_POS, "Sinbad.mesh");
+    mMazeMgr = new MazeManager(MAP_LAYOUT, mSM);
+    mPlayerMgr = new PlayerManager(mSM, INITIAL_POS, "Sinbad.mesh", mMazeMgr);
     addInputListener(mPlayerMgr);
 
     // Set position of Sinbad

@@ -1,12 +1,12 @@
 #include "PlayerManager.h"
 
-PlayerManager::PlayerManager() : _player(nullptr), mSM(nullptr)
+PlayerManager::PlayerManager() : _player(nullptr), mSM(nullptr), _MM(nullptr)
 {
 
 
 }
 
-PlayerManager::PlayerManager(Ogre::SceneManager* SM, Ogre::Vector3 initPos, String mesh) : mSM (SM)
+PlayerManager::PlayerManager(Ogre::SceneManager* SM, Ogre::Vector3 initPos, String mesh, MazeManager* MM) : mSM (SM), _MM(MM)
 {
 
 	CreatePlayer(initPos, mesh);
@@ -15,10 +15,15 @@ PlayerManager::PlayerManager(Ogre::SceneManager* SM, Ogre::Vector3 initPos, Stri
 
 void PlayerManager::CreatePlayer(Ogre::Vector3 initPos, String mesh)
 {
-
 	SceneNode* mPlayerNode = mSM->getRootSceneNode()->createChildSceneNode("nPlayer");
 	_player = new Player(initPos, mPlayerNode, mSM, mesh);
+}
 
+bool PlayerManager::CanGo(Ogre::Vector3 dir)
+{
+	Ogre::Vector3 nextPos = _player->getPosition() + (dir * _player->getSpeed());
+
+	return _MM->IsTrasferable(nextPos);
 }
 
 bool PlayerManager::keyPressed(const OgreBites::KeyboardEvent& evt) {
@@ -27,7 +32,7 @@ bool PlayerManager::keyPressed(const OgreBites::KeyboardEvent& evt) {
 	{
 	case SDLK_UP:
 
-		_nextDir = Ogre::Vector3::UNIT_Z;
+		_nextDir = Ogre::Vector3::UNIT_Z;		
 		break;
 
 	case SDLK_DOWN:
@@ -53,10 +58,13 @@ bool PlayerManager::keyPressed(const OgreBites::KeyboardEvent& evt) {
 
 void PlayerManager::frameRendered(const Ogre::FrameEvent& evt) {
 
-	
+	/*if (CanGo(_nextDir)) {
+		_currentDir = _nextDir;
+		_nextDir = { 0, 0, 0 };
+	}
 
 	Ogre::Vector3 newPos = _player->getPosition() + (_currentDir * _player->getSpeed());
-	_player->setPosition(newPos);
+	_player->setPosition(newPos);*/
 
 }
 

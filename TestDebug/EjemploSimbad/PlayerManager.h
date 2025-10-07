@@ -4,6 +4,7 @@
 #include <OgreInput.h>
 #include <SDL_keycode.h>
 #include "Player.h"
+#include "MazeManager.h"
 
 class PlayerManager : public OgreBites::InputListener
 {
@@ -11,7 +12,7 @@ class PlayerManager : public OgreBites::InputListener
 public:
 
 	PlayerManager();
-	PlayerManager(Ogre::SceneManager* SM, Ogre::Vector3 initPos, String mesh);
+	PlayerManager(Ogre::SceneManager* SM, Ogre::Vector3 initPos, String mesh, MazeManager* MM);
 
 private:
 
@@ -21,10 +22,11 @@ private:
 
 	void CreatePlayer(Ogre::Vector3 initPos, String mesh);
 
-	bool CanChangeDir();
+	bool CanGo(Ogre::Vector3 dir);
 
 	Player* _player;
 	Ogre::SceneManager* mSM;
+	MazeManager* _MM;
 
 	Ogre::Vector3 _currentDir;
 	Ogre::Vector3 _nextDir;
