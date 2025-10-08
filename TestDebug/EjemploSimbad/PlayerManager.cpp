@@ -1,6 +1,6 @@
 #include "PlayerManager.h"
 
-PlayerManager::PlayerManager() : _player(nullptr), mSM(nullptr), _MM(nullptr)
+PlayerManager::PlayerManager() : _player(nullptr), mSM(nullptr), _MM(nullptr), _offset(0, 0, 0)
 {
 
 
@@ -10,6 +10,7 @@ PlayerManager::PlayerManager(Ogre::SceneManager* SM, String mesh, MazeManager* M
 {
 
 	CreatePlayer(_MM->GetPlayerInitialPos(), mesh);
+	_offset = CalculateOffset();
 
 }
 
@@ -29,6 +30,11 @@ bool PlayerManager::CanGo(Ogre::Vector3 dir)
 		return _MM->IsTrasferable(_player->getPosition());
 	}
 	
+}
+
+Ogre::Vector3 PlayerManager::CalculateOffset()
+{
+	return ((_MM->GetTileSize() - _player->calculateBoxSize()) / 2) + (_player->calculateBoxSize() / 2);
 }
 
 bool PlayerManager::keyPressed(const OgreBites::KeyboardEvent& evt) {
@@ -63,7 +69,7 @@ bool PlayerManager::keyPressed(const OgreBites::KeyboardEvent& evt) {
 
 void PlayerManager::frameRendered(const Ogre::FrameEvent& evt) {
 
-	if (CanGo(_nextDir)) {
+	if (CanGo(_nextDir * _offset.x)) {
 
 		if (_nextDir != Ogre::Vector3::ZERO) {
 			_currentDir = _nextDir;
@@ -71,7 +77,7 @@ void PlayerManager::frameRendered(const Ogre::FrameEvent& evt) {
 		_nextDir = { 0, 0, 0 };
 	}
 
-	if (!CanGo(_currentDir)) {
+	if (!CanGo(_currentDir * _offset.x)) {
 		_currentDir = { 0, 0, 0 };
 	}
 

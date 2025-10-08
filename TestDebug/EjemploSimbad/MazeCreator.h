@@ -30,6 +30,7 @@ private:
 
 	Ogre::SceneManager* mSM;
 
+
 };
 
 #endif // !MAZE_CREATOR

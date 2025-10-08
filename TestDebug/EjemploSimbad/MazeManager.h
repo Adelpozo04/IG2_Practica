@@ -53,6 +53,8 @@ public:
 
 	Ogre::Vector3 GetPlayerInitialPos();
 
+	Ogre::Vector3 GetTileSize();
+
 private:
 
 	/**

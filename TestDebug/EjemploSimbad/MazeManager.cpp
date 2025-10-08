@@ -39,6 +39,11 @@ Ogre::Vector3 MazeManager::GetPlayerInitialPos()
 	return _mazeData.initialPos;
 }
 
+Ogre::Vector3 MazeManager::GetTileSize()
+{
+	return _sizeMesh;
+}
+
 void MazeManager::InitMaze()
 {
 	MazeCreator mc = MazeCreator(mSM);

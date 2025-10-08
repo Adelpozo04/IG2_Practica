@@ -5,7 +5,7 @@
 using uint = unsigned int;
 
 const uint CUBE_SIZE = 98;
-const uint PLAYER_SPEED = 5;
+const uint PLAYER_SPEED = 1;
 const uint PLAYER_LIFES = 3;
 
 const string MAP_LAYOUT = "../../media/maps/stage1.txt";

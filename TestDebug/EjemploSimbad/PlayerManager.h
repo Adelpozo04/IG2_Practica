@@ -24,12 +24,16 @@ private:
 
 	bool CanGo(Ogre::Vector3 dir);
 
+	Ogre::Vector3 CalculateOffset();
+
 	Player* _player;
 	Ogre::SceneManager* mSM;
 	MazeManager* _MM;
 
 	Ogre::Vector3 _currentDir;
 	Ogre::Vector3 _nextDir;
+
+	Ogre::Vector3 _offset;
 };
 
 #endif // !PLAYERMANAGER_H
