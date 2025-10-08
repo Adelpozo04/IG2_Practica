@@ -26,6 +26,9 @@ public:
 	 */
 	~MazeManager();
 
+	bool canWalk(int x, int y);
+
+
 private:
 
 	void InitMaze();

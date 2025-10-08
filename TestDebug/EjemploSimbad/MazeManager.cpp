@@ -17,6 +17,11 @@ MazeManager::~MazeManager()
 
 }
 
+bool MazeManager::canWalk(int x, int y)
+{
+	return _maze[x][y]->GetTransferable();
+}
+
 void MazeManager::InitMaze()
 {
 	MazeCreator mc = MazeCreator(mSM);
@@ -26,5 +31,7 @@ void MazeManager::InitMaze()
 		_sizeX = _maze.size();
 		_sizeZ = _maze[0].size();
 	}
+
+	mc.getHm()->setMazeMan(this);
 	
 }

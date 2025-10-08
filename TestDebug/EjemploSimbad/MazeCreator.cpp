@@ -1,7 +1,8 @@
 #include <iostream>
 #include <fstream>
 #include "MazeCreator.h"
-#include "Constants.h"
+#include "Config.h"
+#include "Hero.h"
 
 MazeCreator::MazeCreator(Ogre::SceneManager* SM) : mSM(SM) 
 { 
@@ -107,7 +108,9 @@ std::vector<std::vector<Tile*>> MazeCreator::GenerateMaze(std::string file)
         }
     }
 
-    mazeNode->setPosition(centraLab(sizeX), 0, centraLab(sizeZ));
+    //mazeNode->setPosition(centraLab(sizeX), 0, centraLab(sizeZ));
+    //mSM->getRootSceneNode()->getChild("Hero")->setPosition(centraLab(sizeX), 0, centraLab(sizeZ));
+    
 
     return maze;
 }
@@ -128,6 +131,16 @@ void MazeCreator::readChars(char c, int i, int j,int index, std::vector<std::vec
         float x = CUBE_SIZE * i;
         float z = CUBE_SIZE * j;
         maze[i][j] = new Tile(Ogre::Vector3{ x, 0, z }, nodes[index], mSM, true);
+    }
+    else if (c == 'h') {
+        nodes[index] = mazeNode->createChildSceneNode(id);
+        float x = CUBE_SIZE * i;
+        float z = CUBE_SIZE * j;
+        maze[i][j] = new Tile(Ogre::Vector3{ x, 0, z }, nodes[index], mSM, true);
+        hero = new Hero(Ogre::Vector3{ x, 0, z }, Vector3(1, 0, 0), mSM->getRootSceneNode()->createChildSceneNode("Hero"),
+            mSM, HERO_MESH_NAME, HERO_SPEED, HERO_INITIAL_LIFES, HERO_INITIAL_POINTS);
+        mSM->getRootSceneNode()->getChild("Hero")->scale(Vector3(10,10,10));
+        hMan = new HeroManager(hero, mSM, mSM->getRootSceneNode()->getChild("Hero"));
     }
 }
 

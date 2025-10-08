@@ -6,6 +6,9 @@
 #include <string>
 #include "Ogre.h"
 #include "Tile.h"
+#include "HeroManager.h"
+
+class Hero;
 
 class MazeCreator
 {
@@ -38,12 +41,18 @@ public:
 	 */
 	void readChars(char c, int i, int j,int index, std::vector<std::vector<Tile*>> & tileMap, std::vector<Ogre::SceneNode*>& nodes);
 
+
+
+	inline HeroManager* getHm() { return hMan; }
+
 private:
 
 	double centraLab(int a);
 
 	Ogre::SceneManager* mSM;
 	Ogre::SceneNode* mazeNode;
+	Hero* hero;
+	HeroManager* hMan;
 
 };
 
