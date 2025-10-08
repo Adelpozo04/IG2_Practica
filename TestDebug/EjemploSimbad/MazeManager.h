@@ -51,6 +51,10 @@ public:
 	 */
 	bool IsTrasferable(Ogre::Vector3 position);
 
+	/**
+	 * @brief Devuelve la posicion inicial en la que se instancia al 
+	 * @return 
+	 */
 	Ogre::Vector3 GetPlayerInitialPos();
 
 	Ogre::Vector3 GetTileSize();
