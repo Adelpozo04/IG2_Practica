@@ -141,15 +141,19 @@
     <ClCompile Include="IG2Object.cpp" />
     <ClCompile Include="MazeCreator.cpp" />
     <ClCompile Include="MazeManager.cpp" />
+    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PlayerManager.cpp" />
     <ClCompile Include="SinbadExample.cpp" />
     <ClCompile Include="Tile.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Character.h" />
-    <ClInclude Include="Constants.h" />
+    <ClInclude Include="constantes.h" />
     <ClInclude Include="IG2Object.h" />
     <ClInclude Include="MazeCreator.h" />
     <ClInclude Include="MazeManager.h" />
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="PlayerManager.h" />
     <ClInclude Include="SinbadExample.h" />
     <ClInclude Include="Tile.h" />
   </ItemGroup>
