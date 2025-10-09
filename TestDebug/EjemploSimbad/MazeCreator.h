@@ -21,7 +21,9 @@ public:
 	 */
 	MazeManager::MazeData GenerateMaze(std::string map);
 
+
 private:
+	void readChars(char c, int i, int j, int index, std::vector<std::vector<Tile*>>& maze, std::vector<Ogre::SceneNode*>& nodes, Ogre::Vector3& initPos);
 
 	void ReadMaze(int sizeX, int sizeZ, Ogre::Vector3& cubeSize, ifstream& mapFile, std::vector<Ogre::SceneNode*>& nodes,
 		std::vector<std::vector<Tile*>>& maze, Ogre::SceneNode* mazeNode, Ogre::Vector3& initPos);
@@ -30,6 +32,8 @@ private:
 
 	Ogre::SceneManager* mSM;
 
+
+	Ogre::SceneNode* mazeNode;
 
 };
 
