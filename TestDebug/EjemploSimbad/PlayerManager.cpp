@@ -1,6 +1,6 @@
 #include "PlayerManager.h"
 
-PlayerManager::PlayerManager() : CharacterManager(), _player(nullptr)
+PlayerManager::PlayerManager() : CharacterManager()
 {
 
 
@@ -10,7 +10,7 @@ PlayerManager::PlayerManager(Ogre::SceneManager* SM, String mesh, MazeManager* M
 {
 
 	CreateCharacters(mesh);
-	_player->setOffset(CalculateOffset(_player));
+	_characters.front()->setOffset(CalculateOffset(_characters.front()));
 
 }
 
@@ -18,7 +18,9 @@ void PlayerManager::CreateCharacters(String mesh)
 {
 	Ogre::Vector3 initPos = _MM->GetPlayerInitialPos();
 	SceneNode* mPlayerNode = mSM->getRootSceneNode()->createChildSceneNode("nPlayer");
-	_player = new Player(initPos, mPlayerNode, mSM, mesh);
+	_characters.push_back(new Player(initPos, mPlayerNode, mSM, mesh));
+	_characters.front()->setIterator(_characters.begin());
+	
 }
 
 bool PlayerManager::keyPressed(const OgreBites::KeyboardEvent& evt) {
@@ -27,22 +29,22 @@ bool PlayerManager::keyPressed(const OgreBites::KeyboardEvent& evt) {
 	{
 	case SDLK_UP:
 
-		_player->setNextDir(Ogre::Vector3::UNIT_Z);		
+		_characters.front()->setNextDir(Ogre::Vector3::UNIT_Z);
 		break;
 
 	case SDLK_DOWN:
 
-		_player->setNextDir(Ogre::Vector3::NEGATIVE_UNIT_Z);
+		_characters.front()->setNextDir(Ogre::Vector3::NEGATIVE_UNIT_Z);
 		break;
 
 	case SDLK_RIGHT:
 
-		_player->setNextDir(Ogre::Vector3::NEGATIVE_UNIT_X);
+		_characters.front()->setNextDir(Ogre::Vector3::NEGATIVE_UNIT_X);
 		break;
 
 	case SDLK_LEFT:
 
-		_player->setNextDir(Ogre::Vector3::UNIT_X);
+		_characters.front()->setNextDir(Ogre::Vector3::UNIT_X);
 		break;
 
 	}
@@ -53,20 +55,20 @@ bool PlayerManager::keyPressed(const OgreBites::KeyboardEvent& evt) {
 
 void PlayerManager::frameRendered(const Ogre::FrameEvent& evt) {
 
-	if (CanGo(_player->getNextDir() * _player->getOffset().x, _player)) {
+	if (CanGo(_characters.front()->getNextDir() * _characters.front()->getOffset().x, _characters.front())) {
 
-		if (_player->getNextDir() != Ogre::Vector3::ZERO) {
-			_player->setDir(_player->getNextDir());
+		if (_characters.front()->getNextDir() != Ogre::Vector3::ZERO) {
+			_characters.front()->setDir(_characters.front()->getNextDir());
 		}	
-		_player->setNextDir({ 0, 0, 0 });
+		_characters.front()->setNextDir({ 0, 0, 0 });
 	}
 
-	if (!CanGo(_player->getDir() * _player->getOffset().x, _player)) {
-		_player->setDir({ 0, 0, 0 });
+	if (!CanGo(_characters.front()->getDir() * _characters.front()->getOffset().x, _characters.front())) {
+		_characters.front()->setDir({ 0, 0, 0 });
 	}
 
-	Ogre::Vector3 newPos = _player->getPosition() + (_player->getDir() * _player->getSpeed());
-	_player->setPosition(newPos);
+	Ogre::Vector3 newPos = _characters.front()->getPosition() + (_characters.front()->getDir() * _characters.front()->getSpeed());
+	_characters.front()->setPosition(newPos);
 
 }
 

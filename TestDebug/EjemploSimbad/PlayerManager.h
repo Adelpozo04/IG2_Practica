@@ -46,8 +46,6 @@ private:
 	 */
 	void CreateCharacters(String mesh) override;
 
-	Player* _player;
-
 };
 
 #endif // !PLAYERMANAGER_H

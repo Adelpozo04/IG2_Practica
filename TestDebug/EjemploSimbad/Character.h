@@ -38,6 +38,14 @@ public:
 		_offset = offset;
 	}
 
+	inline std::list<Character*>::iterator getIterator() const {
+		return _it;
+	}
+
+	inline void setIterator(std::list<Character*>::iterator it) {
+		_it = it;
+	}
+
 protected:
 
 	Character();
@@ -50,6 +58,8 @@ protected:
 
 	int _lifes;
 	float _speed;
+
+	std::list<Character*>::iterator _it;
 
 	Ogre::Vector3 _currentDir;
 	Ogre::Vector3 _nextDir;
