@@ -1,6 +1,6 @@
 #include "PlayerManager.h"
 
-PlayerManager::PlayerManager() : _player(nullptr), mSM(nullptr), _MM(nullptr), _offset(0, 0, 0)
+PlayerManager::PlayerManager() : _player(nullptr), mSM(nullptr), _MM(nullptr)
 {
 
 
@@ -10,7 +10,7 @@ PlayerManager::PlayerManager(Ogre::SceneManager* SM, String mesh, MazeManager* M
 {
 
 	CreatePlayer(_MM->GetPlayerInitialPos(), mesh);
-	_offset = CalculateOffset();
+	_player->setOffset(CalculateOffset());
 
 }
 
@@ -43,22 +43,22 @@ bool PlayerManager::keyPressed(const OgreBites::KeyboardEvent& evt) {
 	{
 	case SDLK_UP:
 
-		_nextDir = Ogre::Vector3::UNIT_Z;		
+		_player->setNextDir(Ogre::Vector3::UNIT_Z);		
 		break;
 
 	case SDLK_DOWN:
 
-		_nextDir = Ogre::Vector3::NEGATIVE_UNIT_Z;
+		_player->setNextDir(Ogre::Vector3::NEGATIVE_UNIT_Z);
 		break;
 
 	case SDLK_RIGHT:
 
-		_nextDir = Ogre::Vector3::NEGATIVE_UNIT_X;
+		_player->setNextDir(Ogre::Vector3::NEGATIVE_UNIT_X);
 		break;
 
 	case SDLK_LEFT:
 
-		_nextDir = Ogre::Vector3::UNIT_X;
+		_player->setNextDir(Ogre::Vector3::UNIT_X);
 		break;
 
 	}
@@ -69,19 +69,19 @@ bool PlayerManager::keyPressed(const OgreBites::KeyboardEvent& evt) {
 
 void PlayerManager::frameRendered(const Ogre::FrameEvent& evt) {
 
-	if (CanGo(_nextDir * _offset.x)) {
+	if (CanGo(_player->getNextDir() * _player->getOffset().x)) {
 
-		if (_nextDir != Ogre::Vector3::ZERO) {
-			_currentDir = _nextDir;
+		if (_player->getNextDir() != Ogre::Vector3::ZERO) {
+			_player->setDir(_player->getNextDir());
 		}	
-		_nextDir = { 0, 0, 0 };
+		_player->setNextDir({ 0, 0, 0 });
 	}
 
-	if (!CanGo(_currentDir * _offset.x)) {
-		_currentDir = { 0, 0, 0 };
+	if (!CanGo(_player->getDir() * _player->getOffset().x)) {
+		_player->setDir({ 0, 0, 0 });
 	}
 
-	Ogre::Vector3 newPos = _player->getPosition() + (_currentDir * _player->getSpeed());
+	Ogre::Vector3 newPos = _player->getPosition() + (_player->getDir() * _player->getSpeed());
 	_player->setPosition(newPos);
 
 }

@@ -9,11 +9,9 @@ public:
 	Player(Vector3 initPos, SceneNode* node, SceneManager* sceneMng);
 	Player(Vector3 initPos, SceneNode* node, SceneManager* sceneMng, String mesh);
 
-	float getSpeed();
-
 private:
 
-	void ConfigPlayer();
+	void Config() override;
 
 };
 
