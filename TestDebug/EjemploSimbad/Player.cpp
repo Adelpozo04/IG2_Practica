@@ -6,6 +6,9 @@ Player::Player() :
 {
 	_lifes = PLAYER_LIFES;
 	_speed = PLAYER_SPEED;
+	_currentDir = { 0, 0, 0 };
+	_nextDir = { 0, 0, 0 };
+	_offset = { 0, 0, 0 };
 	Config();
 }
 
@@ -14,6 +17,9 @@ Player::Player(Vector3 initPos, SceneNode* node, SceneManager* sceneMng) :
 {
 	_lifes = PLAYER_LIFES;
 	_speed = PLAYER_SPEED;
+	_currentDir = { 0, 0, 0 };
+	_nextDir = { 0, 0, 0 };
+	_offset = { 0, 0, 0 };
 	Config();
 }
 
@@ -22,6 +28,9 @@ Player::Player(Vector3 initPos, SceneNode* node, SceneManager* sceneMng, String 
 {
 	_lifes = PLAYER_LIFES;
 	_speed = PLAYER_SPEED;
+	_currentDir = { 0, 0, 0 };
+	_nextDir = { 0, 0, 0 };
+	_offset = { 0, 0, 0 };
 	Config();
 }
 

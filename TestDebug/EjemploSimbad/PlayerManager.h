@@ -4,9 +4,9 @@
 #include <OgreInput.h>
 #include <SDL_keycode.h>
 #include "Player.h"
-#include "MazeManager.h"
+#include "CharacterManager.h"
 
-class PlayerManager : public OgreBites::InputListener
+class PlayerManager : public CharacterManager
 {
 
 public:
@@ -44,20 +44,9 @@ private:
 	 * @param initPos Posicion inicial en la que crear al player
 	 * @param mesh Mesh que representa al player
 	 */
-	void CreatePlayer(Ogre::Vector3 initPos, String mesh);
-
-	/**
-	 * @brief Metodo que nos indica si 
-	 * @param dir 
-	 * @return 
-	 */
-	bool CanGo(Ogre::Vector3 dir);
-
-	Ogre::Vector3 CalculateOffset();
+	void CreateCharacters(String mesh) override;
 
 	Player* _player;
-	Ogre::SceneManager* mSM;
-	MazeManager* _MM;
 
 };
 
