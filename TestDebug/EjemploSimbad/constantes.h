@@ -4,7 +4,7 @@
 
 using uint = unsigned int;
 
-const uint CUBE_SIZE = 98;
+const Ogre::Vector3 CUBE_SIZE = { 100, 0, 100 };
 const uint PLAYER_SPEED = 1;
 const uint PLAYER_LIFES = 3;
 

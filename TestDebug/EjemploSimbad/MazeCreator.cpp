@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include "MazeCreator.h"
+#include "constantes.h"
 
 MazeManager::MazeData MazeCreator::GenerateMaze(std::string map)
 {
@@ -70,16 +71,19 @@ void MazeCreator::ReadMaze(int sizeX, int sizeZ, Ogre::Vector3& cubeSize, ifstre
             if (mapFloor == 'x') {
 
                 nodes[index] = mazeNode->createChildSceneNode(id);
-                maze[i][j] = new Tile(Ogre::Vector3{ cubeSize.x * i, 0, cubeSize.z * j}, nodes[index], mSM, "cube.mesh", false);
+                nodes[index]->setScale(CUBE_SIZE.x / cubeSize.x, 1, CUBE_SIZE.z / cubeSize.z);
+                maze[i][j] = new Tile(Ogre::Vector3{ CUBE_SIZE.x * i, 0, CUBE_SIZE.z * j}, nodes[index], mSM, "cube.mesh", false);
             }
             else if (mapFloor == 'o') {
                 nodes[index] = mazeNode->createChildSceneNode(id);
-                maze[i][j] = new Tile(Ogre::Vector3{ cubeSize.x * i, 0, cubeSize.z * j }, nodes[index], mSM, true);
+                nodes[index]->setScale(CUBE_SIZE.x / cubeSize.x, 1, CUBE_SIZE.z / cubeSize.z);
+                maze[i][j] = new Tile(Ogre::Vector3{ CUBE_SIZE.x * i, 0, CUBE_SIZE.z * j }, nodes[index], mSM, true);
             }
             else if (mapFloor == 'h') {
                 nodes[index] = mazeNode->createChildSceneNode(id);
-                maze[i][j] = new Tile(Ogre::Vector3{ cubeSize.x * i, 0, cubeSize.z * j }, nodes[index], mSM, true);
-                initPos = Ogre::Vector3(cubeSize.x * i + (cubeSize.x / 2), 0, cubeSize.z * j + (cubeSize.z / 2));
+                nodes[index]->setScale(CUBE_SIZE.x / cubeSize.x, 1, CUBE_SIZE.z / cubeSize.z);
+                maze[i][j] = new Tile(Ogre::Vector3{ CUBE_SIZE.x * i, 0, CUBE_SIZE.z * j }, nodes[index], mSM, true);
+                initPos = Ogre::Vector3(CUBE_SIZE.x * i + (CUBE_SIZE.x / 2), 0, CUBE_SIZE.z * j + (CUBE_SIZE.z / 2));
             }
 
         }
@@ -90,7 +94,7 @@ void MazeCreator::ReadMaze(int sizeX, int sizeZ, Ogre::Vector3& cubeSize, ifstre
 void MazeCreator::ConfigMaze(Ogre::SceneNode* mazeNode, Ogre::Vector3& cubeSize)
 {
 
-    Ogre::Vector3 newPos = mazeNode->getPosition() + Ogre::Vector3(cubeSize.x / 2, 0, cubeSize.z / 2);
+    Ogre::Vector3 newPos = mazeNode->getPosition() + Ogre::Vector3(CUBE_SIZE.x / 2, 0, CUBE_SIZE.z / 2);
     mazeNode->setPosition(newPos);
 
 }
