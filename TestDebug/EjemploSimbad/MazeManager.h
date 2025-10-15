@@ -9,10 +9,28 @@
 #include "Ogre.h"
 #include "Tile.h"
 
+/**
+ * @brief Clase encargada de la gestion del laberinto, tanto para editarlo como para obtener informacion de el.
+ */
 class MazeManager
 {
 
 public:
+
+	struct MazeData {
+
+		std::vector<std::vector<Tile*>> maze;
+		Ogre::Vector3 initialPos;
+		
+		MazeData() {
+			maze = std::vector<std::vector<Tile*>>(0, std::vector<Tile*>(0));
+			initialPos = Ogre::Vector3::ZERO;
+		}
+
+		MazeData(std::vector<std::vector<Tile*>> m, Ogre::Vector3 pos) : maze(m), initialPos(pos) {
+
+		}
+	};
 
 	/**
 	 * @brief 
@@ -26,18 +44,55 @@ public:
 	 */
 	~MazeManager();
 
-	bool canWalk(int x, int y);
+	/**
+	 * @brief Metodo que nos indica si la casilla correspondiente a una posicion es traspasable o no
+	 * @param position Posicion de la casilla a comprobar
+	 * @return Si es traspasable o no
+	 */
+	bool IsTrasferable(Ogre::Vector3 position);
 
+	/**
+	 * @brief Devuelve la posicion inicial en la que se instancia al 
+	 * @return 
+	 */
+	Ogre::Vector3 GetPlayerInitialPos();
+
+	Ogre::Vector3 GetTileSize();
+
+	/**
+ * @brief Funcion que lee chars y crea objetos dentro del laberinto
+ * @param c Char que indica el tipo de objeto
+ * @param i indice i del bucle de la creacion
+ * @param j indice j del bucle de la creacion
+ * @param index indice dentro del vector de nodos
+ * @param tileMap tileMap en donde se crearan los objetos
+ * @param nodes Vector con los ScenNodes del laberinto
+ */
+	void readChars(char c, int i, int j, int index, std::vector<std::vector<Tile*>>& tileMap, std::vector<Ogre::SceneNode*>& nodes);
 
 private:
 
+	/**
+	 * @brief Inicializa el laberinto y almacena los Tiles de este
+	 */
 	void InitMaze();
 
+	/**
+	 * @brief Metodo que nos devuelve los index de la casilla a la que le corresponde una posicion determinada
+	 * @param position La posicion de la casilla a comprobar
+	 * @return El par de index de la casilla, siendo el first la x y el second la z
+	 */
+	std::pair<int, int> FromPositionToIndex(Ogre::Vector3 position);
+
+	//Cambiar las variables para inicializarlas en constructor por defecto
 	int _sizeX = 0;
 	int _sizeZ = 0;
+	Ogre::Vector3 _sizeMesh;
 
-	std::vector<std::vector<Tile*>> _maze = std::vector<std::vector<Tile*>>(0, std::vector<Tile*>(0));
+	//Vector bidimensional con las casillas del laberinto
+	MazeData _mazeData;
 
+	//Nombre del mapa a cargar
 	std::string _map = "";
 	Ogre::SceneManager* mSM = nullptr;
 };

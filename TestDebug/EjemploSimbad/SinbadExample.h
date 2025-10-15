@@ -18,6 +18,7 @@
 #include <SDL_keycode.h>
 
 #include "MazeManager.h"
+#include "PlayerManager.h"
 
 class SinbadExample: public OgreBites::ApplicationContext, OgreBites::InputListener {
 
@@ -47,6 +48,8 @@ protected:
     OgreBites::CameraMan* mCamMgr = nullptr;
 
     MazeManager* mMazeMgr = nullptr;
+
+    PlayerManager* mPlayerMgr = nullptr;
 
 };
 
