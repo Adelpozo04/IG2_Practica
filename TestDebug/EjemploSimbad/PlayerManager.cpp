@@ -24,7 +24,7 @@ void PlayerManager::CreatePlayer(Ogre::Vector3 initPos, String mesh)
 bool PlayerManager::CanGo(Ogre::Vector3 dir)
 {
 	if (dir != Ogre::Vector3::ZERO) {
-		Ogre::Vector3 nextTile = _player->getPosition() + (dir * CUBE_SIZE/2);
+		Ogre::Vector3 nextTile = _player->getPosition() + (dir * CUBE_SIZE);
 
 		return _MM->IsTrasferable(nextTile);
 	}
