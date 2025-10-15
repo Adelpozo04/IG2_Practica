@@ -69,20 +69,8 @@ void MazeCreator::ReadMaze(int sizeX, int sizeZ, Ogre::Vector3& cubeSize, ifstre
             Ogre::String id = "nCube" + Ogre::StringConverter::toString(index);
 
             readChars(mapFloor, i, j, index, maze, nodes, initPos);
-            /*if (mapFloor == 'x') {
+            
 
-                nodes[index] = mazeNode->createChildSceneNode(id);
-                maze[i][j] = new Tile(Ogre::Vector3{ cubeSize.x * i, 0, cubeSize.z * j}, nodes[index], mSM, "cube.mesh", false);
-            }
-            else if (mapFloor == 'o') {
-                nodes[index] = mazeNode->createChildSceneNode(id);
-                maze[i][j] = new Tile(Ogre::Vector3{ cubeSize.x * i, 0, cubeSize.z * j }, nodes[index], mSM, true);
-            }
-            else if (mapFloor == 'h') {
-                nodes[index] = mazeNode->createChildSceneNode(id);
-                maze[i][j] = new Tile(Ogre::Vector3{ cubeSize.x * i, 0, cubeSize.z * j }, nodes[index], mSM, true);
-                initPos = Ogre::Vector3(cubeSize.x * i + (cubeSize.x / 2), 0, cubeSize.z * j + (cubeSize.z / 2));
-            }*/
         }
     }
 
@@ -92,38 +80,29 @@ void MazeCreator::readChars(char c, int i, int j, int index, std::vector<std::ve
 {
     Ogre::String id = "nCube" + Ogre::StringConverter::toString(index);
 
-    if (c == 'x') {
+    if (mapFloor == 'x') {
 
         nodes[index] = mazeNode->createChildSceneNode(id);
-        float x = INI_CUBE_SIZE.x * i;
-        float z = INI_CUBE_SIZE.z * j;
-        maze[i][j] = new Tile(Ogre::Vector3{ x, 0, z }, nodes[index], mSM, "cube.mesh", false);
+        nodes[index]->setScale(CUBE_SIZE.x / cubeSize.x, 1, CUBE_SIZE.z / cubeSize.z);
+        maze[i][j] = new Tile(Ogre::Vector3{ CUBE_SIZE.x * i, 0, CUBE_SIZE.z * j}, nodes[index], mSM, "cube.mesh", false);
     }
-    else if (c == 'o') {
+    else if (mapFloor == 'o') {
         nodes[index] = mazeNode->createChildSceneNode(id);
-        float x = INI_CUBE_SIZE.x * i;
-        float z = INI_CUBE_SIZE.z * j;
-        maze[i][j] = new Tile(Ogre::Vector3{ x, 0, z }, nodes[index], mSM, true);
+        nodes[index]->setScale(CUBE_SIZE.x / cubeSize.x, 1, CUBE_SIZE.z / cubeSize.z);
+        maze[i][j] = new Tile(Ogre::Vector3{ CUBE_SIZE.x * i, 0, CUBE_SIZE.z * j }, nodes[index], mSM, true);
     }
-    else if (c == 'h') {
+    else if (mapFloor == 'h') {
         nodes[index] = mazeNode->createChildSceneNode(id);
-        float x = INI_CUBE_SIZE.x * i;
-        float z = INI_CUBE_SIZE.z * j;
-        maze[i][j] = new Tile(Ogre::Vector3{ x, 0, z }, nodes[index], mSM, true);
-        initPos = Ogre::Vector3(x + INI_CUBE_SIZE.x/2, 0, z + INI_CUBE_SIZE.z/2);
-
-
-        /*hero = new Hero(Ogre::Vector3{x, 0, z}, Vector3(1, 0, 0), mSM->getRootSceneNode()->createChildSceneNode("Hero"),
-            mSM, HERO_MESH_NAME, HERO_SPEED, HERO_INITIAL_LIFES, HERO_INITIAL_POINTS);
-        mSM->getRootSceneNode()->getChild("Hero")->scale(Vector3(10, 10, 10));
-        hMan = new HeroManager(hero, mSM, mSM->getRootSceneNode()->getChild("Hero"));*/
+        nodes[index]->setScale(CUBE_SIZE.x / cubeSize.x, 1, CUBE_SIZE.z / cubeSize.z);
+        maze[i][j] = new Tile(Ogre::Vector3{ CUBE_SIZE.x * i, 0, CUBE_SIZE.z * j }, nodes[index], mSM, true);
+        initPos = Ogre::Vector3(CUBE_SIZE.x * i + (CUBE_SIZE.x / 2), 0, CUBE_SIZE.z * j + (CUBE_SIZE.z / 2));
     }
 }
 
 void MazeCreator::ConfigMaze(Ogre::SceneNode* mazeNode, Ogre::Vector3& cubeSize)
 {
 
-    Ogre::Vector3 newPos = mazeNode->getPosition() + Ogre::Vector3(cubeSize.x / 2, 0, cubeSize.z / 2);
+    Ogre::Vector3 newPos = mazeNode->getPosition() + Ogre::Vector3(CUBE_SIZE.x / 2, 0, CUBE_SIZE.z / 2);
     mazeNode->setPosition(newPos);
 
 }
