@@ -70,6 +70,12 @@ public:
  */
 	void readChars(char c, int i, int j, int index, std::vector<std::vector<Tile*>>& tileMap, std::vector<Ogre::SceneNode*>& nodes);
 
+	/**
+	 * @brief Metodo que nos devuelve los index de la casilla a la que le corresponde una posicion determinada
+	 * @param position La posicion de la casilla a comprobar
+	 * @return El par de index de la casilla, siendo el first la x y el second la z
+	 */
+	std::pair<int, int> FromPositionToIndex(Ogre::Vector3 position);
 private:
 
 	/**
@@ -77,12 +83,6 @@ private:
 	 */
 	void InitMaze();
 
-	/**
-	 * @brief Metodo que nos devuelve los index de la casilla a la que le corresponde una posicion determinada
-	 * @param position La posicion de la casilla a comprobar
-	 * @return El par de index de la casilla, siendo el first la x y el second la z
-	 */
-	std::pair<int, int> FromPositionToIndex(Ogre::Vector3 position);
 
 	//Cambiar las variables para inicializarlas en constructor por defecto
 	int _sizeX = 0;

@@ -27,6 +27,12 @@ public:
 private:
 
 	/**
+	 * @brief
+	 * @return
+	 */
+	bool checkCenter(Vector3 nextPos, Vector3 MargenS, Vector3 MargenI, Vector3 dir);
+
+	/**
 	 * @brief Recoge el input de una tecla pulsada
 	 * @param evt La tecla que se ha pulsado
 	 * @return devuelve true si se ha podido procesar
