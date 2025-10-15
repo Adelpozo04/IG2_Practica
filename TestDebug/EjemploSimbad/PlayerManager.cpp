@@ -56,7 +56,7 @@ bool PlayerManager::keyPressed(const OgreBites::KeyboardEvent& evt) {
 
 void PlayerManager::frameRendered(const Ogre::FrameEvent& evt) {
 
-	if (CanGo(_characters.front()->getNextDir() * _characters.front()->getOffset().x, _characters.front())) {
+	if (CanGo(_characters.front()->getNextDir(), _characters.front())) {
 
 		if (_characters.front()->getNextDir() != Ogre::Vector3::ZERO) {
 			_characters.front()->setDir(_characters.front()->getNextDir());
@@ -64,7 +64,7 @@ void PlayerManager::frameRendered(const Ogre::FrameEvent& evt) {
 		_characters.front()->setNextDir({ 0, 0, 0 });
 	}
 
-	if (!CanGo(_characters.front()->getDir() * _characters.front()->getOffset().x, _characters.front())) {
+	if (!CanGo(_characters.front()->getDir(), _characters.front())) {
 		_characters.front()->setDir({ 0, 0, 0 });
 	}
 
