@@ -137,6 +137,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Character.cpp" />
+    <ClCompile Include="CharacterManager.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="IG2Object.cpp" />
     <ClCompile Include="MazeCreator.cpp" />
@@ -148,6 +149,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Character.h" />
+    <ClInclude Include="CharacterManager.h" />
     <ClInclude Include="constantes.h" />
     <ClInclude Include="IG2Object.h" />
     <ClInclude Include="MazeCreator.h" />
