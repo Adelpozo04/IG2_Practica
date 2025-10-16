@@ -1,5 +1,6 @@
 #include "Player.h"
 #include "constantes.h"
+#include "Enemy.h"
 
 Player::Player() :
 	Character()

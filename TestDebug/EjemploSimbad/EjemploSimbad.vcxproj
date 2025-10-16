@@ -138,6 +138,9 @@
   <ItemGroup>
     <ClCompile Include="Character.cpp" />
     <ClCompile Include="CharacterManager.cpp" />
+    <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="EnemyHead.cpp" />
+    <ClCompile Include="EnemyPenguin.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="IG2Object.cpp" />
     <ClCompile Include="MazeCreator.cpp" />
@@ -151,6 +154,9 @@
     <ClInclude Include="Character.h" />
     <ClInclude Include="CharacterManager.h" />
     <ClInclude Include="constantes.h" />
+    <ClInclude Include="Enemy.h" />
+    <ClInclude Include="EnemyHead.h" />
+    <ClInclude Include="EnemyPenguin.h" />
     <ClInclude Include="IG2Object.h" />
     <ClInclude Include="MazeCreator.h" />
     <ClInclude Include="MazeManager.h" />

@@ -35,7 +35,12 @@ protected:
 
     Ogre::SceneNode* mSinbadNode = nullptr;
 
-    Ogre::SceneNode* mTestNode = nullptr;
+    Ogre::SceneNode* mPenguinNode = nullptr;
+    Ogre::SceneNode* mRazorNode = nullptr;
+    Ogre::SceneNode* mHalo = nullptr;
+    Ogre::SceneNode* mFish01 = nullptr;
+    Ogre::SceneNode* mFish02 = nullptr;
+    Ogre::SceneNode* mFish03 = nullptr;
 
     Ogre::SceneManager* mSM = nullptr;
     OgreBites::TrayManager* mTrayMgr = nullptr;
