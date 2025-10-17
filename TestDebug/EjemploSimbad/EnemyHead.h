@@ -9,8 +9,10 @@ public:
 
 	EnemyHead();
 	EnemyHead(Vector3 initPos, SceneNode* node, SceneManager* sceneMng);
+	EnemyHead(Vector3 initPos, SceneNode* node, SceneManager* sceneMng, String mesh);
 
 private:
+
 	void Config() override;
 
 };

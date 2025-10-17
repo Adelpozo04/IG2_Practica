@@ -95,10 +95,15 @@ void SinbadExample::setupScene(void) {
     //------------------------------------------------------------------------
     // Creating Sinbad
 
-    mMazeMgr = new MazeManager(MAP_LAYOUT, mSM);
+    /*mMazeMgr = new MazeManager(MAP_LAYOUT, mSM);
     mPlayerMgr = new PlayerManager(mSM, "Sinbad.mesh", mMazeMgr);
-    addInputListener(mPlayerMgr);
+    addInputListener(mPlayerMgr);*/
 
+    mTestNode = mSM->getRootSceneNode()->createChildSceneNode("nTest");
+    ehTest = new EnemyHead({ 0, 0, 0 }, mTestNode, mSM, "ogrehead.mesh");
+
+    /*mTestNode2 = mSM->getRootSceneNode()->createChildSceneNode("nTest2");
+    ehTest2 = IG2Object({ 0, 0, 0 }, mTestNode2, mSM, "Sinbad.mesh");*/
 
     /*
     Ogre::Entity* ent1 = mSM->createEntity("Sinbad.mesh");

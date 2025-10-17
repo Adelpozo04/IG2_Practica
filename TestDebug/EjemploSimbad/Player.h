@@ -9,8 +9,6 @@ public:
 	Player(Vector3 initPos, SceneNode* node, SceneManager* sceneMng);
 	Player(Vector3 initPos, SceneNode* node, SceneManager* sceneMng, String mesh);
 
-private:
-
 	void Config() override;
 
 };

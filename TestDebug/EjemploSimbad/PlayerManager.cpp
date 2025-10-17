@@ -20,7 +20,6 @@ void PlayerManager::CreateCharacters(String mesh)
 	Ogre::Vector3 initPos = _MM->GetPlayerInitialPos();
 	SceneNode* mPlayerNode = mSM->getRootSceneNode()->createChildSceneNode("nPlayer");
 	_characters.push_back(new Player(initPos, mPlayerNode, mSM, mesh));
-	
 }
 
 bool PlayerManager::keyPressed(const OgreBites::KeyboardEvent& evt) {

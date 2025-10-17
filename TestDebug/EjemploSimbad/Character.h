@@ -44,6 +44,10 @@ protected:
 	Character(Vector3 initPos, SceneNode* node, SceneManager* sceneMng);
 	Character(Vector3 initPos, SceneNode* node, SceneManager* sceneMng, String mesh);
 
+	Character(const Character&) = delete;
+
+	Character& operator=(const Character&) = delete;
+
 	virtual ~Character() = default;
 
 	virtual void Config() = 0;

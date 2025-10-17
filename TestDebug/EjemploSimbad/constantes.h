@@ -19,7 +19,7 @@ const Ogre::Vector3 PLAYER_SCALE = Ogre::Vector3(8, 8, 8);
 const float SIMPLE_ENEMY_SPEED = 5;
 const uint SIMPLE_ENEMY_LIFES = 3;
 const string SIMPLE_ENEMY_MESH_NAME = "ogrehead.mesh";
-const Ogre::Vector3 SIMPLE_ENEMY_SCALE = Ogre::Vector3(1, 1, 1);
+const Ogre::Vector3 SIMPLE_ENEMY_SCALE = Ogre::Vector3(8, 8, 8);
 
 const float COMPLEX_ENEMY_SPEED = 10;
 const uint COMPLEX_ENEMY_LIFES = 3;

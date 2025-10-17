@@ -9,7 +9,7 @@ EnemyPenguin::EnemyPenguin() :
 	_currentDir = { 0, 0, 0 };
 	_nextDir = { 0, 0, 0 };
 	_offset = { 0, 0, 0 };
-	Config();
+    Config();
 }
 
 EnemyPenguin::EnemyPenguin(Vector3 initPos, SceneNode* node, SceneManager* sceneMng, int index) : 
@@ -45,7 +45,7 @@ EnemyPenguin::EnemyPenguin(Vector3 initPos, SceneNode* node, SceneManager* scene
 	_currentDir = { 0, 0, 0 };
 	_nextDir = { 0, 0, 0 };
 	_offset = { 0, 0, 0 };
-	Config();
+    Config();
 }
 
 void EnemyPenguin::Config()
