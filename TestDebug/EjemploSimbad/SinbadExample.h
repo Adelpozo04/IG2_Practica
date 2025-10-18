@@ -19,8 +19,7 @@
 
 #include "MazeManager.h"
 #include "PlayerManager.h"
-#include "EnemyHead.h"
-#include "EnemyPenguin.h"
+#include "EnemyManager.h"
 
 class SinbadExample: public OgreBites::ApplicationContext, OgreBites::InputListener {
 
@@ -40,10 +39,6 @@ protected:
     Ogre::SceneNode* mTestNode = nullptr;
     Ogre::SceneNode* mTestNode2 = nullptr;
 
-    EnemyHead* ehTest;
-
-    EnemyPenguin* epTest;
-
     IG2Object ehTest2;
 
     Ogre::SceneManager* mSM = nullptr;
@@ -59,6 +54,8 @@ protected:
     MazeManager* mMazeMgr = nullptr;
 
     PlayerManager* mPlayerMgr = nullptr;
+
+    EnemyManager* mEnemyMgr = nullptr;
 
 };
 

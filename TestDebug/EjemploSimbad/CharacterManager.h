@@ -19,7 +19,7 @@ protected:
 
 	CharacterManager(Ogre::SceneManager* SM, MazeManager* MM);
 
-	virtual void CreateCharacters(String mesh) = 0;
+	virtual void CreateCharacters() = 0;
 
 	Ogre::Vector3 CalculateOffset(Character* ch);
 

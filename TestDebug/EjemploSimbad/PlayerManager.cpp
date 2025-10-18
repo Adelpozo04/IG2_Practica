@@ -7,19 +7,19 @@ PlayerManager::PlayerManager() : CharacterManager()
 
 }
 
-PlayerManager::PlayerManager(Ogre::SceneManager* SM, String mesh, MazeManager* MM) : CharacterManager(SM, MM)
+PlayerManager::PlayerManager(Ogre::SceneManager* SM, MazeManager* MM) : CharacterManager(SM, MM)
 {
 
-	CreateCharacters(mesh);
+	CreateCharacters();
 	_characters.front()->setOffset(CalculateOffset(_characters.front()));
 
 }
 
-void PlayerManager::CreateCharacters(String mesh)
+void PlayerManager::CreateCharacters()
 {
 	Ogre::Vector3 initPos = _MM->GetPlayerInitialPos();
 	SceneNode* mPlayerNode = mSM->getRootSceneNode()->createChildSceneNode("nPlayer");
-	_characters.push_back(new Player(initPos, mPlayerNode, mSM, mesh));
+	_characters.push_back(new Player(initPos, mPlayerNode, mSM, PLAYER_MESH_NAME));
 }
 
 bool PlayerManager::keyPressed(const OgreBites::KeyboardEvent& evt) {

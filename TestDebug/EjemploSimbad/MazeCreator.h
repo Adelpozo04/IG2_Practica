@@ -23,10 +23,11 @@ public:
 
 
 private:
-	void readChars(char c, int i, int j, int index, std::vector<std::vector<Tile*>>& maze, std::vector<Ogre::SceneNode*>& nodes, Ogre::Vector3& initPos);
+	void readChars(char c, int i, int j, int index, std::vector<std::vector<Tile*>>& maze, std::vector<Ogre::SceneNode*>& nodes, 
+		Ogre::Vector3& initPos, std::vector<Ogre::Vector3>& enemiesInitPos);
 
 	void ReadMaze(int sizeX, int sizeZ, Ogre::Vector3& cubeSize, ifstream& mapFile, std::vector<Ogre::SceneNode*>& nodes,
-		std::vector<std::vector<Tile*>>& maze, Ogre::SceneNode* mazeNode, Ogre::Vector3& initPos);
+		std::vector<std::vector<Tile*>>& maze, Ogre::SceneNode* mazeNode, Ogre::Vector3& initPos, std::vector<Ogre::Vector3>& enemiesInitPos);
 
 	void ConfigMaze(Ogre::SceneNode* mazeNode, Ogre::Vector3& cubeSize);
 

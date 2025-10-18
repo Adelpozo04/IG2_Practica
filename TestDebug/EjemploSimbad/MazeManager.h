@@ -21,14 +21,17 @@ public:
 
 		std::vector<std::vector<Tile*>> maze;
 		Ogre::Vector3 initialPos;
-
+		std::vector<Ogre::Vector3> enemiesInitialPos;
 		
 		MazeData() {
 			maze = std::vector<std::vector<Tile*>>(0, std::vector<Tile*>(0));
 			initialPos = Ogre::Vector3::ZERO;
+			enemiesInitialPos = std::vector<Ogre::Vector3>(0);
 		}
 
-		MazeData(std::vector<std::vector<Tile*>> m, Ogre::Vector3 pos) : maze(m), initialPos(pos) {
+		MazeData(std::vector<std::vector<Tile*>> m, Ogre::Vector3 pos, std::vector<Ogre::Vector3> ePos) : 
+			maze(m), initialPos(pos), enemiesInitialPos(ePos) 
+		{
 
 		}
 	};
@@ -57,6 +60,8 @@ public:
 	 * @return 
 	 */
 	Ogre::Vector3 GetPlayerInitialPos();
+
+	vector<Ogre::Vector3> GetEnemiesInitialPos();
 
 	Ogre::Vector3 GetTileSize();
 

@@ -1,12 +1,8 @@
-#ifndef PLAYERMANAGER_H
-#define PLAYERMANAGER_H
+#ifndef ENEMYMANAGER_H
+#define ENEMYMANAGER_H
 
-#include <OgreInput.h>
-#include <SDL_keycode.h>
-#include "Player.h"
 #include "CharacterManager.h"
-
-class PlayerManager : public CharacterManager
+class EnemyManager : public CharacterManager
 {
 
 public:
@@ -14,7 +10,7 @@ public:
 	/**
 	 * @brief Constructor por defecto
 	 */
-	PlayerManager();
+	EnemyManager();
 
 	/**
 	 * @brief Contructor del player manager
@@ -22,16 +18,9 @@ public:
 	 * @param mesh El mesh que va a representar al player
 	 * @param MM El manager del laberinto para calculos de movimientos respecto al layout
 	 */
-	PlayerManager(Ogre::SceneManager* SM, MazeManager* MM);
+	EnemyManager(Ogre::SceneManager* SM, MazeManager* MM);
 
 private:
-
-	/**
-	 * @brief Recoge el input de una tecla pulsada
-	 * @param evt La tecla que se ha pulsado
-	 * @return devuelve true si se ha podido procesar
-	 */
-	virtual bool keyPressed(const OgreBites::KeyboardEvent& evt);
 
 	/**
 	 * @brief Recorrido que se hace por cada frame (Update de Unity)
@@ -48,7 +37,7 @@ private:
 
 };
 
-#endif // !PLAYERMANAGER_H
+#endif // !ENEMYMANAGER_H
 
 
 

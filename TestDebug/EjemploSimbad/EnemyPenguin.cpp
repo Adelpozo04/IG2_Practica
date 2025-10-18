@@ -29,14 +29,18 @@ EnemyPenguin::EnemyPenguin(Vector3 initPos, SceneNode* node, SceneManager* scene
     for (int i = 0; i < mFish1.size(); ++i) {
         Ogre::Entity* ent = mSM->createEntity("fish.mesh");
         
-        mFish1[i] = mHalo01->createChildSceneNode("nFish1_" + i + index);
+        string name = "nFish1_" + to_string(i) + to_string(index);
+
+        mFish1[i] = mHalo01->createChildSceneNode(name);
         mFish1[i]->attachObject(ent);
     }
     
     for (int i = 0; i < mFish2.size(); ++i) {
         Ogre::Entity* ent = mSM->createEntity("fish.mesh");
 
-        mFish2[i] = mHalo02->createChildSceneNode("nFish2_" + i + index);
+        string name = "nFish2_" + to_string(i) + to_string(index);
+
+        mFish2[i] = mHalo02->createChildSceneNode(name);
         mFish2[i]->attachObject(ent);
     }
 

@@ -140,6 +140,7 @@
     <ClCompile Include="CharacterManager.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="EnemyHead.cpp" />
+    <ClCompile Include="EnemyManager.cpp" />
     <ClCompile Include="EnemyPenguin.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="IG2Object.cpp" />
@@ -156,6 +157,7 @@
     <ClInclude Include="constantes.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="EnemyHead.h" />
+    <ClInclude Include="EnemyManager.h" />
     <ClInclude Include="EnemyPenguin.h" />
     <ClInclude Include="IG2Object.h" />
     <ClInclude Include="MazeCreator.h" />
