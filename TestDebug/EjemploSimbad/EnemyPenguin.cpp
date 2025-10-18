@@ -20,7 +20,7 @@ EnemyPenguin::EnemyPenguin(Vector3 initPos, SceneNode* node, SceneManager* scene
     mRazorNode = node->createChildSceneNode("nRazor" + index);
     mRazorNode->attachObject(ent1);
 
-    mRazorNode->setPosition(node->getPosition());
+    mRazorNode->translate(4, 0, 0, Ogre::Node::TS_LOCAL);
     mRazorNode->setScale(0.5, 0.5, 0.2);
 
     mHalo01 = node->createChildSceneNode("mHalo01_" + index);
