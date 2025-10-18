@@ -20,6 +20,7 @@
 #include "MazeManager.h"
 #include "PlayerManager.h"
 #include "EnemyHead.h"
+#include "EnemyPenguin.h"
 
 class SinbadExample: public OgreBites::ApplicationContext, OgreBites::InputListener {
 
@@ -40,6 +41,8 @@ protected:
     Ogre::SceneNode* mTestNode2 = nullptr;
 
     EnemyHead* ehTest;
+
+    EnemyPenguin* epTest;
 
     IG2Object ehTest2;
 

@@ -21,8 +21,6 @@ protected:
 
 	virtual void CreateCharacters(String mesh) = 0;
 
-	bool CanGo(Ogre::Vector3 dir, Character* ch);
-
 	Ogre::Vector3 CalculateOffset(Character* ch);
 
 	std::list<Character*> _characters;

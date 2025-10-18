@@ -27,6 +27,7 @@ const string COMPLEX_ENEMY_MAIN_MESH_NAME = "penguin.mesh";
 const Ogre::Vector3 COMPLEX_ENEMY_SCALE = Ogre::Vector3(1, 1, 1);
 const int COMPLEX_ENEMY_FISH_AMOUNT = 4;
 const float HALO_SPACE = 10;
+const float HALO_SPEED = 2;
 
 //MAP
 const string MAP_LAYOUT = "../../media/maps/stage1.txt";

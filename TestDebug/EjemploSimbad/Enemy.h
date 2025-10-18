@@ -22,8 +22,6 @@ protected:
 	Enemy(Vector3 initPos, SceneNode* node, SceneManager* sceneMng);
 	Enemy(Vector3 initPos, SceneNode* node, SceneManager* sceneMng, String mesh);
 
-	virtual void Config() = 0;
-
 	std::list<Character*>::iterator _it;
 
 };

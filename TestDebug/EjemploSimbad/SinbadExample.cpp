@@ -12,6 +12,9 @@ bool SinbadExample::keyPressed(const OgreBites::KeyboardEvent& evt) {
     if (evt.keysym.sym == SDLK_ESCAPE) {
         getRoot()->queueEndRendering();
     }
+    else if (evt.keysym.sym == SDLK_e) {
+        epTest->inlineAnimation();
+    }
 
     return true;
 }
@@ -99,8 +102,11 @@ void SinbadExample::setupScene(void) {
     mPlayerMgr = new PlayerManager(mSM, "Sinbad.mesh", mMazeMgr);
     addInputListener(mPlayerMgr);*/
 
-    mTestNode = mSM->getRootSceneNode()->createChildSceneNode("nTest");
-    ehTest = new EnemyHead({ 0, 0, 0 }, mTestNode, mSM, "ogrehead.mesh");
+    /*mTestNode = mSM->getRootSceneNode()->createChildSceneNode("nTest");
+    ehTest = new EnemyHead({ 0, 0, 0 }, mTestNode, mSM);*/
+
+    mTestNode2 = mSM->getRootSceneNode()->createChildSceneNode("nTest2");
+    epTest = new EnemyPenguin({ 0,0,0 }, mTestNode2, mSM, 0);
 
     /*mTestNode2 = mSM->getRootSceneNode()->createChildSceneNode("nTest2");
     ehTest2 = IG2Object({ 0, 0, 0 }, mTestNode2, mSM, "Sinbad.mesh");*/

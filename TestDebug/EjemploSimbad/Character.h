@@ -2,6 +2,8 @@
 #define CHARACTER_H
 
 #include "IG2Object.h"
+#include "MazeManager.h"
+
 class Character : public IG2Object
 {
 public:
@@ -38,6 +40,10 @@ public:
 		_offset = offset;
 	}
 
+	virtual void move(MazeManager* MM) = 0;
+
+	virtual void inlineAnimation() = 0;
+
 protected:
 
 	Character();
@@ -49,6 +55,8 @@ protected:
 	Character& operator=(const Character&) = delete;
 
 	virtual ~Character() = default;
+
+	bool CanGo(Ogre::Vector3 dir, MazeManager* MM);
 
 	virtual void Config() = 0;
 

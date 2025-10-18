@@ -21,6 +21,7 @@ public:
 
 		std::vector<std::vector<Tile*>> maze;
 		Ogre::Vector3 initialPos;
+
 		
 		MazeData() {
 			maze = std::vector<std::vector<Tile*>>(0, std::vector<Tile*>(0));

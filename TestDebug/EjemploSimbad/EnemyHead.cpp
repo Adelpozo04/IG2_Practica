@@ -24,18 +24,17 @@ EnemyHead::EnemyHead(Vector3 initPos, SceneNode* node, SceneManager* sceneMng) :
 	Config();
 }
 
-EnemyHead::EnemyHead(Vector3 initPos, SceneNode* node, SceneManager* sceneMng, String mesh) : 
-	Enemy(initPos, node, sceneMng, mesh)
-{
-	_lifes = SIMPLE_ENEMY_LIFES;
-	_speed = SIMPLE_ENEMY_SPEED;
-	_currentDir = { 0, 0, 0 };
-	_nextDir = { 0, 0, 0 };
-	_offset = { 0, 0, 0 };
-	Config();
-}
-
 void EnemyHead::Config()
 {
 	setScale(SIMPLE_ENEMY_SCALE);
+}
+
+void EnemyHead::move(MazeManager* MM)
+{
+
+}
+
+void EnemyHead::inlineAnimation()
+{
+
 }

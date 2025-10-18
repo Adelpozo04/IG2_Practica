@@ -9,7 +9,10 @@ public:
 
 	EnemyHead();
 	EnemyHead(Vector3 initPos, SceneNode* node, SceneManager* sceneMng);
-	EnemyHead(Vector3 initPos, SceneNode* node, SceneManager* sceneMng, String mesh);
+
+	void move(MazeManager* MM) override;
+
+	void inlineAnimation() override;
 
 private:
 

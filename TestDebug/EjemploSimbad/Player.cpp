@@ -40,4 +40,28 @@ void Player::Config()
 	setScale(PLAYER_SCALE);
 }
 
+void Player::move(MazeManager* MM)
+{
+
+	if (CanGo(getNextDir(), MM)) {
+
+		if (getNextDir() != Ogre::Vector3::ZERO) {
+			setDir(getNextDir());
+		}
+		setNextDir({ 0, 0, 0 });
+	}
+
+	if (!CanGo(getDir(), MM)) {
+		setDir({ 0, 0, 0 });
+	}
+
+	Ogre::Vector3 newPos = getPosition() + (getDir() * getSpeed());
+	setPosition(newPos);
+
+}
+
+void Player::inlineAnimation()
+{
+}
+
 

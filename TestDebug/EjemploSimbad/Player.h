@@ -9,7 +9,13 @@ public:
 	Player(Vector3 initPos, SceneNode* node, SceneManager* sceneMng);
 	Player(Vector3 initPos, SceneNode* node, SceneManager* sceneMng, String mesh);
 
-	void Config() override;
+	void move(MazeManager* MM) override;
+
+	void inlineAnimation() override;
+
+private:
+
+	void Config() override;	
 
 };
 

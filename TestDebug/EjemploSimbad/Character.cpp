@@ -14,3 +14,14 @@ Character::Character(Vector3 initPos, SceneNode* node, SceneManager* sceneMng, S
 {
 }
 
+bool Character::CanGo(Ogre::Vector3 dir, MazeManager* MM)
+{
+	if (dir != Ogre::Vector3::ZERO) {
+		Ogre::Vector3 nextPos = getPosition() + (dir * getSpeed());
+		return MM->IsTrasferable(nextPos);
+	}
+	else {
+		return MM->IsTrasferable(getPosition());
+	}
+}
+

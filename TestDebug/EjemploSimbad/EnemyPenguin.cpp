@@ -24,7 +24,7 @@ EnemyPenguin::EnemyPenguin(Vector3 initPos, SceneNode* node, SceneManager* scene
     mRazorNode->setScale(0.5, 0.5, 0.2);
 
     mHalo01 = node->createChildSceneNode("mHalo01_" + index);
-    mHalo02 = node->createChildSceneNode("mHalo01_" + index);
+    mHalo02 = node->createChildSceneNode("mHalo02_" + index);
 
     for (int i = 0; i < mFish1.size(); ++i) {
         Ogre::Entity* ent = mSM->createEntity("fish.mesh");
@@ -65,6 +65,20 @@ void EnemyPenguin::Config()
         mFish2[i]->yaw(Ogre::Degree(rot2 * i));
         mFish2[i]->translate({ 0, 0, HALO_SPACE * 2}, Ogre::Node::TS_LOCAL);
     }
+
+}
+
+void EnemyPenguin::move(MazeManager* MM)
+{
+
+
+}
+
+void EnemyPenguin::inlineAnimation()
+{
+
+    mHalo01->yaw(Ogre::Degree(HALO_SPEED));
+    mHalo02->yaw(Ogre::Degree(HALO_SPEED*-1));
 
 }
 
