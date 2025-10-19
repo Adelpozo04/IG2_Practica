@@ -56,8 +56,20 @@ protected:
 
 	virtual ~Character() = default;
 
+	/**
+	 * @brief Metodo que sirve para comprobar si puedes avanzar en una direccion determinada
+	 * @param dir direccion a la que avanzar
+	 * @param MM MazeManager
+	 * @return 
+	 */
 	bool CanGo(Ogre::Vector3 dir, MazeManager* MM);
 
+	/**
+	 * @brief Metodo que sirve para comprobar si puedes girar hacia una direccion
+	 * @param dir direccion a la que quieres girar
+	 * @param MM MazeManager
+	 * @return 
+	 */
 	bool canTurn(Ogre::Vector3 dir, MazeManager* MM);
 
 	virtual void Config() = 0;

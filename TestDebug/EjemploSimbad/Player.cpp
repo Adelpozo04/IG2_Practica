@@ -59,8 +59,9 @@ void Player::move(MazeManager* MM)
 		setPosition(center);
 	}
 
-	Ogre::Vector3 newPos = getPosition() + (getDir() * getSpeed());
-	setPosition(newPos);
+	/*Ogre::Vector3 newPos = getPosition() + (getDir() * getSpeed());
+	setPosition(newPos);*/
+	IG2Object::move(getDir() * getSpeed());
 
 }
 
