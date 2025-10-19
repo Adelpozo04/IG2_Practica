@@ -48,6 +48,7 @@ void Player::move(MazeManager* MM)
 			setDir(getNextDir());
 			Vector3 center = MM->getTileCenter(getPosition());
 			setPosition(center);
+			mNode->rotate(getOrientation().getRotationTo(getDir()));
 			setNextDir({ 0, 0, 0 });
 		}
 	}
