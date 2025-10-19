@@ -18,7 +18,7 @@ Character::Character(Vector3 initPos, SceneNode* node, SceneManager* sceneMng, S
 bool Character::CanGo(Ogre::Vector3 dir, MazeManager* MM)
 {
 	if (dir != Ogre::Vector3::ZERO) {
-		Ogre::Vector3 nextPos = getPosition() + (dir * CUBE_SIZE/2);
+		Ogre::Vector3 nextPos = getPosition() + (dir * CUBE_SIZE/2 * 1.1);
 		return MM->IsTrasferable(nextPos);
 	}
 	else {
@@ -39,6 +39,6 @@ bool Character::canTurn(Ogre::Vector3 dir, MazeManager* MM)
 	else if (dir == Ogre::Vector3::NEGATIVE_UNIT_X || dir == Ogre::Vector3::NEGATIVE_UNIT_Z) {
 		ret = pos.x <= centro.x && pos.z <= centro.z;
 	}
-	return ret;
+	return CanGo(dir,MM) && ret;
 }
 
