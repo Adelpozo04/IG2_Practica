@@ -2,6 +2,7 @@
 
 #include "MazeManager.h"
 #include "MazeCreator.h"
+#include "constantes.h"
 
 MazeManager::MazeManager(std::string map, Ogre::SceneManager* SM) : 
 	mSM(SM), _map(map), _sizeMesh(Ogre::Vector3::ZERO)
@@ -83,4 +84,10 @@ std::pair<int, int> MazeManager::FromPositionToIndex(Ogre::Vector3 position)
 	std::pair<int, int> sol = std::pair<int, int>(indexX, indexZ);
 
 	return sol;
+}
+
+Vector3  MazeManager::getTileCenter(Ogre::Vector3 position) {
+	std::pair<int, int> index = FromPositionToIndex(position);
+
+	return  _mazeData.maze[index.first][index.second]->getPosition() + CUBE_SIZE / 2;
 }

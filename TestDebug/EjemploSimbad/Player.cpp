@@ -44,15 +44,18 @@ void Player::move(MazeManager* MM)
 {
 
 	if (CanGo(getNextDir(), MM)) {
-
-		if (getNextDir() != Ogre::Vector3::ZERO) {
+		if (getNextDir() != Ogre::Vector3::ZERO && canTurn(getNextDir(),MM)) {
 			setDir(getNextDir());
+			Vector3 center = MM->getTileCenter(getPosition());
+			setPosition(center);
+			setNextDir({ 0, 0, 0 });
 		}
-		setNextDir({ 0, 0, 0 });
 	}
 
 	if (!CanGo(getDir(), MM)) {
 		setDir({ 0, 0, 0 });
+		Vector3 center = MM->getTileCenter(getPosition());
+		setPosition(center);
 	}
 
 	Ogre::Vector3 newPos = getPosition() + (getDir() * getSpeed());

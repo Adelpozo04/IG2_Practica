@@ -58,6 +58,8 @@ protected:
 
 	bool CanGo(Ogre::Vector3 dir, MazeManager* MM);
 
+	bool canTurn(Ogre::Vector3 dir, MazeManager* MM);
+
 	virtual void Config() = 0;
 
 	int _lifes;

@@ -66,6 +66,13 @@ public:
 	Ogre::Vector3 GetTileSize();
 
 	/**
+	 * @brief Metodo para obtener el centro de mi TileActual
+	 * @param position Posicion actual
+	 * @return 
+	 */
+	Vector3 getTileCenter(Ogre::Vector3 position);
+
+	/**
  * @brief Funcion que lee chars y crea objetos dentro del laberinto
  * @param c Char que indica el tipo de objeto
  * @param i indice i del bucle de la creacion
