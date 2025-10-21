@@ -8,11 +8,11 @@ class EnemyHead : public Enemy
 public:
 
 	EnemyHead();
-	EnemyHead(Vector3 initPos, SceneNode* node, SceneManager* sceneMng);
+	EnemyHead(Vector3 initPos, SceneNode* node, SceneManager* sceneMng, MazeManager* MM);
 
-	void move(MazeManager* MM) override;
+	void move(MazeManager* MM, float dt) override;
 
-	void inlineAnimation() override;
+	void inlineAnimation(float dt) override;
 
 private:
 

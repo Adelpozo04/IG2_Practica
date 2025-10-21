@@ -17,6 +17,9 @@ class MazeManager
 
 public:
 
+	/**
+	 * @brief Struct que marca los distintos datos que debe devolver el creador del laberinto para su correcto alamcenado.
+	 */
 	struct MazeData {
 
 		std::vector<std::vector<Tile*>> maze;
@@ -64,6 +67,14 @@ public:
 	vector<Ogre::Vector3> GetEnemiesInitialPos();
 
 	Ogre::Vector3 GetTileSize();
+
+	inline int GetNumTilesX() {
+		return _sizeX;
+	}
+
+	inline int GetNumTilesZ() {
+		return _sizeZ;
+	}
 
 	/**
 	 * @brief Metodo para obtener el centro de mi TileActual

@@ -11,7 +11,6 @@ PlayerManager::PlayerManager(Ogre::SceneManager* SM, MazeManager* MM) : Characte
 {
 
 	CreateCharacters();
-	_characters.front()->setOffset(CalculateOffset(_characters.front()));
 
 }
 
@@ -52,8 +51,17 @@ bool PlayerManager::keyPressed(const OgreBites::KeyboardEvent& evt) {
 
 }
 
-void PlayerManager::frameRendered(const Ogre::FrameEvent& evt) {
+void PlayerManager::Update(float dt) {
 
-	_characters.front()->move(_MM);
+	_characters.front()->move(_MM, dt);
 
 }
+
+void PlayerManager::HitPlayer(int damage)
+{
+
+	_characters.front()->reciveDamage(damage);
+	_characters.front()->setPosition(_MM->GetPlayerInitialPos());
+
+}
+

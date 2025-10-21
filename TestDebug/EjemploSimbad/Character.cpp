@@ -26,19 +26,22 @@ bool Character::CanGo(Ogre::Vector3 dir, MazeManager* MM)
 	}
 }
 
-bool Character::canTurn(Ogre::Vector3 dir, MazeManager* MM)
+bool Character::canTurn(Ogre::Vector3 dir, MazeManager* MM, float dt)
+{
+	
+	return CanGo(dir,MM) && passCenterTile(MM, dt);
+}
+
+bool Character::passCenterTile(MazeManager* MM, float dt)
 {
 	bool ret = false;
 
 	Vector3 pos = getPosition();
+	Vector3 nextPos = pos + (getDir() * getSpeed() * dt);
 	Vector3 centro = MM->getTileCenter(pos);
 
-	if (dir == Ogre::Vector3::UNIT_X || dir == Ogre::Vector3::UNIT_Z) {
-		ret = pos.x >= centro.x &&  pos.z >= centro.z;
-	}
-	else if (dir == Ogre::Vector3::NEGATIVE_UNIT_X || dir == Ogre::Vector3::NEGATIVE_UNIT_Z) {
-		ret = pos.x <= centro.x && pos.z <= centro.z;
-	}
-	return CanGo(dir,MM) && ret;
+	return ((pos.x >= centro.x && pos.z >= centro.z) && (nextPos.x <= centro.x && nextPos.z <= centro.z)) ||
+		((nextPos.x >= centro.x && nextPos.z >= centro.z) && (pos.x <= centro.x && pos.z <= centro.z));
+
 }
 

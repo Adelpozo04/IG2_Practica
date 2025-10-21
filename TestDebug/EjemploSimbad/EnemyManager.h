@@ -20,13 +20,13 @@ public:
 	 */
 	EnemyManager(Ogre::SceneManager* SM, MazeManager* MM);
 
-private:
-
 	/**
 	 * @brief Recorrido que se hace por cada frame (Update de Unity)
 	 * @param evt recoge el momento del frame a examinar, si es al final de este, al inicio, tras un proceso...
 	 */
-	virtual void frameRendered(const Ogre::FrameEvent& evt);
+	void Update(float dt) override;
+
+private:
 
 	/**
 	 * @brief Metodo que crea al jugador y lo almacena

@@ -16,6 +16,21 @@ bool SinbadExample::keyPressed(const OgreBites::KeyboardEvent& evt) {
     return true;
 }
 
+void SinbadExample::frameRendered(const Ogre::FrameEvent& evt) {
+
+    auto currentTime = std::chrono::high_resolution_clock::now();
+
+    float deltaTime = (std::chrono::duration<float>(currentTime - lastTime)).count();
+
+    lastTime = currentTime;
+
+    mPlayerMgr->Update(deltaTime);
+    mEnemyMgr->Update(deltaTime);
+    mColisionMgr->Update();
+
+    std::cout << "DeltaTime: " << deltaTime << "\n";
+}
+
 
 void SinbadExample::shutdown() {
 
@@ -48,9 +63,12 @@ void SinbadExample::setup(void) {
     mTrayMgr->showFrameStats(OgreBites::TL_BOTTOMLEFT);
     addInputListener(mTrayMgr);
 
+    setupScene();
+
+    lastTime = std::chrono::high_resolution_clock::now();
+
     // Adds the listener for this object
     addInputListener(this);
-    setupScene();
 }
 
 void SinbadExample::setupScene(void) {
@@ -67,8 +85,8 @@ void SinbadExample::setupScene(void) {
     mCamNode = mSM->getRootSceneNode()->createChildSceneNode("nCam");
     mCamNode->attachObject(cam);
 
-    mCamNode->setPosition(0, 0, 1000);
-    mCamNode->lookAt(Ogre::Vector3(0, 0, 0), Ogre::Node::TS_WORLD);
+    mCamNode->setPosition(1000, -1000, 1000);
+    mCamNode->lookAt(Ogre::Vector3(1000, 1000, 1000), Ogre::Node::TS_WORLD);
 
     // and tell it to render into the main window
     Viewport* vp = getRenderWindow()->addViewport(cam);
@@ -99,7 +117,7 @@ void SinbadExample::setupScene(void) {
     mPlayerMgr = new PlayerManager(mSM, mMazeMgr);
     addInputListener(mPlayerMgr);
     mEnemyMgr = new EnemyManager(mSM, mMazeMgr);
-    addInputListener(mEnemyMgr);
+    mColisionMgr = new ColisionManager(mPlayerMgr, mEnemyMgr);
 
     /*mTestNode2 = mSM->getRootSceneNode()->createChildSceneNode("nTest2");
     ehTest2 = IG2Object({ 0, 0, 0 }, mTestNode2, mSM, "Sinbad.mesh");*/
