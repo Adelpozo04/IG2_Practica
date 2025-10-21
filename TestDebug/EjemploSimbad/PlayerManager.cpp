@@ -52,8 +52,8 @@ bool PlayerManager::keyPressed(const OgreBites::KeyboardEvent& evt) {
 
 }
 
-void PlayerManager::frameRendered(const Ogre::FrameEvent& evt) {
+void PlayerManager::Update(float dt) {
 
-	_characters.front()->move(_MM);
+	_characters.front()->move(_MM, dt);
 
 }

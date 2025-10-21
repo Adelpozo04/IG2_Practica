@@ -42,11 +42,11 @@ void EnemyManager::CreateCharacters()
 
 }
 
-void EnemyManager::frameRendered(const Ogre::FrameEvent& evt) {
+void EnemyManager::Update(float dt) {
 
 	for (auto it = _characters.begin(); it != _characters.end(); ++it) {
-		(*it)->move(_MM);
-		(*it)->inlineAnimation();
+		(*it)->move(_MM, dt);
+		(*it)->inlineAnimation(dt);
 	}
 
 }

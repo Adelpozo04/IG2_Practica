@@ -29,6 +29,7 @@ public:
 
 protected:
     virtual bool keyPressed(const OgreBites::KeyboardEvent& evt);
+    virtual void frameRendered(const Ogre::FrameEvent& evt);
     virtual void setup();
     virtual void shutdown();
     virtual void setupScene();
@@ -56,6 +57,8 @@ protected:
     PlayerManager* mPlayerMgr = nullptr;
 
     EnemyManager* mEnemyMgr = nullptr;
+
+    std::chrono::time_point<std::chrono::high_resolution_clock> lastTime;
 
 };
 

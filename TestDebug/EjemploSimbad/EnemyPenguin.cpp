@@ -74,11 +74,11 @@ void EnemyPenguin::Config()
 
 }
 
-void EnemyPenguin::move(MazeManager* MM)
+void EnemyPenguin::move(MazeManager* MM, float dt)
 {
 
     if (CanGo(getNextDir(), MM)) {
-        if (getNextDir() != Ogre::Vector3::ZERO && canTurn(getNextDir(), MM)) {
+        if (getNextDir() != Ogre::Vector3::ZERO && canTurn(getNextDir(), MM, dt)) {
             setDir(getNextDir());
             Vector3 center = MM->getTileCenter(getPosition());
             setPosition(center);
@@ -87,7 +87,7 @@ void EnemyPenguin::move(MazeManager* MM)
         }
     }
 
-    if (passCenterTile(getDir(), MM)) {
+    if (passCenterTile(MM, dt)) {
         Vector3 selectDir = ChooseNextDir(MM);
 
         if (getDir() != selectDir) {
@@ -102,15 +102,20 @@ void EnemyPenguin::move(MazeManager* MM)
         setNextDir(ChooseNextDir(MM));
     }
 
-    IG2Object::move(getDir() * getSpeed());
+    Ogre::Vector3 newPos = getPosition() + getDir() * getSpeed() * dt;
 
+    if (newPos.x < MM->GetNumTilesX() * CUBE_SIZE.x && newPos.z < MM->GetNumTilesZ() * CUBE_SIZE.z &&
+        newPos.x >= 0 && newPos.z >= 0) {
+        IG2Object::move(getDir() * getSpeed() * dt);
+    }
+    
 }
 
-void EnemyPenguin::inlineAnimation()
+void EnemyPenguin::inlineAnimation(float dt)
 {
 
-    mHalo01->yaw(Ogre::Degree(HALO_SPEED));
-    mHalo02->yaw(Ogre::Degree(HALO_SPEED*-1));
+    mHalo01->yaw(Ogre::Degree(HALO_SPEED) * dt);
+    mHalo02->yaw(Ogre::Degree(HALO_SPEED*-1 * dt));
 
 }
 

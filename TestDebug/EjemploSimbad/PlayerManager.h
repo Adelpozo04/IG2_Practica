@@ -6,7 +6,7 @@
 #include "Player.h"
 #include "CharacterManager.h"
 
-class PlayerManager : public CharacterManager
+class PlayerManager : public CharacterManager, public OgreBites::InputListener
 {
 
 public:
@@ -24,6 +24,12 @@ public:
 	 */
 	PlayerManager(Ogre::SceneManager* SM, MazeManager* MM);
 
+	/**
+	 * @brief Recorrido que se hace por cada frame (Update de Unity)
+	 * @param evt recoge el momento del frame a examinar, si es al final de este, al inicio, tras un proceso...
+	 */
+	void Update(float dt) override;
+
 private:
 
 	/**
@@ -32,12 +38,6 @@ private:
 	 * @return devuelve true si se ha podido procesar
 	 */
 	virtual bool keyPressed(const OgreBites::KeyboardEvent& evt);
-
-	/**
-	 * @brief Recorrido que se hace por cada frame (Update de Unity)
-	 * @param evt recoge el momento del frame a examinar, si es al final de este, al inicio, tras un proceso...
-	 */
-	virtual void frameRendered(const Ogre::FrameEvent& evt);
 
 	/**
 	 * @brief Metodo que crea al jugador y lo almacena

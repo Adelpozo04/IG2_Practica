@@ -65,6 +65,14 @@ public:
 
 	Ogre::Vector3 GetTileSize();
 
+	inline int GetNumTilesX() {
+		return _sizeX;
+	}
+
+	inline int GetNumTilesZ() {
+		return _sizeZ;
+	}
+
 	/**
 	 * @brief Metodo para obtener el centro de mi TileActual
 	 * @param position Posicion actual

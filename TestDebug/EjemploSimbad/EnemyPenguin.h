@@ -12,9 +12,9 @@ public:
     EnemyPenguin();
     EnemyPenguin(Vector3 initPos, SceneNode* node, SceneManager* sceneMng, int index, MazeManager* MM);
 
-    void move(MazeManager* MM) override;
+    void move(MazeManager* MM, float dt) override;
 
-    void inlineAnimation() override;
+    void inlineAnimation(float dt) override;
 
 private:
 

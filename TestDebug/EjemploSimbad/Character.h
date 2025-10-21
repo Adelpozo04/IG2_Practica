@@ -40,9 +40,9 @@ public:
 		_offset = offset;
 	}
 
-	virtual void move(MazeManager* MM) = 0;
+	virtual void move(MazeManager* MM, float dt) = 0;
 
-	virtual void inlineAnimation() = 0;
+	virtual void inlineAnimation(float dt) = 0;
 
 protected:
 
@@ -70,9 +70,9 @@ protected:
 	 * @param MM MazeManager
 	 * @return 
 	 */
-	bool canTurn(Ogre::Vector3 dir, MazeManager* MM);
+	bool canTurn(Ogre::Vector3 dir, MazeManager* MM, float dt);
 
-	bool passCenterTile(Ogre::Vector3 dir, MazeManager* MM);
+	bool passCenterTile(MazeManager* MM, float dt);
 
 	virtual void Config() = 0;
 

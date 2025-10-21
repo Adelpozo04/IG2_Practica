@@ -6,12 +6,12 @@
 #include "Character.h"
 #include "MazeManager.h"
 
-class CharacterManager : public OgreBites::InputListener
+class CharacterManager
 {
 
 public:
 
-
+	virtual void Update(float dt) = 0;
 
 protected:
 

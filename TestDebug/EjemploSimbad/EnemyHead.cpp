@@ -33,10 +33,10 @@ void EnemyHead::Config()
 	setScale(SIMPLE_ENEMY_SCALE);
 }
 
-void EnemyHead::move(MazeManager* MM)
+void EnemyHead::move(MazeManager* MM, float dt)
 {
 	if (CanGo(getNextDir(), MM)) {
-		if (getNextDir() != Ogre::Vector3::ZERO && canTurn(getNextDir(), MM)) {
+		if (getNextDir() != Ogre::Vector3::ZERO && canTurn(getNextDir(), MM, dt)) {
 			setDir(getNextDir());
 			Vector3 center = MM->getTileCenter(getPosition());
 			setPosition(center);
@@ -45,7 +45,7 @@ void EnemyHead::move(MazeManager* MM)
 		}
 	}
 
-	if (passCenterTile(getDir(), MM)) {
+	if (passCenterTile(MM, dt)) {
 		Vector3 selectDir = ChooseNextDir(MM);
 
 		if (getDir() != selectDir) {
@@ -60,12 +60,15 @@ void EnemyHead::move(MazeManager* MM)
 		setNextDir(ChooseNextDir(MM));
 	}
 
-	/*Ogre::Vector3 newPos = getPosition() + (getDir() * getSpeed());
-	setPosition(newPos);*/
-	IG2Object::move(getDir() * getSpeed());
+	Ogre::Vector3 newPos = getPosition() + getDir() * getSpeed() * dt;
+
+	if (newPos.x < MM->GetNumTilesX() * CUBE_SIZE.x && newPos.z < MM->GetNumTilesZ() * CUBE_SIZE.z &&
+		newPos.x >= 0 && newPos.z >= 0) {
+		IG2Object::move(getDir() * getSpeed() * dt);
+	}
 }
 
-void EnemyHead::inlineAnimation()
+void EnemyHead::inlineAnimation(float dt)
 {
 
 }
