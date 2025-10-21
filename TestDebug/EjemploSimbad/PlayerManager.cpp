@@ -57,3 +57,12 @@ void PlayerManager::Update(float dt) {
 	_characters.front()->move(_MM, dt);
 
 }
+
+void PlayerManager::HitPlayer(int damage)
+{
+
+	_characters.front()->reciveDamage(damage);
+	_characters.front()->setPosition(_MM->GetPlayerInitialPos());
+
+}
+

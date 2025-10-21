@@ -16,6 +16,13 @@ public:
 		return _lifes;
 	}
 
+	inline void reciveDamage(int damage) {
+		_lifes -= damage;
+		if (_lifes < 0) {
+			_lifes = 0;
+		}
+	}
+
 	inline Ogre::Vector3 getDir() const {
 		return _currentDir;
 	}

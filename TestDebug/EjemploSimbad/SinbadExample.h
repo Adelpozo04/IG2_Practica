@@ -20,6 +20,7 @@
 #include "MazeManager.h"
 #include "PlayerManager.h"
 #include "EnemyManager.h"
+#include "ColisionManager.h"
 
 class SinbadExample: public OgreBites::ApplicationContext, OgreBites::InputListener {
 
@@ -57,6 +58,8 @@ protected:
     PlayerManager* mPlayerMgr = nullptr;
 
     EnemyManager* mEnemyMgr = nullptr;
+
+    ColisionManager* mColisionMgr = nullptr;
 
     std::chrono::time_point<std::chrono::high_resolution_clock> lastTime;
 

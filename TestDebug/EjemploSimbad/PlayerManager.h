@@ -30,6 +30,8 @@ public:
 	 */
 	void Update(float dt) override;
 
+	void HitPlayer(int damage);
+
 private:
 
 	/**

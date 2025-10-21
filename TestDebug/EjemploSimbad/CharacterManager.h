@@ -13,6 +13,10 @@ public:
 
 	virtual void Update(float dt) = 0;
 
+	inline std::list<Character*> & const getCharacters() {
+		return _characters;
+	}
+
 protected:
 
 	CharacterManager();

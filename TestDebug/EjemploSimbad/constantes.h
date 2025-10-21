@@ -35,6 +35,7 @@ const int COMPLEX_ENEMY_AMOUNT = 2;
 
 ///General
 const int NUM_ENEMIES = SIMPLE_ENEMY_AMOUNT + COMPLEX_ENEMY_AMOUNT;
+const int ENEMIES_DAMAGE = 1;
 
 //MAP
 const string MAP_LAYOUT = "../../media/maps/stage1.txt";

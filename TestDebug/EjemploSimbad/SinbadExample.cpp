@@ -26,6 +26,7 @@ void SinbadExample::frameRendered(const Ogre::FrameEvent& evt) {
 
     mPlayerMgr->Update(deltaTime);
     mEnemyMgr->Update(deltaTime);
+    mColisionMgr->Update();
 
     std::cout << "DeltaTime: " << deltaTime << "\n";
 }
@@ -116,6 +117,7 @@ void SinbadExample::setupScene(void) {
     mPlayerMgr = new PlayerManager(mSM, mMazeMgr);
     addInputListener(mPlayerMgr);
     mEnemyMgr = new EnemyManager(mSM, mMazeMgr);
+    mColisionMgr = new ColisionManager(mPlayerMgr, mEnemyMgr);
 
     /*mTestNode2 = mSM->getRootSceneNode()->createChildSceneNode("nTest2");
     ehTest2 = IG2Object({ 0, 0, 0 }, mTestNode2, mSM, "Sinbad.mesh");*/
