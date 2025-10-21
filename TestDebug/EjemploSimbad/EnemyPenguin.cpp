@@ -1,0 +1,89 @@
+#include "EnemyPenguin.h"
+
+EnemyPenguin::EnemyPenguin() : 
+	Enemy()
+{
+
+	_lifes = COMPLEX_ENEMY_LIFES;
+	_speed = COMPLEX_ENEMY_SPEED;
+	_currentDir = { 0, 0, 0 };
+	_nextDir = { 0, 0, 0 };
+	_offset = { 0, 0, 0 };
+    Config();
+}
+
+EnemyPenguin::EnemyPenguin(Vector3 initPos, SceneNode* node, SceneManager* sceneMng, int index) : 
+	Enemy(initPos, node, sceneMng, COMPLEX_ENEMY_MAIN_MESH_NAME)
+{
+
+    Ogre::Entity* ent1 = mSM->createEntity("razor.mesh");
+    mRazorNode = node->createChildSceneNode("nRazor" + index);
+    mRazorNode->attachObject(ent1);
+
+    mRazorNode->translate(4, 0, 0, Ogre::Node::TS_LOCAL);
+    mRazorNode->setScale(0.5, 0.5, 0.2);
+
+    mHalo01 = node->createChildSceneNode("mHalo01_" + index);
+    mHalo02 = node->createChildSceneNode("mHalo02_" + index);
+
+    for (int i = 0; i < mFish1.size(); ++i) {
+        Ogre::Entity* ent = mSM->createEntity("fish.mesh");
+        
+        string name = "nFish1_" + to_string(i) + to_string(index);
+
+        mFish1[i] = mHalo01->createChildSceneNode(name);
+        mFish1[i]->attachObject(ent);
+    }
+    
+    for (int i = 0; i < mFish2.size(); ++i) {
+        Ogre::Entity* ent = mSM->createEntity("fish.mesh");
+
+        string name = "nFish2_" + to_string(i) + to_string(index);
+
+        mFish2[i] = mHalo02->createChildSceneNode(name);
+        mFish2[i]->attachObject(ent);
+    }
+
+	_lifes = COMPLEX_ENEMY_LIFES;
+	_speed = COMPLEX_ENEMY_SPEED;
+	_currentDir = { 0, 0, 0 };
+	_nextDir = { 0, 0, 0 };
+	_offset = { 0, 0, 0 };
+    Config();
+}
+
+void EnemyPenguin::Config()
+{
+    float rot = (float)360 / mFish1.size();
+    float rot2 = (float)360 / mFish2.size();
+
+    mHalo01->setPosition(0, 30, 0);
+    mHalo02->setPosition(0, 10, 0);
+
+    for (int i = 0; i < mFish1.size(); ++i) {
+        mFish1[i]->yaw(Ogre::Degree(rot * i));
+        mFish1[i]->translate({0, 0, HALO_SPACE}, Ogre::Node::TS_LOCAL);
+    }
+
+    for (int i = 0; i < mFish2.size(); ++i) {
+        mFish2[i]->yaw(Ogre::Degree(rot2 * i));
+        mFish2[i]->translate({ 0, 0, HALO_SPACE * 2}, Ogre::Node::TS_LOCAL);
+    }
+
+}
+
+void EnemyPenguin::move(MazeManager* MM)
+{
+
+
+}
+
+void EnemyPenguin::inlineAnimation()
+{
+
+    mHalo01->yaw(Ogre::Degree(HALO_SPEED));
+    mHalo02->yaw(Ogre::Degree(HALO_SPEED*-1));
+
+}
+
+

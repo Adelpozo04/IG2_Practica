@@ -7,21 +7,19 @@ PlayerManager::PlayerManager() : CharacterManager()
 
 }
 
-PlayerManager::PlayerManager(Ogre::SceneManager* SM, String mesh, MazeManager* MM) : CharacterManager(SM, MM)
+PlayerManager::PlayerManager(Ogre::SceneManager* SM, MazeManager* MM) : CharacterManager(SM, MM)
 {
 
-	CreateCharacters(mesh);
+	CreateCharacters();
 	_characters.front()->setOffset(CalculateOffset(_characters.front()));
 
 }
 
-void PlayerManager::CreateCharacters(String mesh)
+void PlayerManager::CreateCharacters()
 {
 	Ogre::Vector3 initPos = _MM->GetPlayerInitialPos();
 	SceneNode* mPlayerNode = mSM->getRootSceneNode()->createChildSceneNode("nPlayer");
-	_characters.push_back(new Player(initPos, mPlayerNode, mSM, mesh));
-	_characters.front()->setIterator(_characters.begin());
-	
+	_characters.push_back(new Player(initPos, mPlayerNode, mSM, PLAYER_MESH_NAME));
 }
 
 bool PlayerManager::keyPressed(const OgreBites::KeyboardEvent& evt) {
@@ -56,19 +54,6 @@ bool PlayerManager::keyPressed(const OgreBites::KeyboardEvent& evt) {
 
 void PlayerManager::frameRendered(const Ogre::FrameEvent& evt) {
 
-	if (CanGo(_characters.front()->getNextDir(), _characters.front())) {
-
-		if (_characters.front()->getNextDir() != Ogre::Vector3::ZERO) {
-			_characters.front()->setDir(_characters.front()->getNextDir());
-		}	
-		_characters.front()->setNextDir({ 0, 0, 0 });
-	}
-
-	if (!CanGo(_characters.front()->getDir(), _characters.front())) {
-		_characters.front()->setDir({ 0, 0, 0 });
-	}
-
-	Ogre::Vector3 newPos = _characters.front()->getPosition() + (_characters.front()->getDir() * _characters.front()->getSpeed());
-	_characters.front()->setPosition(newPos);
+	_characters.front()->move(_MM);
 
 }

@@ -1,5 +1,6 @@
 #include "Player.h"
 #include "constantes.h"
+#include "Enemy.h"
 
 Player::Player() :
 	Character()
@@ -37,6 +38,35 @@ Player::Player(Vector3 initPos, SceneNode* node, SceneManager* sceneMng, String 
 void Player::Config()
 {
 	setScale(PLAYER_SCALE);
+}
+
+void Player::move(MazeManager* MM)
+{
+
+	if (CanGo(getNextDir(), MM)) {
+		if (getNextDir() != Ogre::Vector3::ZERO && canTurn(getNextDir(),MM)) {
+			setDir(getNextDir());
+			Vector3 center = MM->getTileCenter(getPosition());
+			setPosition(center);
+			mNode->rotate(getOrientation().getRotationTo(getDir()));
+			setNextDir({ 0, 0, 0 });
+		}
+	}
+
+	if (!CanGo(getDir(), MM)) {
+		setDir({ 0, 0, 0 });
+		Vector3 center = MM->getTileCenter(getPosition());
+		setPosition(center);
+	}
+
+	/*Ogre::Vector3 newPos = getPosition() + (getDir() * getSpeed());
+	setPosition(newPos);*/
+	IG2Object::move(getDir() * getSpeed());
+
+}
+
+void Player::inlineAnimation()
+{
 }
 
 

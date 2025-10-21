@@ -2,6 +2,8 @@
 #define CHARACTER_H
 
 #include "IG2Object.h"
+#include "MazeManager.h"
+
 class Character : public IG2Object
 {
 public:
@@ -38,13 +40,9 @@ public:
 		_offset = offset;
 	}
 
-	inline std::list<Character*>::iterator getIterator() const {
-		return _it;
-	}
+	virtual void move(MazeManager* MM) = 0;
 
-	inline void setIterator(std::list<Character*>::iterator it) {
-		_it = it;
-	}
+	virtual void inlineAnimation() = 0;
 
 protected:
 
@@ -52,14 +50,32 @@ protected:
 	Character(Vector3 initPos, SceneNode* node, SceneManager* sceneMng);
 	Character(Vector3 initPos, SceneNode* node, SceneManager* sceneMng, String mesh);
 
+	Character(const Character&) = delete;
+
+	Character& operator=(const Character&) = delete;
+
 	virtual ~Character() = default;
+
+	/**
+	 * @brief Metodo que sirve para comprobar si puedes avanzar en una direccion determinada
+	 * @param dir direccion a la que avanzar
+	 * @param MM MazeManager
+	 * @return 
+	 */
+	bool CanGo(Ogre::Vector3 dir, MazeManager* MM);
+
+	/**
+	 * @brief Metodo que sirve para comprobar si puedes girar hacia una direccion
+	 * @param dir direccion a la que quieres girar
+	 * @param MM MazeManager
+	 * @return 
+	 */
+	bool canTurn(Ogre::Vector3 dir, MazeManager* MM);
 
 	virtual void Config() = 0;
 
 	int _lifes;
 	float _speed;
-
-	std::list<Character*>::iterator _it;
 
 	Ogre::Vector3 _currentDir;
 	Ogre::Vector3 _nextDir;
