@@ -43,8 +43,8 @@ void Player::Config()
 void Player::move(MazeManager* MM)
 {
 
-	if (CanGo(getNextDir(), MM)) {
-		if (getNextDir() != Ogre::Vector3::ZERO && canTurn(getNextDir(),MM)) {
+	if (getNextDir() != Ogre::Vector3::ZERO && CanGo(getNextDir(), MM)) {
+		if (canTurn(getNextDir(),MM)) {
 			setDir(getNextDir());
 			Vector3 center = MM->getTileCenter(getPosition());
 			setPosition(center);

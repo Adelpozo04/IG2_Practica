@@ -12,7 +12,7 @@ EnemyPenguin::EnemyPenguin() :
     Config();
 }
 
-EnemyPenguin::EnemyPenguin(Vector3 initPos, SceneNode* node, SceneManager* sceneMng, int index) : 
+EnemyPenguin::EnemyPenguin(Vector3 initPos, SceneNode* node, SceneManager* sceneMng, int index, MazeManager* MM) :
 	Enemy(initPos, node, sceneMng, COMPLEX_ENEMY_MAIN_MESH_NAME)
 {
 
@@ -50,6 +50,8 @@ EnemyPenguin::EnemyPenguin(Vector3 initPos, SceneNode* node, SceneManager* scene
 	_nextDir = { 0, 0, 0 };
 	_offset = { 0, 0, 0 };
     Config();
+    setDir(ChooseNextDir(MM));
+    mNode->rotate(getOrientation().getRotationTo(getDir()));
 }
 
 void EnemyPenguin::Config()
@@ -75,6 +77,32 @@ void EnemyPenguin::Config()
 void EnemyPenguin::move(MazeManager* MM)
 {
 
+    if (CanGo(getNextDir(), MM)) {
+        if (getNextDir() != Ogre::Vector3::ZERO && canTurn(getNextDir(), MM)) {
+            setDir(getNextDir());
+            Vector3 center = MM->getTileCenter(getPosition());
+            setPosition(center);
+            mNode->rotate(getOrientation().getRotationTo(getDir()));
+            setNextDir({ 0, 0, 0 });
+        }
+    }
+
+    if (passCenterTile(getDir(), MM)) {
+        Vector3 selectDir = ChooseNextDir(MM);
+
+        if (getDir() != selectDir) {
+            setNextDir(selectDir);
+        }
+    }
+
+    if (!CanGo(getDir(), MM)) {
+        setDir({ 0, 0, 0 });
+        Vector3 center = MM->getTileCenter(getPosition());
+        setPosition(center);
+        setNextDir(ChooseNextDir(MM));
+    }
+
+    IG2Object::move(getDir() * getSpeed());
 
 }
 

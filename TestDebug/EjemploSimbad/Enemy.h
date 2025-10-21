@@ -22,6 +22,8 @@ protected:
 	Enemy(Vector3 initPos, SceneNode* node, SceneManager* sceneMng);
 	Enemy(Vector3 initPos, SceneNode* node, SceneManager* sceneMng, String mesh);
 
+	Ogre::Vector3 ChooseNextDir(MazeManager* MM);
+
 	std::list<Character*>::iterator _it;
 
 };

@@ -8,7 +8,7 @@ class EnemyHead : public Enemy
 public:
 
 	EnemyHead();
-	EnemyHead(Vector3 initPos, SceneNode* node, SceneManager* sceneMng);
+	EnemyHead(Vector3 initPos, SceneNode* node, SceneManager* sceneMng, MazeManager* MM);
 
 	void move(MazeManager* MM) override;
 

@@ -30,13 +30,13 @@ void EnemyManager::CreateCharacters()
 
 	for (int i = 0; i < SIMPLE_ENEMY_AMOUNT && initPosCounter < enemiesInitialPos.size(); ++i) {
 		SceneNode* mEnemyNode = mSM->getRootSceneNode()->createChildSceneNode("nSimpleEnemy" + i);
-		_characters.push_back(new EnemyHead(enemiesInitialPos[initPosCounter], mEnemyNode, mSM));
+		_characters.push_back(new EnemyHead(enemiesInitialPos[initPosCounter], mEnemyNode, mSM, _MM));
 		initPosCounter++;
 	}
 
 	for (int i = 0; i < COMPLEX_ENEMY_AMOUNT && initPosCounter < enemiesInitialPos.size(); ++i) {
 		SceneNode* mEnemyNode = mSM->getRootSceneNode()->createChildSceneNode("nComplexEnemy" + i);
-		_characters.push_back(new EnemyPenguin(enemiesInitialPos[initPosCounter], mEnemyNode, mSM, i));
+		_characters.push_back(new EnemyPenguin(enemiesInitialPos[initPosCounter], mEnemyNode, mSM, i, _MM));
 		initPosCounter++;
 	}
 

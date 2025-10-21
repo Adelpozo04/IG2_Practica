@@ -67,8 +67,8 @@ void SinbadExample::setupScene(void) {
     mCamNode = mSM->getRootSceneNode()->createChildSceneNode("nCam");
     mCamNode->attachObject(cam);
 
-    mCamNode->setPosition(0, 0, 1000);
-    mCamNode->lookAt(Ogre::Vector3(0, 0, 0), Ogre::Node::TS_WORLD);
+    mCamNode->setPosition(1000, -1000, 1000);
+    mCamNode->lookAt(Ogre::Vector3(1000, 1000, 1000), Ogre::Node::TS_WORLD);
 
     // and tell it to render into the main window
     Viewport* vp = getRenderWindow()->addViewport(cam);

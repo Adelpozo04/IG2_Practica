@@ -72,6 +72,8 @@ protected:
 	 */
 	bool canTurn(Ogre::Vector3 dir, MazeManager* MM);
 
+	bool passCenterTile(Ogre::Vector3 dir, MazeManager* MM);
+
 	virtual void Config() = 0;
 
 	int _lifes;

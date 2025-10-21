@@ -10,7 +10,7 @@ class EnemyPenguin : public Enemy
 public:
 
     EnemyPenguin();
-    EnemyPenguin(Vector3 initPos, SceneNode* node, SceneManager* sceneMng, int index);
+    EnemyPenguin(Vector3 initPos, SceneNode* node, SceneManager* sceneMng, int index, MazeManager* MM);
 
     void move(MazeManager* MM) override;
 

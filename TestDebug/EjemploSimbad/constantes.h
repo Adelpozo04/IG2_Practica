@@ -9,7 +9,7 @@ const Ogre::Vector3 INI_CUBE_SIZE = Ogre::Vector3(98, 98, 98);
 const Ogre::Vector3 CUBE_SIZE = Ogre::Vector3(100, 100, 100);
 
 //PLAYER
-const float PLAYER_SPEED = 9;
+const float PLAYER_SPEED = 3;
 const uint PLAYER_LIFES = 3;
 const string PLAYER_MESH_NAME = "Sinbad.mesh";
 const uint PLAYER_INITIAL_POINTS = 0;
@@ -17,7 +17,7 @@ const Ogre::Vector3 PLAYER_SCALE = Ogre::Vector3(8, 8, 8);
 
 //ENEMIES
 ///Simple enemy
-const float SIMPLE_ENEMY_SPEED = 5;
+const float SIMPLE_ENEMY_SPEED = 1;
 const uint SIMPLE_ENEMY_LIFES = 3;
 const string SIMPLE_ENEMY_MESH_NAME = "ogrehead.mesh";
 const Ogre::Vector3 SIMPLE_ENEMY_SCALE = Ogre::Vector3(1, 1, 1);
