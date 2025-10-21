@@ -10,7 +10,6 @@ EnemyHead::EnemyHead() :
 	_speed = SIMPLE_ENEMY_SPEED;
 	_currentDir = { 0, 0, 0 };
 	_nextDir = { 0, 0, 0 };
-	_offset = { 0, 0, 0 };
 	Config();
 }
 
@@ -22,7 +21,6 @@ EnemyHead::EnemyHead(Vector3 initPos, SceneNode* node, SceneManager* sceneMng, M
 	_speed = SIMPLE_ENEMY_SPEED;
 	_currentDir = { 0, 0, 0 };
 	_nextDir = { 0, 0, 0 };
-	_offset = { 0, 0, 0 };
 	Config();
 	setDir(ChooseNextDir(MM));
 	mNode->rotate(getOrientation().getRotationTo(getDir()));

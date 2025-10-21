@@ -11,7 +11,6 @@ PlayerManager::PlayerManager(Ogre::SceneManager* SM, MazeManager* MM) : Characte
 {
 
 	CreateCharacters();
-	_characters.front()->setOffset(CalculateOffset(_characters.front()));
 
 }
 

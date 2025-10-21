@@ -8,7 +8,6 @@ EnemyPenguin::EnemyPenguin() :
 	_speed = COMPLEX_ENEMY_SPEED;
 	_currentDir = { 0, 0, 0 };
 	_nextDir = { 0, 0, 0 };
-	_offset = { 0, 0, 0 };
     Config();
 }
 
@@ -48,7 +47,6 @@ EnemyPenguin::EnemyPenguin(Vector3 initPos, SceneNode* node, SceneManager* scene
 	_speed = COMPLEX_ENEMY_SPEED;
 	_currentDir = { 0, 0, 0 };
 	_nextDir = { 0, 0, 0 };
-	_offset = { 0, 0, 0 };
     Config();
     setDir(ChooseNextDir(MM));
     mNode->rotate(getOrientation().getRotationTo(getDir()));

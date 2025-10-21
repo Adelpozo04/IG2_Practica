@@ -17,6 +17,9 @@ class MazeManager
 
 public:
 
+	/**
+	 * @brief Struct que marca los distintos datos que debe devolver el creador del laberinto para su correcto alamcenado.
+	 */
 	struct MazeData {
 
 		std::vector<std::vector<Tile*>> maze;

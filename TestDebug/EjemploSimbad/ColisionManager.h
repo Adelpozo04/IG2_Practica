@@ -12,6 +12,9 @@ public:
 	ColisionManager();
 	ColisionManager(PlayerManager* PM, EnemyManager* EM);
 
+	/**
+	 * @brief Metodo llamado en cada frame de la ejecucion. Este hara comprobaciones de las intersecciones entre los elementps del juego.
+	 */
 	void Update();
 
 private:

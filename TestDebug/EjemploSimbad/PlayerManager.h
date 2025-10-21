@@ -30,6 +30,10 @@ public:
 	 */
 	void Update(float dt) override;
 
+	/**
+	 * @brief Metodo que aplica un danyo especifico a la entidad del jugador
+	 * @param damage Danyo que se le debe aplicar
+	 */
 	void HitPlayer(int damage);
 
 private:
