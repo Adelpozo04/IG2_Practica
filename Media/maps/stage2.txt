@@ -1,5 +1,7 @@
 18
 26
+BumpyMetal
+BeachStones
 xxxxxxxxxxxxxxxxxxxxxxxxxx
 xoooooxxxxxoooooxxxxooooox
 xoxxxoooooooxxxooooooxxxox

@@ -13,9 +13,12 @@ MazeManager::MazeData MazeCreator::GenerateMaze(std::string map)
         //Lectura del tamanyo del laberinto
         int sizeX;
         int sizeZ;
+        string matSuelo;
 
         mapFile >> sizeX;
         mapFile >> sizeZ;
+        mapFile >> matMuro;
+        mapFile >> matSuelo;
 
         std::vector<Ogre::SceneNode*> nodes = std::vector<Ogre::SceneNode*>(sizeX * sizeZ);
 
@@ -43,6 +46,18 @@ MazeManager::MazeData MazeCreator::GenerateMaze(std::string map)
         MazeManager::MazeData mazeData = MazeManager::MazeData(maze, initPos, enemiesInitPos);
 
         ConfigMaze(mazeNode, cubeSize);
+
+        //creacion del suelo
+        Ogre::MeshManager::getSingleton().createPlane("suelo", ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, Plane(Vector3::UNIT_Y, 0), 1, 1,
+            SUBDIVISION_LUZ_PLANO, SUBDIVISION_LUZ_PLANO, true, 1, sizeX, sizeZ, Vector3::UNIT_Z);
+        //Creación del suelo
+        Entity* Suel = mSM->createEntity("suelo");
+
+        Ogre::SceneNode* nodoSuelo = mazeNode->createChildSceneNode();
+        nodoSuelo->setPosition((sizeZ - 1) * CUBE_SIZE.x / 2, (float)CUBE_SIZE.y / -2, (sizeX - 1) * CUBE_SIZE.z / 2);
+        nodoSuelo->setScale(sizeZ * CUBE_SIZE.x, 1, sizeX * CUBE_SIZE.z);
+        Suel->setMaterialName(matSuelo);
+        nodoSuelo->attachObject(Suel);
 
         return mazeData;
     }
@@ -88,6 +103,7 @@ void MazeCreator::readChars(char c, int i, int j, int index, std::vector<std::ve
         nodes[index] = mazeNode->createChildSceneNode(id);
         nodes[index]->setScale(CUBE_SIZE.x / INI_CUBE_SIZE.x, 1, CUBE_SIZE.z / INI_CUBE_SIZE.z);
         maze[i][j] = new Tile(Ogre::Vector3{ CUBE_SIZE.x * i, 0, CUBE_SIZE.z * j }, nodes[index], mSM, "cube.mesh", false);
+        maze[i][j]->setMaterialName(matMuro);
         break;
     case 'o':
         nodes[index] = mazeNode->createChildSceneNode(id);
