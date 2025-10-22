@@ -28,7 +28,7 @@ void SinbadExample::frameRendered(const Ogre::FrameEvent& evt) {
     mEnemyMgr->Update(deltaTime);
     mColisionMgr->Update();
 
-    std::cout << "DeltaTime: " << deltaTime << "\n";
+    //std::cout << "DeltaTime: " << deltaTime << "\n";
 }
 
 
