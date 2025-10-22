@@ -36,6 +36,8 @@ private:
 
 	Ogre::SceneNode* mazeNode;
 
+	string matMuro;
+
 };
 
 #endif // !MAZE_CREATOR
