@@ -42,3 +42,5 @@ const string MAP_LAYOUT = "../../media/maps/stage1.txt";
 
 const Ogre::Vector3 INITIAL_POS = Ogre::Vector3(0, 0, 0);
 
+const int SUBDIVISION_LUZ_PLANO = 200;
+
