@@ -1,7 +1,7 @@
 18
 26
-BumpyMetal
-BeachStones
+wall
+floor
 xxxxxxxxxxxxxxxxxxxxxxxxxx
 xoooooxxxxxoooooxxxxooooox
 xoxxxoooooooxxxooooooxxxox
