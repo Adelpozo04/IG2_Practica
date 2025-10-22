@@ -1,4 +1,4 @@
-material BeachStones
+material floor
 {
 	technique
 	{
@@ -8,12 +8,12 @@ material BeachStones
 
 			texture_unit
 			{
-				texture BeachStones.jpg
+				texture grass.PNG
 			}
 		}
 	}
 }
-material BumpyMetal
+material wall
 {
 	technique
 	{
@@ -23,7 +23,7 @@ material BumpyMetal
 
 			texture_unit
 			{
-				texture BumpyMetal.jpg
+				texture floor_diffuse.PNG
 			}
 		}
 	}
