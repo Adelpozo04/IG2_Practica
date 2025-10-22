@@ -24,6 +24,10 @@ public:
 		return _lifes;
 	}
 
+	inline int getPoints() const{ return _points; }
+
+	inline void addPoints(int p) { _points += p; }
+
 	/**
 	 * @brief aplica un danyo especifico a la vida de la entidad, asegurandose de que no sea menor a cero esta
 	 * @param damage cantidad de vidas que le debe restar
@@ -153,6 +157,7 @@ protected:
 
 	int _lifes;
 	float _speed;
+	int _points;
 
 	//Direccion actual a la que se mueve el jugador
 	Ogre::Vector3 _currentDir;

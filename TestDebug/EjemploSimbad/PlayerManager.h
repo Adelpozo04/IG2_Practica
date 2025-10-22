@@ -5,6 +5,7 @@
 #include <SDL_keycode.h>
 #include "Player.h"
 #include "CharacterManager.h"
+#include "UIManager.h"
 
 class PlayerManager : public CharacterManager, public OgreBites::InputListener
 {
@@ -22,7 +23,7 @@ public:
 	 * @param mesh El mesh que va a representar al player
 	 * @param MM El manager del laberinto para calculos de movimientos respecto al layout
 	 */
-	PlayerManager(Ogre::SceneManager* SM, MazeManager* MM);
+	PlayerManager(Ogre::SceneManager* SM, MazeManager* MM, UIManager* UIM);
 
 	/**
 	 * @brief Recorrido que se hace por cada frame (Update de Unity)
@@ -52,6 +53,7 @@ private:
 	 */
 	void CreateCharacters() override;
 
+	UIManager* UImgr;
 };
 
 #endif // !PLAYERMANAGER_H

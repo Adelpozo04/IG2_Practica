@@ -14,6 +14,7 @@ const uint PLAYER_LIFES = 3;
 const string PLAYER_MESH_NAME = "Sinbad.mesh";
 const uint PLAYER_INITIAL_POINTS = 0;
 const Ogre::Vector3 PLAYER_SCALE = Ogre::Vector3(8, 8, 8);
+const int INITIAL_POINTS = 0;
 
 //ENEMIES
 ///Simple enemy

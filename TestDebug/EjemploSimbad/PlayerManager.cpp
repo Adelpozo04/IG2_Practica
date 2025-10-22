@@ -7,11 +7,11 @@ PlayerManager::PlayerManager() : CharacterManager()
 
 }
 
-PlayerManager::PlayerManager(Ogre::SceneManager* SM, MazeManager* MM) : CharacterManager(SM, MM)
+PlayerManager::PlayerManager(Ogre::SceneManager* SM, MazeManager* MM, UIManager* UIM) : CharacterManager(SM, MM), UImgr(UIM)
 {
 
 	CreateCharacters();
-
+	UIM->updateTextBox(_characters.front()->getLifes(),_characters.front()->getPoints());
 }
 
 void PlayerManager::CreateCharacters()
@@ -62,6 +62,7 @@ void PlayerManager::HitPlayer(int damage)
 
 	_characters.front()->reciveDamage(damage);
 	_characters.front()->setPosition(_MM->GetPlayerInitialPos());
+	UImgr->updateTextBox(_characters.front()->getLifes(), _characters.front()->getPoints());
 
 }
 

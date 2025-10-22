@@ -151,6 +151,7 @@
     <ClCompile Include="PlayerManager.cpp" />
     <ClCompile Include="SinbadExample.cpp" />
     <ClCompile Include="Tile.cpp" />
+    <ClCompile Include="UIManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Character.h" />
@@ -168,6 +169,7 @@
     <ClInclude Include="PlayerManager.h" />
     <ClInclude Include="SinbadExample.h" />
     <ClInclude Include="Tile.h" />
+    <ClInclude Include="UIManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

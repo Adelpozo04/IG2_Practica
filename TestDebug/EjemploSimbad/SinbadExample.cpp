@@ -113,8 +113,9 @@ void SinbadExample::setupScene(void) {
     //------------------------------------------------------------------------
     // Creating Sinbad
 
+    mUIMgr = new UIManager(mTrayMgr,getRenderWindow());
     mMazeMgr = new MazeManager(MAP_LAYOUT, mSM);
-    mPlayerMgr = new PlayerManager(mSM, mMazeMgr);
+    mPlayerMgr = new PlayerManager(mSM, mMazeMgr,mUIMgr);
     addInputListener(mPlayerMgr);
     mEnemyMgr = new EnemyManager(mSM, mMazeMgr);
     mColisionMgr = new ColisionManager(mPlayerMgr, mEnemyMgr);
