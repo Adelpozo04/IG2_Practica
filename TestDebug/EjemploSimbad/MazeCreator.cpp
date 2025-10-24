@@ -3,7 +3,7 @@
 #include "MazeCreator.h"
 #include "constantes.h"
 
-MazeManager::MazeData MazeCreator::GenerateMaze(std::string map)
+MazeManager::MazeData* MazeCreator::GenerateMaze(std::string map)
 {
     ifstream mapFile;
     mapFile.open(map);
@@ -29,6 +29,7 @@ MazeManager::MazeData MazeCreator::GenerateMaze(std::string map)
         Ogre::Vector3 cubeSize = cube->calculateBoxSize();
 
         delete cube;
+        cube = nullptr;
 
         //Vector solucion
         std::vector<std::vector<Tile*>> maze = std::vector<std::vector<Tile*>>(sizeX, std::vector<Tile*>(sizeZ));
@@ -43,7 +44,7 @@ MazeManager::MazeData MazeCreator::GenerateMaze(std::string map)
 
         ReadMaze(sizeX, sizeZ, cubeSize, mapFile, nodes, maze, mazeNode, initPos, enemiesInitPos);
 
-        MazeManager::MazeData mazeData = MazeManager::MazeData(maze, initPos, enemiesInitPos);
+        MazeManager::MazeData* mazeData = new MazeManager::MazeData(maze, initPos, enemiesInitPos);
 
         ConfigMaze(mazeNode, cubeSize);
 
@@ -63,7 +64,7 @@ MazeManager::MazeData MazeCreator::GenerateMaze(std::string map)
     }
     else {
 
-        MazeManager::MazeData mazeData = MazeManager::MazeData();
+        MazeManager::MazeData* mazeData = new MazeManager::MazeData();
 
         return mazeData;
 

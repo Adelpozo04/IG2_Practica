@@ -19,7 +19,7 @@ public:
 	 * @param map Nombre del fichero txt que represente el laberinto
 	 * @return Vector bidimensional con referencias a los distintos IGObjects usados para su contruccion.
 	 */
-	MazeManager::MazeData GenerateMaze(std::string map);
+	MazeManager::MazeData* GenerateMaze(std::string map);
 
 
 private:

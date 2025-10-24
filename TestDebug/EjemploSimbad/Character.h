@@ -121,11 +121,6 @@ protected:
 	Character& operator=(const Character&) = delete;
 
 	/**
-	 * @brief destructor de la clase, debe ser implementado por cada hijo de esta
-	 */
-	virtual ~Character() = default;
-
-	/**
 	 * @brief Metodo que sirve para comprobar si puedes avanzar en una direccion determinada
 	 * @param dir direccion a la que avanzar
 	 * @param MM MazeManager

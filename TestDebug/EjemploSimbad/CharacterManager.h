@@ -11,6 +11,8 @@ class CharacterManager
 
 public:
 
+	~CharacterManager();
+
 	/**
 	 * @brief Metodo llamado en cada frame de la ejecucion.
 	 * @param dt DeltaTime

@@ -114,7 +114,7 @@ private:
 	Ogre::Vector3 _sizeMesh;
 
 	//Vector bidimensional con las casillas del laberinto
-	MazeData _mazeData;
+	MazeData* _mazeData;
 
 	//Nombre del mapa a cargar
 	std::string _map = "";

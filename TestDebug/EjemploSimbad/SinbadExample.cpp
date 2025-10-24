@@ -34,6 +34,16 @@ void SinbadExample::frameRendered(const Ogre::FrameEvent& evt) {
 
 void SinbadExample::shutdown() {
 
+    delete mMazeMgr;
+    delete mPlayerMgr;
+    delete mEnemyMgr;
+    delete mColisionMgr;
+
+    mMazeMgr = nullptr;
+    mPlayerMgr = nullptr;
+    mEnemyMgr = nullptr;
+    mColisionMgr = nullptr;
+
     mShaderGenerator->removeSceneManager(mSM);
     mSM->removeRenderQueueListener(mOverlaySystem);
 
@@ -119,32 +129,5 @@ void SinbadExample::setupScene(void) {
     addInputListener(mPlayerMgr);
     mEnemyMgr = new EnemyManager(mSM, mMazeMgr);
     mColisionMgr = new ColisionManager(mPlayerMgr, mEnemyMgr);
-
-    /*mTestNode2 = mSM->getRootSceneNode()->createChildSceneNode("nTest2");
-    ehTest2 = IG2Object({ 0, 0, 0 }, mTestNode2, mSM, "Sinbad.mesh");*/
-
-    /*
-    Ogre::Entity* ent1 = mSM->createEntity("Sinbad.mesh");
-    mTestNode = mSM->getRootSceneNode()->createChildSceneNode("nTest");
-    mTestNode->attachObject(ent1);
-    mTestNode->setPosition(Ogre::Vector3(-100, 0, 0));
-
-    // Show bounding box
-    mSinbadNode->showBoundingBox(true);
-    */
-    
-    /*
-    mMazeMgr = new MazeManager("stage1.txt", mSM);
-    mTestNode->setScale(8, 20, 8);
-    mTestNode->setPosition(Ogre::Vector3(0, 0, 0));
-    */
-    
-    // Set position of Sinbad
-    //mSinbadNode->setPosition(x, y, z);
-
-    // Set scale of Sinbad
-    //mSinbadNode->setScale(20, 20, 20);
-
-    //mSinbadNode->yaw(Ogre::Degree(-45));
-    //mSinbadNode->setVisible(false);    
+ 
 }

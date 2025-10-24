@@ -1,5 +1,13 @@
 #include "CharacterManager.h"
 
+CharacterManager::~CharacterManager()
+{
+	for (auto& a : _characters) {
+		delete a;
+		a = nullptr;
+	}
+}
+
 CharacterManager::CharacterManager() : mSM(nullptr), _MM(nullptr)
 {
 
