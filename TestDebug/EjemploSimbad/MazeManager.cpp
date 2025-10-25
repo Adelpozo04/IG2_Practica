@@ -35,21 +35,6 @@ bool MazeManager::IsTrasferable(Ogre::Vector3 position)
 	
 }
 
-Ogre::Vector3 MazeManager::GetPlayerInitialPos()
-{
-	return _mazeData.initialPos;
-}
-
-vector<Ogre::Vector3> MazeManager::GetEnemiesInitialPos()
-{
-	return _mazeData.enemiesInitialPos;
-}
-
-Ogre::Vector3 MazeManager::GetTileSize()
-{
-	return _sizeMesh;
-}
-
 void MazeManager::InitMaze()
 {
 	MazeCreator mc = MazeCreator(mSM);

@@ -14,11 +14,13 @@ MazeManager::MazeData MazeCreator::GenerateMaze(std::string map)
         int sizeX;
         int sizeZ;
         string matSuelo;
+        string light;
 
         mapFile >> sizeX;
         mapFile >> sizeZ;
         mapFile >> matMuro;
         mapFile >> matSuelo;
+        mapFile >> light;
 
         std::vector<Ogre::SceneNode*> nodes = std::vector<Ogre::SceneNode*>(sizeX * sizeZ);
 
@@ -43,7 +45,7 @@ MazeManager::MazeData MazeCreator::GenerateMaze(std::string map)
 
         ReadMaze(sizeX, sizeZ, cubeSize, mapFile, nodes, maze, mazeNode, initPos, enemiesInitPos);
 
-        MazeManager::MazeData mazeData = MazeManager::MazeData(maze, initPos, enemiesInitPos);
+        MazeManager::MazeData mazeData = MazeManager::MazeData(maze, initPos, enemiesInitPos, light);
 
         ConfigMaze(mazeNode, cubeSize);
 

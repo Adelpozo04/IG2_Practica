@@ -103,6 +103,8 @@ public:
 	 */
 	virtual void inlineAnimation(float dt) = 0;
 
+	inline virtual Ogre::SceneNode* getSceneNode() { return mNode; }
+
 protected:
 
 	Character();
