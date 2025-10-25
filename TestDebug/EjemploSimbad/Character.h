@@ -103,6 +103,10 @@ public:
 	 */
 	virtual void inlineAnimation(float dt) = 0;
 
+	/**
+	 * @brief Metodo para obtener el SceneNode del Character
+	 * @return Puntero al sceneNode del character
+	 */
 	inline virtual Ogre::SceneNode* getSceneNode() { return mNode; }
 
 protected:
