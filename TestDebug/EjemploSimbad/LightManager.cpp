@@ -24,10 +24,8 @@ LightManager::LightManager(PlayerManager* pM, Ogre::SceneManager* SM, std::strin
 		luz->setType(Ogre::Light::LT_POINT);
 		luz->setDiffuseColour(1, 1, 1);
 
-
 		mLightNode = pM->getPlayerNode()->createChildSceneNode();
 		mLightNode->attachObject(luz);
-
 	}
 	else
 	{

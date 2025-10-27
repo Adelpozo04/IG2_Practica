@@ -95,8 +95,8 @@ void SinbadExample::setupScene(void) {
     mCamNode = mSM->getRootSceneNode()->createChildSceneNode("nCam");
     mCamNode->attachObject(cam);
 
-    mCamNode->setPosition(1000, -1000, 1000);
-    mCamNode->lookAt(Ogre::Vector3(1000, 1000, 1000), Ogre::Node::TS_WORLD);
+    mCamNode->setPosition(0, -3000, 0);
+    mCamNode->lookAt(Ogre::Vector3(0, 3000, 0), Ogre::Node::TS_WORLD);
 
     // and tell it to render into the main window
     Viewport* vp = getRenderWindow()->addViewport(cam);
@@ -104,24 +104,6 @@ void SinbadExample::setupScene(void) {
     mCamMgr = new OgreBites::CameraMan(mCamNode);
     addInputListener(mCamMgr);
     mCamMgr->setStyle(OgreBites::CS_ORBIT);
-
-
-    //------------------------------------------------------------------------
-    // Creating the light
-
-    //mSM->setAmbientLight(ColourValue(0.5, 0.5, 0.5));
-    
-    /*Light* luz = mSM->createLight("Luz");
-    luz->setType(Ogre::Light::LT_DIRECTIONAL);
-    luz->setDiffuseColour(0.75, 0.75, 0.75);
-
-    mLightNode = mSM->getRootSceneNode()->createChildSceneNode("nLuz");
-    mLightNode->attachObject(luz);
-    mLightNode->setDirection(Ogre::Vector3(-1, -1, -1));*/
- 
-
-    //------------------------------------------------------------------------
-    // Creating Sinbad
 
     mUIMgr = new UIManager(mTrayMgr,getRenderWindow());
     mMazeMgr = new MazeManager(MAP_LAYOUT, mSM);

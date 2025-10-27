@@ -62,7 +62,14 @@ void PlayerManager::HitPlayer(int damage)
 
 	_characters.front()->reciveDamage(damage);
 	_characters.front()->setPosition(_MM->GetPlayerInitialPos());
+
+	_characters.front()->setDir({ 0, 0, 0 });
+	_characters.front()->setNextDir({ 0, 0, 0 });
+
 	UImgr->updateTextBox(_characters.front()->getLifes(), _characters.front()->getPoints());
 
+	if (_characters.front()->getLifes() <= 0) {
+		UImgr->showDeathBox();
+	}
 }
 
