@@ -46,7 +46,7 @@ MazeManager::MazeData* MazeCreator::GenerateMaze(std::string map)
 
         ReadMaze(sizeX, sizeZ, cubeSize, mapFile, nodes, maze, mazeNode, initPos, enemiesInitPos);
 
-        MazeManager::MazeData* mazeData = new MazeManager::MazeData(maze, initPos, enemiesInitPos);
+        MazeManager::MazeData* mazeData = new MazeManager::MazeData(maze, initPos, enemiesInitPos, light);
 
         ConfigMaze(mazeNode, cubeSize);
 

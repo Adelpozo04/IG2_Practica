@@ -64,13 +64,13 @@ public:
 	 * @brief Devuelve la posicion inicial en la que se instancia al 
 	 * @return 
 	 */
-	inline Ogre::Vector3 GetPlayerInitialPos(){return _mazeData.initialPos;}
+	Ogre::Vector3 GetPlayerInitialPos();
 
-	inline vector<Ogre::Vector3> GetEnemiesInitialPos(){return _mazeData.enemiesInitialPos;}
+	vector<Ogre::Vector3> GetEnemiesInitialPos();
 
 	inline Ogre::Vector3 GetTileSize() { return _sizeMesh; }
 
-	inline string getLight() { return _mazeData.typeOfLight; }
+	string getLight();
 
 	inline int GetNumTilesX() {
 		return _sizeX;

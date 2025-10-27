@@ -46,9 +46,9 @@ vector<Ogre::Vector3> MazeManager::GetEnemiesInitialPos()
 	return _mazeData->enemiesInitialPos;
 }
 
-Ogre::Vector3 MazeManager::GetTileSize()
+string MazeManager::getLight()
 {
-	return _sizeMesh;
+	return _mazeData->typeOfLight;
 }
 
 void MazeManager::InitMaze()
