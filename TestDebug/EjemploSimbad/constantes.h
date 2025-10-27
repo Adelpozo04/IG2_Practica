@@ -39,7 +39,7 @@ const int NUM_ENEMIES = SIMPLE_ENEMY_AMOUNT + COMPLEX_ENEMY_AMOUNT;
 const int ENEMIES_DAMAGE = 1;
 
 //MAP
-const string MAP_LAYOUT = "../../media/maps/stage1.txt";
+const string MAP_LAYOUT = "../../media/maps/stage2.txt";
 
 const Ogre::Vector3 INITIAL_POS = Ogre::Vector3(0, 0, 0);
 
