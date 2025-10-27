@@ -14,11 +14,13 @@ MazeManager::MazeData* MazeCreator::GenerateMaze(std::string map)
         int sizeX;
         int sizeZ;
         string matSuelo;
+        string light;
 
         mapFile >> sizeX;
         mapFile >> sizeZ;
         mapFile >> matMuro;
         mapFile >> matSuelo;
+        mapFile >> light;
 
         std::vector<Ogre::SceneNode*> nodes = std::vector<Ogre::SceneNode*>(sizeX * sizeZ);
 
@@ -51,7 +53,7 @@ MazeManager::MazeData* MazeCreator::GenerateMaze(std::string map)
         //creacion del suelo
         Ogre::MeshManager::getSingleton().createPlane("suelo", ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, Plane(Vector3::UNIT_Y, 0), 1, 1,
             SUBDIVISION_LUZ_PLANO, SUBDIVISION_LUZ_PLANO, true, 1, sizeX, sizeZ, Vector3::UNIT_Z);
-        //Creación del suelo
+        //Creaciï¿½n del suelo
         Entity* Suel = mSM->createEntity("suelo");
 
         Ogre::SceneNode* nodoSuelo = mazeNode->createChildSceneNode();

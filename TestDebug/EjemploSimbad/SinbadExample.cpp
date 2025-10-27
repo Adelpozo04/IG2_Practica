@@ -111,13 +111,13 @@ void SinbadExample::setupScene(void) {
 
     //mSM->setAmbientLight(ColourValue(0.5, 0.5, 0.5));
     
-    Light* luz = mSM->createLight("Luz");
+    /*Light* luz = mSM->createLight("Luz");
     luz->setType(Ogre::Light::LT_DIRECTIONAL);
     luz->setDiffuseColour(0.75, 0.75, 0.75);
 
     mLightNode = mSM->getRootSceneNode()->createChildSceneNode("nLuz");
     mLightNode->attachObject(luz);
-    mLightNode->setDirection(Ogre::Vector3(-1, -1, -1));
+    mLightNode->setDirection(Ogre::Vector3(-1, -1, -1));*/
  
 
     //------------------------------------------------------------------------
@@ -126,6 +126,7 @@ void SinbadExample::setupScene(void) {
     mUIMgr = new UIManager(mTrayMgr,getRenderWindow());
     mMazeMgr = new MazeManager(MAP_LAYOUT, mSM);
     mPlayerMgr = new PlayerManager(mSM, mMazeMgr,mUIMgr);
+    mLightMgr = new LightManager(mPlayerMgr, mSM, mMazeMgr->getLight());
     addInputListener(mPlayerMgr);
     mEnemyMgr = new EnemyManager(mSM, mMazeMgr);
     mColisionMgr = new ColisionManager(mPlayerMgr, mEnemyMgr);

@@ -37,6 +37,8 @@ public:
 	 */
 	void HitPlayer(int damage);
 
+	inline Ogre::SceneNode* getPlayerNode() {return _characters.front()->getSceneNode(); }
+
 private:
 
 	/**

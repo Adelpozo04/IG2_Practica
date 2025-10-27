@@ -25,15 +25,17 @@ public:
 		std::vector<std::vector<Tile*>> maze;
 		Ogre::Vector3 initialPos;
 		std::vector<Ogre::Vector3> enemiesInitialPos;
-		
+		string typeOfLight;
+
 		MazeData() {
 			maze = std::vector<std::vector<Tile*>>(0, std::vector<Tile*>(0));
 			initialPos = Ogre::Vector3::ZERO;
 			enemiesInitialPos = std::vector<Ogre::Vector3>(0);
+			typeOfLight = "";
 		}
 
-		MazeData(std::vector<std::vector<Tile*>> m, Ogre::Vector3 pos, std::vector<Ogre::Vector3> ePos) : 
-			maze(m), initialPos(pos), enemiesInitialPos(ePos) 
+		MazeData(std::vector<std::vector<Tile*>> m, Ogre::Vector3 pos, std::vector<Ogre::Vector3> ePos, string typeOfLight) :
+			maze(m), initialPos(pos), enemiesInitialPos(ePos), typeOfLight(typeOfLight)
 		{
 
 		}
@@ -62,11 +64,13 @@ public:
 	 * @brief Devuelve la posicion inicial en la que se instancia al 
 	 * @return 
 	 */
-	Ogre::Vector3 GetPlayerInitialPos();
+	inline Ogre::Vector3 GetPlayerInitialPos(){return _mazeData.initialPos;}
 
-	vector<Ogre::Vector3> GetEnemiesInitialPos();
+	inline vector<Ogre::Vector3> GetEnemiesInitialPos(){return _mazeData.enemiesInitialPos;}
 
-	Ogre::Vector3 GetTileSize();
+	inline Ogre::Vector3 GetTileSize() { return _sizeMesh; }
+
+	inline string getLight() { return _mazeData.typeOfLight; }
 
 	inline int GetNumTilesX() {
 		return _sizeX;
@@ -122,6 +126,3 @@ private:
 };
 
 #endif // !MAZE_MANAGER
-
-
-

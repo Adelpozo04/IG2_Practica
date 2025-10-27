@@ -22,6 +22,7 @@
 #include "EnemyManager.h"
 #include "ColisionManager.h"
 #include "UIManager.h"
+#include "LightManager.h"
 
 class SinbadExample: public OgreBites::ApplicationContext, OgreBites::InputListener {
 
@@ -63,6 +64,8 @@ protected:
     ColisionManager* mColisionMgr = nullptr;
 
     UIManager* mUIMgr = nullptr;
+
+    LightManager* mLightMgr = nullptr;
 
     std::chrono::time_point<std::chrono::high_resolution_clock> lastTime;
 

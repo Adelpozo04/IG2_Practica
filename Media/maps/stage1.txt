@@ -2,6 +2,7 @@
 19
 wall
 floor
+directional
 xxxxxxxxxxxxxxxxxxx
 xhoooooooxoooooooox
 xoxxoxxxoxoxxxoxxox
