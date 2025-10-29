@@ -34,7 +34,6 @@ bool Character::canTurn(Ogre::Vector3 dir, MazeManager* MM, float dt)
 
 bool Character::passCenterTile(MazeManager* MM, float dt)
 {
-	bool ret = false;
 
 	Vector3 pos = getPosition();
 	Vector3 nextPos = pos + (getDir() * getSpeed() * dt);

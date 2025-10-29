@@ -24,15 +24,6 @@ MazeManager::MazeData* MazeCreator::GenerateMaze(std::string map)
 
         std::vector<Ogre::SceneNode*> nodes = std::vector<Ogre::SceneNode*>(sizeX * sizeZ);
 
-        //Calculo de tamanyo de un cubo
-
-        Ogre::SceneNode* test = mSM->getRootSceneNode()->createChildSceneNode("nCube");
-        Tile* cube = new Tile(Ogre::Vector3{ 0, 0, 0 }, test, mSM, "cube.mesh", false);
-        Ogre::Vector3 cubeSize = cube->calculateBoxSize();
-
-        delete cube;
-        cube = nullptr;
-
         //Vector solucion
         std::vector<std::vector<Tile*>> maze = std::vector<std::vector<Tile*>>(sizeX, std::vector<Tile*>(sizeZ));
 
@@ -44,11 +35,11 @@ MazeManager::MazeData* MazeCreator::GenerateMaze(std::string map)
 
         std::vector<Ogre::Vector3> enemiesInitPos = std::vector<Ogre::Vector3>(0);
 
-        ReadMaze(sizeX, sizeZ, cubeSize, mapFile, nodes, maze, mazeNode, initPos, enemiesInitPos);
+        ReadMaze(sizeX, sizeZ, mapFile, nodes, maze, mazeNode, initPos, enemiesInitPos);
 
         MazeManager::MazeData* mazeData = new MazeManager::MazeData(maze, initPos, enemiesInitPos, light);
 
-        ConfigMaze(mazeNode, cubeSize);
+        ConfigMaze(mazeNode);
 
         //creacion del suelo
         Ogre::MeshManager::getSingleton().createPlane("suelo", ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, Plane(Vector3::UNIT_Y, 0), 1, 1,
@@ -74,7 +65,7 @@ MazeManager::MazeData* MazeCreator::GenerateMaze(std::string map)
     
 }
 
-void MazeCreator::ReadMaze(int sizeX, int sizeZ, Ogre::Vector3& cubeSize, ifstream& mapFile, std::vector<Ogre::SceneNode*>& nodes,
+void MazeCreator::ReadMaze(int sizeX, int sizeZ, ifstream& mapFile, std::vector<Ogre::SceneNode*>& nodes,
     std::vector<std::vector<Tile*>>& maze, Ogre::SceneNode* mazeNode, Ogre::Vector3& initPos, std::vector<Ogre::Vector3>& enemiesInitPos)
 {
 
@@ -131,7 +122,7 @@ void MazeCreator::readChars(char c, int i, int j, int index, std::vector<std::ve
     }
 }
 
-void MazeCreator::ConfigMaze(Ogre::SceneNode* mazeNode, Ogre::Vector3& cubeSize)
+void MazeCreator::ConfigMaze(Ogre::SceneNode* mazeNode)
 {
 
     Ogre::Vector3 newPos = mazeNode->getPosition() + Ogre::Vector3(CUBE_SIZE.x / 2, 0, CUBE_SIZE.z / 2);

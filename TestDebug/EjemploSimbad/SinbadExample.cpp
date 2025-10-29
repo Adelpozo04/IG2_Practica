@@ -18,11 +18,7 @@ bool SinbadExample::keyPressed(const OgreBites::KeyboardEvent& evt) {
 
 void SinbadExample::frameRendered(const Ogre::FrameEvent& evt) {
 
-    auto currentTime = std::chrono::high_resolution_clock::now();
-
-    float deltaTime = (std::chrono::duration<float>(currentTime - lastTime)).count();
-
-    lastTime = currentTime;
+    float deltaTime = evt.timeSinceLastFrame;
 
     mPlayerMgr->Update(deltaTime);
     mEnemyMgr->Update(deltaTime);
