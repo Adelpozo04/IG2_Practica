@@ -18,6 +18,7 @@
 #include <SDL_keycode.h>
 
 class GameScene;
+class OpeningScene;
 
 class SinbadExample: public OgreBites::ApplicationContext, OgreBites::InputListener {
 
@@ -43,6 +44,7 @@ protected:
     OgreBites::CameraMan* mCamMgr = nullptr;
 
     GameScene* mGameScn = nullptr;
+    OpeningScene* mOpeningScn = nullptr;
 
     std::chrono::time_point<std::chrono::high_resolution_clock> lastTime;
 

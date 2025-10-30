@@ -5,10 +5,16 @@
 using uint = unsigned int;
 
 //MAPA
+///Game
 const Ogre::Vector3 INI_CUBE_SIZE = Ogre::Vector3(98, 98, 98);
 const Ogre::Vector3 CUBE_SIZE = Ogre::Vector3(100, 100, 100);
 const std::string MAP_LAYOUT = "stage1.txt";
 const Ogre::Vector3 INITIAL_POS = Ogre::Vector3(0, 0, 0);
+
+///OpeningAnimation
+const Ogre::Vector3 OS_SURFACE_SCALE = Ogre::Vector3(300, 1, 300);
+
+///General
 const int SUBDIVISION_LUZ_PLANO = 200;
 
 //PLAYER

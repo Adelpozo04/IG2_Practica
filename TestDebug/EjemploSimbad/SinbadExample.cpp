@@ -1,6 +1,7 @@
 #include "SinbadExample.h"
 #include "IG2Object.h"
 #include "GameScene.h"
+#include "OpeningScene.h"
 #include "constantes.h"
 
 using namespace std;
@@ -90,6 +91,7 @@ void SinbadExample::setupScene(void) {
     addInputListener(mCamMgr);
     mCamMgr->setStyle(OgreBites::CS_ORBIT);
 
-    mGameScn = new GameScene(mSM, mTrayMgr, this);
+    //mGameScn = new GameScene(mSM, mTrayMgr, this);
+    mOpeningScn = new OpeningScene(mSM);
  
 }
