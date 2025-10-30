@@ -1,5 +1,6 @@
 #include "SinbadExample.h"
 #include "IG2Object.h"
+#include "GameScene.h"
 #include "constantes.h"
 
 using namespace std;
@@ -20,25 +21,13 @@ void SinbadExample::frameRendered(const Ogre::FrameEvent& evt) {
 
     float deltaTime = evt.timeSinceLastFrame;
 
-    mPlayerMgr->Update(deltaTime);
-    mEnemyMgr->Update(deltaTime);
-    mColisionMgr->Update();
+    mGameScn->Update(deltaTime);
 
     //std::cout << "DeltaTime: " << deltaTime << "\n";
 }
 
 
 void SinbadExample::shutdown() {
-
-    delete mMazeMgr;
-    delete mPlayerMgr;
-    delete mEnemyMgr;
-    delete mColisionMgr;
-
-    mMazeMgr = nullptr;
-    mPlayerMgr = nullptr;
-    mEnemyMgr = nullptr;
-    mColisionMgr = nullptr;
 
     mShaderGenerator->removeSceneManager(mSM);
     mSM->removeRenderQueueListener(mOverlaySystem);
@@ -101,12 +90,6 @@ void SinbadExample::setupScene(void) {
     addInputListener(mCamMgr);
     mCamMgr->setStyle(OgreBites::CS_ORBIT);
 
-    mUIMgr = new UIManager(mTrayMgr,getRenderWindow());
-    mMazeMgr = new MazeManager(MAP_LAYOUT, mSM);
-    mPlayerMgr = new PlayerManager(mSM, mMazeMgr,mUIMgr);
-    mLightMgr = new LightManager(mPlayerMgr, mSM, mMazeMgr->getLight());
-    addInputListener(mPlayerMgr);
-    mEnemyMgr = new EnemyManager(mSM, mMazeMgr);
-    mColisionMgr = new ColisionManager(mPlayerMgr, mEnemyMgr);
+    mGameScn = new GameScene(mSM, mTrayMgr, this);
  
 }

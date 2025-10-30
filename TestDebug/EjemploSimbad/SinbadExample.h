@@ -17,12 +17,7 @@
 #include <OgreWindowEventUtilities.h>
 #include <SDL_keycode.h>
 
-#include "MazeManager.h"
-#include "PlayerManager.h"
-#include "EnemyManager.h"
-#include "ColisionManager.h"
-#include "UIManager.h"
-#include "LightManager.h"
+class GameScene;
 
 class SinbadExample: public OgreBites::ApplicationContext, OgreBites::InputListener {
 
@@ -37,14 +32,6 @@ protected:
     virtual void shutdown();
     virtual void setupScene();
 
-
-    Ogre::SceneNode* mSinbadNode = nullptr;
-
-    Ogre::SceneNode* mTestNode = nullptr;
-    Ogre::SceneNode* mTestNode2 = nullptr;
-
-    IG2Object ehTest2;
-
     Ogre::SceneManager* mSM = nullptr;
     OgreBites::TrayManager* mTrayMgr = nullptr;
 
@@ -55,17 +42,7 @@ protected:
     Ogre::SceneNode* mCamNode = nullptr;
     OgreBites::CameraMan* mCamMgr = nullptr;
 
-    MazeManager* mMazeMgr = nullptr;
-
-    PlayerManager* mPlayerMgr = nullptr;
-
-    EnemyManager* mEnemyMgr = nullptr;
-
-    ColisionManager* mColisionMgr = nullptr;
-
-    UIManager* mUIMgr = nullptr;
-
-    LightManager* mLightMgr = nullptr;
+    GameScene* mGameScn = nullptr;
 
     std::chrono::time_point<std::chrono::high_resolution_clock> lastTime;
 
