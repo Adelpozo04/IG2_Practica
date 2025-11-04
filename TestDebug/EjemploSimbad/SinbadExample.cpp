@@ -22,10 +22,12 @@ void SinbadExample::frameRendered(const Ogre::FrameEvent& evt) {
 
     float deltaTime = evt.timeSinceLastFrame;
 
-    //mGameScn->Update(deltaTime);
-    mOpeningScn->Update(deltaTime);
+    mGameScn->Update(deltaTime);
+    //mOpeningScn->Update(deltaTime);
 
     //std::cout << "DeltaTime: " << deltaTime << "\n";
+
+    //std::cout << mCamNode->getPosition() << "\n";
 }
 
 
@@ -70,29 +72,7 @@ void SinbadExample::setup(void) {
 
 void SinbadExample::setupScene(void) {
 
-    //------------------------------------------------------------------------
-    // Creating the camera
-
-    Camera* cam = mSM->createCamera("Cam");
-    cam->setNearClipDistance(1);
-    cam->setFarClipDistance(10000);
-    cam->setAutoAspectRatio(true);
-    //cam->setPolygonMode(Ogre::PM_WIREFRAME);
-
-    mCamNode = mSM->getRootSceneNode()->createChildSceneNode("nCam");
-    mCamNode->attachObject(cam);
-
-    mCamNode->setPosition(0, -3000, 0);
-    mCamNode->lookAt(Ogre::Vector3(0, 3000, 0), Ogre::Node::TS_WORLD);
-
-    // and tell it to render into the main window
-    Viewport* vp = getRenderWindow()->addViewport(cam);
-
-    mCamMgr = new OgreBites::CameraMan(mCamNode);
-    addInputListener(mCamMgr);
-    mCamMgr->setStyle(OgreBites::CS_ORBIT);
-
-    //mGameScn = new GameScene(mSM, mTrayMgr, this);
-    mOpeningScn = new OpeningScene(mSM);
+    mGameScn = new GameScene(mSM, mTrayMgr, this);
+    //mOpeningScn = new OpeningScene(mSM, this);
  
 }

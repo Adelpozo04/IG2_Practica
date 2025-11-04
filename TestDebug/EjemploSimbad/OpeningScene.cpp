@@ -2,7 +2,7 @@
 #include "constantes.h"
 #include <OgreSceneManager.h>
 
-OpeningScene::OpeningScene(Ogre::SceneManager* SM) : Scene(SM)
+OpeningScene::OpeningScene(Ogre::SceneManager* SM, OgreBites::ApplicationContext* AC) : Scene(SM, AC)
 {
 
     GenerateScene();
@@ -38,6 +38,23 @@ void OpeningScene::GenerateScene()
     ///Configuracion plano
     floor->setPosition(0, -5, 0);
     floor->setScale(OS_SURFACE_SCALE);
+
+    //Creacion de la camara
+
+    Ogre::Camera* cam = mSM->createCamera("Cam");
+    cam->setNearClipDistance(1);
+    cam->setFarClipDistance(10000);
+    cam->setAutoAspectRatio(true);
+    //cam->setPolygonMode(Ogre::PM_WIREFRAME);
+
+    mCamNode = mSM->getRootSceneNode()->createChildSceneNode("nCam");
+    mCamNode->attachObject(cam);
+
+    mCamNode->setPosition(1.7, 2.6, 35.2);
+    mCamNode->lookAt(Ogre::Vector3(0, 0, -100), Ogre::Node::TS_WORLD);
+
+    // and tell it to render into the main window
+    Ogre::Viewport* vp = mAplicCont->getRenderWindow()->addViewport(cam);
 
     //Creacion de la luz
     Ogre::Light* directionalLight1 = mSM->createLight("DirectionalLight1");

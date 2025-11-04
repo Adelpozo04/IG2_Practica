@@ -1,6 +1,8 @@
 #ifndef GAMESCENE_H
 #define GAMESCENE_H
 
+#include <OgreCameraMan.h>
+
 #include "Scene.h"
 
 #include "MazeManager.h"
@@ -26,7 +28,9 @@ private:
     void GenerateScene() override;
 
     OgreBites::TrayManager* mTrayMgr = nullptr;
-    OgreBites::ApplicationContext* mAplicCont = nullptr;
+    OgreBites::CameraMan* mCamMgr = nullptr;
+
+    Ogre::SceneNode* mCamNode = nullptr;
 
     MazeManager* mMazeMgr = nullptr;
     PlayerManager* mPlayerMgr = nullptr;

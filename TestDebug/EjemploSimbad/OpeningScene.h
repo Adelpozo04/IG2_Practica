@@ -8,7 +8,7 @@ class OpeningScene : public Scene
 
 public:
 
-	OpeningScene(Ogre::SceneManager* SM);
+	OpeningScene(Ogre::SceneManager* SM, OgreBites::ApplicationContext* AC);
 
 	~OpeningScene();
 
@@ -20,7 +20,9 @@ private:
 
 	Ogre::SceneNode* _simbad = nullptr;
 	Ogre::SceneNode* _ogreHead = nullptr;
+
 	Ogre::SceneNode* _light = nullptr;
+	Ogre::SceneNode* mCamNode = nullptr;
 
 	Ogre::Entity* _rightSword = nullptr;
 	Ogre::Entity* _leftSword = nullptr;
