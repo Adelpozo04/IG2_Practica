@@ -22,7 +22,8 @@ void SinbadExample::frameRendered(const Ogre::FrameEvent& evt) {
 
     float deltaTime = evt.timeSinceLastFrame;
 
-    mGameScn->Update(deltaTime);
+    //mGameScn->Update(deltaTime);
+    mOpeningScn->Update(deltaTime);
 
     //std::cout << "DeltaTime: " << deltaTime << "\n";
 }

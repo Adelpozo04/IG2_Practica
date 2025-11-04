@@ -20,6 +20,7 @@ private:
 
 	Ogre::SceneNode* _simbad = nullptr;
 	Ogre::SceneNode* _ogreHead = nullptr;
+	Ogre::SceneNode* _light = nullptr;
 
 	Ogre::Entity* _rightSword = nullptr;
 	Ogre::Entity* _leftSword = nullptr;
