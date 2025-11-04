@@ -27,6 +27,10 @@ private:
 	Ogre::Entity* _rightSword = nullptr;
 	Ogre::Entity* _leftSword = nullptr;
 
+	Ogre::AnimationState* animationStateDance = nullptr;
+	Ogre::AnimationState* animationStateRunTop = nullptr;
+	Ogre::AnimationState* animationStateRunBase = nullptr;
+
 };
 
 #endif // !OPENINGSCENE_H
