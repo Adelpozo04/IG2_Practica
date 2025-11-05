@@ -2,6 +2,7 @@
 #define OPENINGSCENE_H
 
 #include "Scene.h"
+#include <OgreCameraMan.h>
 
 class OpeningScene : public Scene
 {
@@ -24,8 +25,11 @@ private:
 	void CreateCharacters();
 	void CreateAnimations();
 
-	void CreateKeyframe(Ogre::TransformKeyFrame* kf, Ogre::NodeAnimationTrack* track, int index, Ogre::Real durStep, 
-		Ogre::Vector3 traslationValue = { 0, 0, 0 }, Ogre::Vector3 rotationValue = { 0, 0, 0 }, float degrees = 0, 
+	void CreateKeyframe(Ogre::TransformKeyFrame* kf, Ogre::NodeAnimationTrack* track, Ogre::Real durStep, 
+		Ogre::Vector3& keyframePos,
+		Ogre::Vector3 traslationValue = { 0, 0, 0 }, 
+		Ogre::Vector3 rotationValue = { 0, 0, 0 }, 
+		float degrees = 0, 
 		Ogre::Vector3 scaleValue = { 1, 1, 1 });
 
 	Ogre::SceneNode* _simbad = nullptr;
@@ -42,8 +46,14 @@ private:
 	Ogre::AnimationState* _animationStateRunTop = nullptr;
 	Ogre::AnimationState* _animationStateRunBase = nullptr;
 
-	bool _isDancing = false;
+	Ogre::AnimationState* _animationNodeSimbad = nullptr;
+
+	OgreBites::CameraMan* mCamMgr = nullptr;
+
+	bool _isDancing = true;
 	bool _isRunning = false;
+
+	float _elapsedTime = 0;
 
 };
 

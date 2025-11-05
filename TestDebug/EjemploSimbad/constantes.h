@@ -15,13 +15,31 @@ const Ogre::Vector3 INITIAL_POS = Ogre::Vector3(0, 0, 0);
 const Ogre::Vector3 OS_SURFACE_SCALE = Ogre::Vector3(300, 1, 300);
 
 ////Simbad
-const int OS_SIMBAD_DER_MOV = 20;
-const Ogre::Real OS_SIMBAD_DER_DUR = 2;
-const Ogre::Real OS_SIMBAD_DER_STEP = OS_SIMBAD_DER_DUR/4.0;
+const Ogre::Real OS_SIMBAD_STATIC_DUR = 5;
 
-const int OS_SIMBAD_IZQ_MOV = 50;
+const int OS_SIMBAD_FLIP_DER_DEGREES = 90;
+const Ogre::Real OS_SIMBAD_FLIP_DER_DUR = 0.5;
+
+const int OS_SIMBAD_DER_MOV = 15;
+const Ogre::Real OS_SIMBAD_DER_DUR = 3;
+
+const int OS_SIMBAD_FLIP_IZQ_DEGREES = -90;
+const Ogre::Real OS_SIMBAD_FLIP_IZQ_DUR = 1;
+
+const int OS_SIMBAD_IZQ_MOV = 30;
 const Ogre::Real OS_SIMBAD_IZQ_DUR = 5;
-const Ogre::Real OS_SIMBAD_IZQ_STEP = OS_SIMBAD_IZQ_DUR / 4.0;
+
+const int OS_SIMBAD_FLIP_DER2_DEGREES = 90;
+const Ogre::Real OS_SIMBAD_FLIP_DER2_DUR = 1;
+
+const int OS_SIMBAD_DER2_MOV = 15;
+const Ogre::Real OS_SIMBAD_DER2_DUR = 4;
+
+const int OS_SIMBAD_FLIP_CENTER_DEGREES = 0;
+const Ogre::Real OS_SIMBAD_FLIP_CENTER_DUR = 0.5;
+
+const Ogre::Real OS_SIMBAD_TOTAL_DUR = OS_SIMBAD_STATIC_DUR + OS_SIMBAD_FLIP_DER_DUR + OS_SIMBAD_DER_DUR + 
+OS_SIMBAD_IZQ_DUR + OS_SIMBAD_DER2_DUR + OS_SIMBAD_FLIP_IZQ_DUR + OS_SIMBAD_FLIP_DER2_DUR + OS_SIMBAD_FLIP_CENTER_DUR;
 
 ////OgreHead
 const int OS_OGREHEAD_DER_MED_MOV = 25;
@@ -29,7 +47,7 @@ const Ogre::Real OS_OGREHEAD_DER_MED_DUR = 2.5;
 const Ogre::Real OS_OGREHEAD_DER_MED_STEP = OS_OGREHEAD_DER_MED_DUR / 4.0;
 
 const int OS_OGREHEAD_DER_FIN_MOV = 25;
-const Ogre::Real OS_OGREHEAD_DER_FIN_DUR = 2.5;
+const Ogre::Real OS_OGREHEAD_DER_FIN_DUR = 2;
 const Ogre::Real OS_OGREHEAD_DER_FIN_STEP = OS_OGREHEAD_DER_FIN_DUR / 4.0;
 
 const int OS_OGREHEAD_IZQ_MOV = 55;

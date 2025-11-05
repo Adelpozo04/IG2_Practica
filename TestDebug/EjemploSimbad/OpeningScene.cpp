@@ -18,6 +18,18 @@ OpeningScene::~OpeningScene()
 
 void OpeningScene::Update(float dt)
 {
+    _elapsedTime += dt;
+
+    if (_elapsedTime >= OS_SIMBAD_TOTAL_DUR) {
+        _elapsedTime = 0;
+        _isDancing = true;
+        _isRunning = false;
+    }
+
+    if (_elapsedTime - dt < OS_SIMBAD_STATIC_DUR && _elapsedTime >= OS_SIMBAD_STATIC_DUR) {
+        _isDancing = false;
+        _isRunning = true;
+    }
 
     if (_isDancing) {
         _animationStateDance->addTime(dt);
@@ -26,7 +38,9 @@ void OpeningScene::Update(float dt)
         _animationStateRunTop->addTime(dt);
         _animationStateRunBase->addTime(dt);
     }
-    
+
+    _animationNodeSimbad->addTime(dt);
+        
 }
 
 void OpeningScene::GenerateScene()
@@ -68,10 +82,13 @@ void OpeningScene::CreateCamara()
 
     mCamNode = mSM->getRootSceneNode()->createChildSceneNode("nCam");
     mCamNode->attachObject(cam);
-    mCamNode->setPosition(1.7, 2.6, 35.2);
+    mCamNode->setPosition(0, 0, 35);
     mCamNode->lookAt(Ogre::Vector3(0, 0, -100), Ogre::Node::TS_WORLD);
 
     Ogre::Viewport* vp = mAplicCont->getRenderWindow()->addViewport(cam);
+
+    /*mCamMgr = new OgreBites::CameraMan(mCamNode);
+    mAplicCont->addInputListener(mCamMgr);*/
 
 }
 
@@ -91,6 +108,7 @@ void OpeningScene::CreateCharacters() {
     _simbadEnt = mSM->createEntity("Sinbad.mesh");
     _simbad = mSM->getRootSceneNode()->createChildSceneNode("OS_Simbad");
     _simbad->attachObject(_simbadEnt);
+    _simbad->setPosition(0, 0, 0);
 
     //OgreHead
     Ogre::Entity* ogreHeadEnt = mSM->createEntity("ogrehead.mesh");
@@ -120,16 +138,75 @@ void OpeningScene::CreateAnimations()
     _animationStateRunBase->setEnabled(true);
 
     //Animaciones de nodos
-    _simbad->setInitialState();
+
+    ///Simbad
+
+    Ogre::Vector3 keyframePos = _simbad->getPosition();
+    float currentTime = 0;
+
+    Ogre::Animation* animationNodeSimbad = mSM->createAnimation("sinbadOpeningScene", OS_SIMBAD_TOTAL_DUR); 
+    animationNodeSimbad->setInterpolationMode(Ogre::Animation::IM_SPLINE);
+    Ogre::NodeAnimationTrack* trackSimbad = animationNodeSimbad->createNodeTrack(0);
+    trackSimbad->setAssociatedNode(_simbad);
+
+    Ogre::TransformKeyFrame* kfSimbad = trackSimbad->createNodeKeyFrame(0);
+    kfSimbad->setTranslate(keyframePos);
+
+    currentTime += OS_SIMBAD_STATIC_DUR;
+    CreateKeyframe(kfSimbad, trackSimbad, currentTime, keyframePos, {0.01, 0, 0});
+
+    currentTime += OS_SIMBAD_FLIP_DER_DUR;
+    CreateKeyframe(kfSimbad, trackSimbad, currentTime, keyframePos,{0, 0, 0},
+        Ogre::Vector3::UNIT_Y, OS_SIMBAD_FLIP_DER_DEGREES);
+
+    currentTime += OS_SIMBAD_DER_DUR;
+    CreateKeyframe(kfSimbad, trackSimbad, currentTime, keyframePos, OS_SIMBAD_DER_MOV * Ogre::Vector3::UNIT_X,
+        Ogre::Vector3::UNIT_Y, OS_SIMBAD_FLIP_DER_DEGREES);
+
+    currentTime += OS_SIMBAD_FLIP_IZQ_DUR;
+    CreateKeyframe(kfSimbad, trackSimbad, currentTime, keyframePos, { 0, 0, 0 },
+        Ogre::Vector3::UNIT_Y, OS_SIMBAD_FLIP_IZQ_DEGREES);
+
+    currentTime += OS_SIMBAD_IZQ_DUR;
+    CreateKeyframe(kfSimbad, trackSimbad, currentTime, keyframePos, OS_SIMBAD_IZQ_MOV * Ogre::Vector3::NEGATIVE_UNIT_X,
+        Ogre::Vector3::UNIT_Y, OS_SIMBAD_FLIP_IZQ_DEGREES);
+
+    currentTime += OS_SIMBAD_FLIP_DER2_DUR;
+    CreateKeyframe(kfSimbad, trackSimbad, currentTime, keyframePos, {0, 0, 0},
+        Ogre::Vector3::UNIT_Y, OS_SIMBAD_FLIP_DER2_DEGREES);
+
+    currentTime += OS_SIMBAD_DER2_DUR;
+    CreateKeyframe(kfSimbad, trackSimbad, currentTime, keyframePos, OS_SIMBAD_DER2_MOV * Ogre::Vector3::UNIT_X,
+        Ogre::Vector3::UNIT_Y, OS_SIMBAD_FLIP_DER2_DEGREES);
+
+    currentTime += OS_SIMBAD_FLIP_CENTER_DUR;
+    CreateKeyframe(kfSimbad, trackSimbad, currentTime, keyframePos, {0, 0, 0},
+        Ogre::Vector3::UNIT_Y, OS_SIMBAD_FLIP_CENTER_DEGREES);
+
+
+    _animationNodeSimbad = mSM->createAnimationState("sinbadOpeningScene");
+    _animationNodeSimbad->setLoop(true);
+    _animationNodeSimbad->setEnabled(true);
+
+    ///OgreHead
+
 }
 
-void OpeningScene::CreateKeyframe(Ogre::TransformKeyFrame* kf, Ogre::NodeAnimationTrack* track, int index, Ogre::Real durStep, 
-    Ogre::Vector3 traslationValue, Ogre::Vector3 rotationValue, float degrees, Ogre::Vector3 scaleValue)
+void OpeningScene::CreateKeyframe(Ogre::TransformKeyFrame* kf, Ogre::NodeAnimationTrack* track, Ogre::Real durStep, 
+    Ogre::Vector3& keyframePos,
+    Ogre::Vector3 traslationValue, 
+    Ogre::Vector3 rotationValue, 
+    float degrees, 
+    Ogre::Vector3 scaleValue)
 {
-    kf = track->createNodeKeyFrame(durStep * 0);
-    kf->setTranslate(traslationValue);
-    kf->setRotation(Ogre::Quaternion(Ogre::Degree(), rotationValue.normalisedCopy()));
+    kf = track->createNodeKeyFrame(durStep);
+
+    keyframePos += traslationValue;
+
+    kf->setTranslate(keyframePos); 
+    kf->setRotation(Ogre::Quaternion(Ogre::Degree(degrees), rotationValue.normalisedCopy()));
     kf->setScale(scaleValue);
+    
 }
 
 
