@@ -14,6 +14,28 @@ const Ogre::Vector3 INITIAL_POS = Ogre::Vector3(0, 0, 0);
 ///OpeningAnimation
 const Ogre::Vector3 OS_SURFACE_SCALE = Ogre::Vector3(300, 1, 300);
 
+////Simbad
+const int OS_SIMBAD_DER_MOV = 20;
+const Ogre::Real OS_SIMBAD_DER_DUR = 2;
+const Ogre::Real OS_SIMBAD_DER_STEP = OS_SIMBAD_DER_DUR/4.0;
+
+const int OS_SIMBAD_IZQ_MOV = 50;
+const Ogre::Real OS_SIMBAD_IZQ_DUR = 5;
+const Ogre::Real OS_SIMBAD_IZQ_STEP = OS_SIMBAD_IZQ_DUR / 4.0;
+
+////OgreHead
+const int OS_OGREHEAD_DER_MED_MOV = 25;
+const Ogre::Real OS_OGREHEAD_DER_MED_DUR = 2.5;
+const Ogre::Real OS_OGREHEAD_DER_MED_STEP = OS_OGREHEAD_DER_MED_DUR / 4.0;
+
+const int OS_OGREHEAD_DER_FIN_MOV = 25;
+const Ogre::Real OS_OGREHEAD_DER_FIN_DUR = 2.5;
+const Ogre::Real OS_OGREHEAD_DER_FIN_STEP = OS_OGREHEAD_DER_FIN_DUR / 4.0;
+
+const int OS_OGREHEAD_IZQ_MOV = 55;
+const Ogre::Real OS_OGREHEAD_IZQ_DUR = 5.5;
+const Ogre::Real OS_OGREHEAD_IZQ_STEP = OS_OGREHEAD_IZQ_DUR / 4.0;
+
 ///General
 const int SUBDIVISION_LUZ_PLANO = 200;
 
