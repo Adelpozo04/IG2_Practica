@@ -2,7 +2,7 @@
 #include "constantes.h"
 #include <OgreSceneManager.h>
 
-OpeningScene::OpeningScene(Ogre::SceneManager* SM, OgreBites::ApplicationContext* AC) : Scene(SM, AC)
+OpeningScene::OpeningScene(Ogre::SceneManager* SM, OgreBites::ApplicationContext* AC, Ogre::SceneNode* cam) : Scene(SM, AC, cam)
 {
 
     GenerateScene();
@@ -12,7 +12,10 @@ OpeningScene::OpeningScene(Ogre::SceneManager* SM, OgreBites::ApplicationContext
 OpeningScene::~OpeningScene()
 {
 
-    
+    mSM->destroySceneNode("OS_Floor");
+    mSM->destroySceneNode("OS_Simbad");
+    mSM->destroySceneNode("OS_OgreHead");
+    mSM->destroyLight("DirectionalLight1");
 
 }
 
@@ -58,7 +61,7 @@ void OpeningScene::GenerateScene()
 {
     
     CreateFloor();
-    CreateCamara();
+    ConfigCamera();
     CreateLight();
     CreateCharacters();
     CreateAnimations();   
@@ -83,24 +86,10 @@ void OpeningScene::CreateFloor()
 
 }
 
-void OpeningScene::CreateCamara()
+void OpeningScene::ConfigCamera()
 {
-    Ogre::Camera* cam = mSM->createCamera("Cam");
-    cam->setNearClipDistance(1);
-    cam->setFarClipDistance(10000);
-    cam->setAutoAspectRatio(true);
-    //cam->setPolygonMode(Ogre::PM_WIREFRAME);
-
-    mCamNode = mSM->getRootSceneNode()->createChildSceneNode("nCam");
-    mCamNode->attachObject(cam);
     mCamNode->setPosition(0, 0, 35);
     mCamNode->lookAt(Ogre::Vector3(0, 0, -100), Ogre::Node::TS_WORLD);
-
-    Ogre::Viewport* vp = mAplicCont->getRenderWindow()->addViewport(cam);
-
-    /*mCamMgr = new OgreBites::CameraMan(mCamNode);
-    mAplicCont->addInputListener(mCamMgr);*/
-
 }
 
 void OpeningScene::CreateLight()

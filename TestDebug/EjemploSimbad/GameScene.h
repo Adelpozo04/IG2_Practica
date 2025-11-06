@@ -17,7 +17,7 @@ class GameScene : public Scene
 
 public:
 
-    GameScene(Ogre::SceneManager* SM, OgreBites::TrayManager* TM, OgreBites::ApplicationContext* AC);
+    GameScene(Ogre::SceneManager* SM, OgreBites::TrayManager* TM, OgreBites::ApplicationContext* AC, Ogre::SceneNode* cam);
 
     ~GameScene();
 
@@ -29,8 +29,6 @@ private:
 
     OgreBites::TrayManager* mTrayMgr = nullptr;
     OgreBites::CameraMan* mCamMgr = nullptr;
-
-    Ogre::SceneNode* mCamNode = nullptr;
 
     MazeManager* mMazeMgr = nullptr;
     PlayerManager* mPlayerMgr = nullptr;

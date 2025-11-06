@@ -9,7 +9,7 @@ class Scene
 
 public:
 
-	Scene(Ogre::SceneManager* mSM, OgreBites::ApplicationContext* AC);
+	Scene(Ogre::SceneManager* mSM, OgreBites::ApplicationContext* AC, Ogre::SceneNode* cam);
 
 	virtual void Update(float dt) = 0;
 
@@ -19,6 +19,8 @@ protected:
 
 	Ogre::SceneManager* mSM = nullptr;
 	OgreBites::ApplicationContext* mAplicCont = nullptr;
+
+	Ogre::SceneNode* mCamNode = nullptr;
 };
 
 #endif // !SCENE_H

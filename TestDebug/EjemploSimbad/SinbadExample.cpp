@@ -14,6 +14,11 @@ bool SinbadExample::keyPressed(const OgreBites::KeyboardEvent& evt) {
     if (evt.keysym.sym == SDLK_ESCAPE) {
         getRoot()->queueEndRendering();
     }
+    if (evt.keysym.sym == SDLK_x && currentScene == OpeningSceneIndex) {
+        delete mOpeningScn;
+        mGameScn = new GameScene(mSM, mTrayMgr, this, mCamNode);
+        currentScene = GameSceneIndex;
+    }
 
     return true;
 }
@@ -22,9 +27,13 @@ void SinbadExample::frameRendered(const Ogre::FrameEvent& evt) {
 
     float deltaTime = evt.timeSinceLastFrame;
 
-    mOpeningScn->Update(deltaTime);
-    //mGameScn->Update(deltaTime);
-
+    if (currentScene == OpeningSceneIndex) {
+        mOpeningScn->Update(deltaTime);
+    }
+    else if (currentScene == GameSceneIndex) {
+        mGameScn->Update(deltaTime);
+    }
+    
     //std::cout << "DeltaTime: " << deltaTime << "\n";
 
     //std::cout << mCamNode->getPosition() << "\n";
@@ -72,7 +81,21 @@ void SinbadExample::setup(void) {
 
 void SinbadExample::setupScene(void) {
 
-    mOpeningScn = new OpeningScene(mSM, this);
+    Ogre::Camera* cam = mSM->createCamera("Cam");
+    cam->setNearClipDistance(1);
+    cam->setFarClipDistance(10000);
+    cam->setAutoAspectRatio(true);
+    //cam->setPolygonMode(Ogre::PM_WIREFRAME);
+
+    mCamNode = mSM->getRootSceneNode()->createChildSceneNode("nCam");
+    mCamNode->attachObject(cam);
+
+    Ogre::Viewport* vp = getRenderWindow()->addViewport(cam);
+
+    /*mCamMgr = new OgreBites::CameraMan(mCamNode);
+    mAplicCont->addInputListener(mCamMgr);*/
+
+    mOpeningScn = new OpeningScene(mSM, this, mCamNode);
     //mGameScn = new GameScene(mSM, mTrayMgr, this);
     
 }

@@ -9,7 +9,7 @@ class OpeningScene : public Scene
 
 public:
 
-	OpeningScene(Ogre::SceneManager* SM, OgreBites::ApplicationContext* AC);
+	OpeningScene(Ogre::SceneManager* SM, OgreBites::ApplicationContext* AC, Ogre::SceneNode* cam);
 
 	~OpeningScene();
 
@@ -20,7 +20,7 @@ private:
 	void GenerateScene() override;
 
 	void CreateFloor();
-	void CreateCamara();
+	void ConfigCamera();
 	void CreateLight();
 	void CreateCharacters();
 	void CreateAnimations();
@@ -36,7 +36,6 @@ private:
 	Ogre::SceneNode* _ogreHead = nullptr;
 
 	Ogre::SceneNode* _light = nullptr;
-	Ogre::SceneNode* mCamNode = nullptr;
 
 	Ogre::Entity* _simbadEnt = nullptr;
 	Ogre::Entity* _rightSword = nullptr;
@@ -48,8 +47,6 @@ private:
 
 	Ogre::AnimationState* _animationNodeSimbad = nullptr;
 	Ogre::AnimationState* _animationNodeOgreHead = nullptr;
-
-	OgreBites::CameraMan* mCamMgr = nullptr;
 
 	bool _isDancing = true;
 	bool _isRunning = false;

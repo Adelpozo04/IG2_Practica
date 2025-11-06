@@ -27,6 +27,12 @@ public:
     virtual ~SinbadExample() {};
 
 protected:
+
+    enum Scenes {
+        OpeningSceneIndex,
+        GameSceneIndex
+    };
+
     virtual bool keyPressed(const OgreBites::KeyboardEvent& evt);
     virtual void frameRendered(const Ogre::FrameEvent& evt);
     virtual void setup();
@@ -45,6 +51,8 @@ protected:
 
     GameScene* mGameScn = nullptr;
     OpeningScene* mOpeningScn = nullptr;
+
+    int currentScene = OpeningSceneIndex;
 
     std::chrono::time_point<std::chrono::high_resolution_clock> lastTime;
 
