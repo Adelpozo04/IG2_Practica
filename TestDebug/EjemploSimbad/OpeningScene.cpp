@@ -31,6 +31,16 @@ void OpeningScene::Update(float dt)
         _isRunning = true;
     }
 
+    if (_elapsedTime - dt < OS_SIMBAD_SWORD_PICK_DUR && _elapsedTime >= OS_SIMBAD_SWORD_PICK_DUR) {
+        _simbadEnt->attachObjectToBone("Handle.R", _rightSword);
+        _simbadEnt->attachObjectToBone("Handle.L", _leftSword);
+    }
+
+    if (_elapsedTime - dt < OS_SIMBAD_SWORD_DROP_DUR && _elapsedTime >= OS_SIMBAD_SWORD_DROP_DUR) {
+        _simbadEnt->detachObjectFromBone(_rightSword);
+        _simbadEnt->detachObjectFromBone(_leftSword);
+    }
+
     if (_isDancing) {
         _animationStateDance->addTime(dt);
     }
@@ -40,6 +50,7 @@ void OpeningScene::Update(float dt)
     }
 
     _animationNodeSimbad->addTime(dt);
+    _animationNodeOgreHead->addTime(dt);
         
 }
 
@@ -114,8 +125,9 @@ void OpeningScene::CreateCharacters() {
     Ogre::Entity* ogreHeadEnt = mSM->createEntity("ogrehead.mesh");
     _ogreHead = mSM->getRootSceneNode()->createChildSceneNode("OS_OgreHead");
     _ogreHead->attachObject(ogreHeadEnt);
-    _ogreHead->setScale(0.2, 0.2, 0.2);
-    _ogreHead->setPosition(50, 0, 0);
+    _ogreHead->setScale(0.15, 0.15, 0.15);
+    _ogreHead->setPosition(-55, 0, 0);
+    _ogreHead->rotate(Ogre::Quaternion(Ogre::Degree(90), Ogre::Vector3::UNIT_Y));
 
     //Espadas
     _leftSword = mSM->createEntity("Sword.mesh");
@@ -190,6 +202,44 @@ void OpeningScene::CreateAnimations()
 
     ///OgreHead
 
+    Ogre::Vector3 keyframePosOgreHead = _ogreHead->getPosition();
+    float currentTimeOgreHead = 0;
+
+    Ogre::Animation* animationNodeOgreHead = mSM->createAnimation("ogreheadOpeningScene", OS_OGREHEAD_TOTAL_DUR);
+    animationNodeOgreHead->setInterpolationMode(Ogre::Animation::IM_SPLINE);
+    Ogre::NodeAnimationTrack* trackOgreHead = animationNodeOgreHead->createNodeTrack(0);
+    trackOgreHead->setAssociatedNode(_ogreHead);
+
+    Ogre::TransformKeyFrame* kfOgreHead = trackOgreHead->createNodeKeyFrame(0);
+    kfOgreHead->setTranslate(keyframePosOgreHead);
+
+    currentTimeOgreHead = 0.1;
+    CreateKeyframe(kfOgreHead, trackOgreHead, currentTimeOgreHead, keyframePosOgreHead, {0.1, 0, 0},
+        Ogre::Vector3::UNIT_Y, OS_OGREHEAD_FLIP_DER_DEGREES, OS_OGREHEAD_DEFAULT_SCAL);
+
+    currentTimeOgreHead += OS_OGREHEAD_MED_DUR;
+    CreateKeyframe(kfOgreHead, trackOgreHead, currentTimeOgreHead, keyframePosOgreHead, OS_OGREHEAD_MED_MOV * Ogre::Vector3::UNIT_X, 
+        Ogre::Vector3::UNIT_Y, OS_OGREHEAD_FLIP_DER_DEGREES, OS_OGREHEAD_DEFAULT_SCAL);
+
+    currentTimeOgreHead += OS_OGREHEAD_FLIP_IZQ_DUR;
+    CreateKeyframe(kfOgreHead, trackOgreHead, currentTimeOgreHead, keyframePosOgreHead, { 0, 0, 0 },
+        Ogre::Vector3::UNIT_Y, OS_OGREHEAD_FLIP_IZQ_DEGREES, OS_OGREHEAD_DEFAULT_SCAL);
+
+    currentTimeOgreHead += OS_OGREHEAD_IZQ_DUR;
+    CreateKeyframe(kfOgreHead, trackOgreHead, currentTimeOgreHead, keyframePosOgreHead, OS_OGREHEAD_IZQ_MOV * Ogre::Vector3::NEGATIVE_UNIT_X,
+        Ogre::Vector3::UNIT_Y, OS_OGREHEAD_FLIP_IZQ_DEGREES, OS_OGREHEAD_DEFAULT_SCAL);
+
+    currentTimeOgreHead += OS_OGREHEAD_FLIP_DER_DUR;
+    CreateKeyframe(kfOgreHead, trackOgreHead, currentTimeOgreHead, keyframePosOgreHead, { 0, 0, 0 },
+        Ogre::Vector3::UNIT_Y, OS_OGREHEAD_FLIP_DER_DEGREES, OS_OGREHEAD_DEFAULT_SCAL);
+
+    currentTimeOgreHead += OS_OGREHEAD_DER2_DUR;
+    CreateKeyframe(kfOgreHead, trackOgreHead, currentTimeOgreHead, keyframePosOgreHead, OS_OGREHEAD_DER2_MOV * Ogre::Vector3::UNIT_X,
+        Ogre::Vector3::UNIT_Y, OS_OGREHEAD_FLIP_DER_DEGREES, OS_OGREHEAD_DER2_SCAL);
+
+    _animationNodeOgreHead = mSM->createAnimationState("ogreheadOpeningScene");
+    _animationNodeOgreHead->setLoop(true);
+    _animationNodeOgreHead->setEnabled(true);
 }
 
 void OpeningScene::CreateKeyframe(Ogre::TransformKeyFrame* kf, Ogre::NodeAnimationTrack* track, Ogre::Real durStep, 
@@ -205,7 +255,14 @@ void OpeningScene::CreateKeyframe(Ogre::TransformKeyFrame* kf, Ogre::NodeAnimati
 
     kf->setTranslate(keyframePos); 
     kf->setRotation(Ogre::Quaternion(Ogre::Degree(degrees), rotationValue.normalisedCopy()));
-    kf->setScale(scaleValue);
+
+    if (scaleValue != Ogre::Vector3::ZERO) {
+        kf->setScale(scaleValue);
+    }
+    else {
+        kf->setScale({1, 1, 1});
+    }
+    
     
 }
 

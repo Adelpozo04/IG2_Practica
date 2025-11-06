@@ -47,6 +47,7 @@ private:
 	Ogre::AnimationState* _animationStateRunBase = nullptr;
 
 	Ogre::AnimationState* _animationNodeSimbad = nullptr;
+	Ogre::AnimationState* _animationNodeOgreHead = nullptr;
 
 	OgreBites::CameraMan* mCamMgr = nullptr;
 
