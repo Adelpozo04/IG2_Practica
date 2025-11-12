@@ -100,6 +100,22 @@ const int COMPLEX_ENEMY_AMOUNT = 2;
 const int NUM_ENEMIES = SIMPLE_ENEMY_AMOUNT + COMPLEX_ENEMY_AMOUNT;
 const int ENEMIES_DAMAGE = 1;
 
+//BOMB
+
+///Properties
+const Ogre::Vector3 BOMB_SCALE = { 0.075, 0.075, 0.075 };
+const Ogre::Vector3 BOMB_WICK_SCALE = { 0.9, 0.9, 0.9 };
+const Ogre::Vector3 BOMB_FLAME_INI_MOVE = { 0, 300, 0 };
+const int BOMB_AMOUNT = 3;
+const float BOMB_EXPLOSION_TIME = 4;
+const int BOMB_EXPLOSION_RANGE = 3;
+const int BOMB_EXPLOSION_DAMAGE = 1;
+
+///Animation
+
+////Bomb
+
+
 //UI
 const std::string GAMEOVER_TEXT = "Has muerto";
 

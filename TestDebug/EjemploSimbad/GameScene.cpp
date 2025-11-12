@@ -1,5 +1,6 @@
 #include "GameScene.h"
 #include "constantes.h"
+#include "Bomb.h"
 
 GameScene::GameScene(Ogre::SceneManager* SM, OgreBites::TrayManager* TM, OgreBites::ApplicationContext* AC, Ogre::SceneNode* cam):
     mTrayMgr(TM), Scene(SM, AC, cam)
@@ -24,9 +25,9 @@ GameScene::~GameScene()
 
 void GameScene::Update(float dt)
 {
-    mPlayerMgr->Update(dt);
+    /*mPlayerMgr->Update(dt);
     mEnemyMgr->Update(dt);
-    mColisionMgr->Update();
+    mColisionMgr->Update();*/
 }
 
 void GameScene::GenerateScene()
@@ -39,6 +40,9 @@ void GameScene::GenerateScene()
     mAplicCont->addInputListener(mCamMgr);
     mCamMgr->setStyle(OgreBites::CS_ORBIT);
 
+    //BombaTest
+    SceneNode* bNode = mSM->getRootSceneNode()->createChildSceneNode("BombTest");
+    Bomb* b = new Bomb({ 150, -20, 250 }, bNode, mSM, "geosphere4500.mesh", 0);
 
     //Creacion managers
     mUIMgr = new UIManager(mTrayMgr, mAplicCont->getRenderWindow());
