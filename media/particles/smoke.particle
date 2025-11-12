@@ -1,6 +1,6 @@
 particle_system flameSmoke
 {
-	material        	example/smoke
+	material        	practicaSmoke
 	particle_width  	15
 	particle_height 	15
 	cull_each       	true
@@ -42,7 +42,7 @@ particle_system flameSmoke
 
 particle_system explosionSmoke
 {
-	material        	example/smoke
+	material        	practicaSmoke
 	particle_width  	15
 	particle_height 	15
 	cull_each       	true
@@ -54,7 +54,7 @@ particle_system explosionSmoke
 	emitter Point
 	{
 		position 0 15 -15
-		angle 360
+		angle 180
 		emission_rate 15
 		time_to_live 4
 		direction 0 1 0
