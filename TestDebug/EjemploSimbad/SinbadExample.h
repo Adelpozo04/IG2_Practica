@@ -52,7 +52,7 @@ protected:
     GameScene* mGameScn = nullptr;
     OpeningScene* mOpeningScn = nullptr;
 
-    int currentScene = OpeningSceneIndex;
+    int currentScene = GameSceneIndex;
 
     std::chrono::time_point<std::chrono::high_resolution_clock> lastTime;
 

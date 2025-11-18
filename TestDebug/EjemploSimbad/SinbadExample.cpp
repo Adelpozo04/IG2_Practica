@@ -96,6 +96,6 @@ void SinbadExample::setupScene(void) {
     mAplicCont->addInputListener(mCamMgr);*/
 
     mOpeningScn = new OpeningScene(mSM, this, mCamNode);
-    //mGameScn = new GameScene(mSM, mTrayMgr, this);
+    mGameScn = new GameScene(mSM, mTrayMgr, this, mCamNode);
     
 }

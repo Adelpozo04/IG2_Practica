@@ -1,6 +1,7 @@
 #include "OpeningScene.h"
 #include "constantes.h"
 #include <OgreSceneManager.h>
+#include "Bomb.h"
 
 OpeningScene::OpeningScene(Ogre::SceneManager* SM, OgreBites::ApplicationContext* AC, Ogre::SceneNode* cam) : Scene(SM, AC, cam)
 {
@@ -59,7 +60,6 @@ void OpeningScene::Update(float dt)
 
 void OpeningScene::GenerateScene()
 {
-    
     CreateFloor();
     ConfigCamera();
     CreateLight();
@@ -121,6 +121,7 @@ void OpeningScene::CreateCharacters() {
     //Espadas
     _leftSword = mSM->createEntity("Sword.mesh");
     _rightSword = mSM->createEntity("Sword.mesh");
+
 }
 
 void OpeningScene::CreateAnimations()
