@@ -17,12 +17,8 @@
 #include <OgreWindowEventUtilities.h>
 #include <SDL_keycode.h>
 
-#include "MazeManager.h"
-#include "PlayerManager.h"
-#include "EnemyManager.h"
-#include "ColisionManager.h"
-#include "UIManager.h"
-#include "LightManager.h"
+class GameScene;
+class OpeningScene;
 
 class SinbadExample: public OgreBites::ApplicationContext, OgreBites::InputListener {
 
@@ -31,19 +27,17 @@ public:
     virtual ~SinbadExample() {};
 
 protected:
+
+    enum Scenes {
+        OpeningSceneIndex,
+        GameSceneIndex
+    };
+
     virtual bool keyPressed(const OgreBites::KeyboardEvent& evt);
     virtual void frameRendered(const Ogre::FrameEvent& evt);
     virtual void setup();
     virtual void shutdown();
     virtual void setupScene();
-
-
-    Ogre::SceneNode* mSinbadNode = nullptr;
-
-    Ogre::SceneNode* mTestNode = nullptr;
-    Ogre::SceneNode* mTestNode2 = nullptr;
-
-    IG2Object ehTest2;
 
     Ogre::SceneManager* mSM = nullptr;
     OgreBites::TrayManager* mTrayMgr = nullptr;
@@ -55,17 +49,10 @@ protected:
     Ogre::SceneNode* mCamNode = nullptr;
     OgreBites::CameraMan* mCamMgr = nullptr;
 
-    MazeManager* mMazeMgr = nullptr;
+    GameScene* mGameScn = nullptr;
+    OpeningScene* mOpeningScn = nullptr;
 
-    PlayerManager* mPlayerMgr = nullptr;
-
-    EnemyManager* mEnemyMgr = nullptr;
-
-    ColisionManager* mColisionMgr = nullptr;
-
-    UIManager* mUIMgr = nullptr;
-
-    LightManager* mLightMgr = nullptr;
+    int currentScene = OpeningSceneIndex;
 
     std::chrono::time_point<std::chrono::high_resolution_clock> lastTime;
 

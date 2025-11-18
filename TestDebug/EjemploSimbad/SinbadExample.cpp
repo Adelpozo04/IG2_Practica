@@ -1,5 +1,7 @@
 #include "SinbadExample.h"
 #include "IG2Object.h"
+#include "GameScene.h"
+#include "OpeningScene.h"
 #include "constantes.h"
 
 using namespace std;
@@ -12,37 +14,33 @@ bool SinbadExample::keyPressed(const OgreBites::KeyboardEvent& evt) {
     if (evt.keysym.sym == SDLK_ESCAPE) {
         getRoot()->queueEndRendering();
     }
+    if (evt.keysym.sym == SDLK_x && currentScene == OpeningSceneIndex) {
+        delete mOpeningScn;
+        mGameScn = new GameScene(mSM, mTrayMgr, this, mCamNode);
+        currentScene = GameSceneIndex;
+    }
 
     return true;
 }
 
 void SinbadExample::frameRendered(const Ogre::FrameEvent& evt) {
 
-    auto currentTime = std::chrono::high_resolution_clock::now();
+    float deltaTime = evt.timeSinceLastFrame;
 
-    float deltaTime = (std::chrono::duration<float>(currentTime - lastTime)).count();
-
-    lastTime = currentTime;
-
-    mPlayerMgr->Update(deltaTime);
-    mEnemyMgr->Update(deltaTime);
-    mColisionMgr->Update();
-
+    if (currentScene == OpeningSceneIndex) {
+        mOpeningScn->Update(deltaTime);
+    }
+    else if (currentScene == GameSceneIndex) {
+        mGameScn->Update(deltaTime);
+    }
+    
     //std::cout << "DeltaTime: " << deltaTime << "\n";
+
+    //std::cout << mCamNode->getPosition() << "\n";
 }
 
 
 void SinbadExample::shutdown() {
-
-    delete mMazeMgr;
-    delete mPlayerMgr;
-    delete mEnemyMgr;
-    delete mColisionMgr;
-
-    mMazeMgr = nullptr;
-    mPlayerMgr = nullptr;
-    mEnemyMgr = nullptr;
-    mColisionMgr = nullptr;
 
     mShaderGenerator->removeSceneManager(mSM);
     mSM->removeRenderQueueListener(mOverlaySystem);
@@ -83,10 +81,7 @@ void SinbadExample::setup(void) {
 
 void SinbadExample::setupScene(void) {
 
-    //------------------------------------------------------------------------
-    // Creating the camera
-
-    Camera* cam = mSM->createCamera("Cam");
+    Ogre::Camera* cam = mSM->createCamera("Cam");
     cam->setNearClipDistance(1);
     cam->setFarClipDistance(10000);
     cam->setAutoAspectRatio(true);
@@ -95,22 +90,12 @@ void SinbadExample::setupScene(void) {
     mCamNode = mSM->getRootSceneNode()->createChildSceneNode("nCam");
     mCamNode->attachObject(cam);
 
-    mCamNode->setPosition(0, -3000, 0);
-    mCamNode->lookAt(Ogre::Vector3(0, 3000, 0), Ogre::Node::TS_WORLD);
+    Ogre::Viewport* vp = getRenderWindow()->addViewport(cam);
 
-    // and tell it to render into the main window
-    Viewport* vp = getRenderWindow()->addViewport(cam);
+    /*mCamMgr = new OgreBites::CameraMan(mCamNode);
+    mAplicCont->addInputListener(mCamMgr);*/
 
-    mCamMgr = new OgreBites::CameraMan(mCamNode);
-    addInputListener(mCamMgr);
-    mCamMgr->setStyle(OgreBites::CS_ORBIT);
-
-    mUIMgr = new UIManager(mTrayMgr,getRenderWindow());
-    mMazeMgr = new MazeManager(MAP_LAYOUT, mSM);
-    mPlayerMgr = new PlayerManager(mSM, mMazeMgr,mUIMgr);
-    mLightMgr = new LightManager(mPlayerMgr, mSM, mMazeMgr->getLight());
-    addInputListener(mPlayerMgr);
-    mEnemyMgr = new EnemyManager(mSM, mMazeMgr);
-    mColisionMgr = new ColisionManager(mPlayerMgr, mEnemyMgr);
- 
+    mOpeningScn = new OpeningScene(mSM, this, mCamNode);
+    //mGameScn = new GameScene(mSM, mTrayMgr, this);
+    
 }

@@ -31,5 +31,7 @@ private:
 	OgreBites::TextBox* mTextBox = nullptr;
 	OgreBites::TextBox* mDeathBox = nullptr;
 	OgreBites::TrayManager* mTrayMgr = nullptr;
+
+	bool _isDeath = false;
 };
 

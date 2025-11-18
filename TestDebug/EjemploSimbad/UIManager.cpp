@@ -24,6 +24,9 @@ void UIManager::updateTextBox(int nLifes, int points) const
 
 void UIManager::showDeathBox()
 {
-    mDeathBox = mTrayMgr->createTextBox(OgreBites::TL_CENTER, "DeathBox", "GAME OVER", 250, 250);
-    mDeathBox->setText(GAMEOVER_TEXT);
+    if (!_isDeath) {
+        mDeathBox = mTrayMgr->createTextBox(OgreBites::TL_CENTER, "DeathBox", "GAME OVER", 250, 250);
+        mDeathBox->setText(GAMEOVER_TEXT);
+    }
+    
 }

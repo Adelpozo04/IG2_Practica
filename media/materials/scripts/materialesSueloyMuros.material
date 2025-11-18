@@ -13,6 +13,20 @@ material floor
 		}
 	}
 }
+material animationFloor
+{
+	technique{
+		pass{
+			ambient 0.75 0.75 0.75
+
+			texture_unit
+			{
+				texture terrain_texture.jpg
+			}
+		}
+	}
+}
+
 material wall
 {
 	technique
