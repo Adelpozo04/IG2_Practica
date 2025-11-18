@@ -106,7 +106,7 @@ const std::string GAMEOVER_TEXT = "Has muerto";
 // BOMBS
 const uint MAX_NUM_BOMBS = 3;
 const uint EXPLOSION_AREA = 4;
-const uint TIME_TO_EXPLODE = 3;
+const double TIME_TO_EXPLODE = 3;
 //ANMATION BOMS
 const Ogre::Vector3 MIN_BOMB_SCALE = Ogre::Vector3(20, 20, 20);
 const Ogre::Vector3 MAX_BOMB_SCALE = Ogre::Vector3(40, 40, 40);
