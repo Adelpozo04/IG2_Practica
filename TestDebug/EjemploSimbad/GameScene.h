@@ -11,6 +11,7 @@
 #include "ColisionManager.h"
 #include "UIManager.h"
 #include "LightManager.h"
+#include "Bomb.h"
 
 class GameScene : public Scene
 {
@@ -36,6 +37,9 @@ private:
     ColisionManager* mColisionMgr = nullptr;
     UIManager* mUIMgr = nullptr;
     LightManager* mLightMgr = nullptr;
+
+    //Testeo
+    Bomb* b = nullptr;
 
 };
 
