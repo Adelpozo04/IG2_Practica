@@ -25,9 +25,9 @@ GameScene::~GameScene()
 
 void GameScene::Update(float dt)
 {
-    /*mPlayerMgr->Update(dt);
+    mPlayerMgr->Update(dt);
     mEnemyMgr->Update(dt);
-    mColisionMgr->Update();*/
+    mColisionMgr->Update();
 }
 
 void GameScene::GenerateScene()
@@ -41,13 +41,14 @@ void GameScene::GenerateScene()
     mCamMgr->setStyle(OgreBites::CS_ORBIT);
 
     //BombaTest
-    SceneNode* bNode = mSM->getRootSceneNode()->createChildSceneNode("BombTest");
-    Bomb* b = new Bomb({ 150, -20, 250 }, bNode, mSM, "geosphere4500.mesh", 0);
+    //SceneNode* bNode = mSM->getRootSceneNode()->createChildSceneNode("BombTest");
+    //Bomb* b = new Bomb({ 150, -20, 250 }, bNode, mSM, "geosphere4500.mesh");
 
     //Creacion managers
     mUIMgr = new UIManager(mTrayMgr, mAplicCont->getRenderWindow());
     mMazeMgr = new MazeManager(MAP_LAYOUT, mSM);
-    mPlayerMgr = new PlayerManager(mSM, mMazeMgr, mUIMgr);
+    mBombsMgr = new BombsManager(mSM);
+    mPlayerMgr = new PlayerManager(mSM, mMazeMgr, mUIMgr,mBombsMgr);
     mAplicCont->addInputListener(mPlayerMgr);
     mLightMgr = new LightManager(mPlayerMgr, mSM, mMazeMgr->getLight());
     mEnemyMgr = new EnemyManager(mSM, mMazeMgr);

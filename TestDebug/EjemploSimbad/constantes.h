@@ -110,7 +110,7 @@ const int BOMB_AMOUNT = 3;
 const float BOMB_EXPLOSION_TIME = 4;
 const int BOMB_EXPLOSION_RANGE = 3;
 const int BOMB_EXPLOSION_DAMAGE = 1;
-
+const std::string BOMB_MESH = "geosphere4500.mesh";
 ///Animation
 
 ////Bomb

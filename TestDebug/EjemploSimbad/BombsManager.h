@@ -1,14 +1,24 @@
 #pragma once
 #include <vector>
-#include <utility>
+#include <list>
+#include <Ogre.h>
+#include "ObjectPool.h"
+
 class Bomb;
+class PlayerManager;
+
 class BombsManager
 {
 public:
-	BombsManager();
-	bool canPutABomb() { return nBombs < maxBombs; }
+    BombsManager(Ogre::SceneManager* SM);
+    ~BombsManager() = default;
+
+    void Shoot(Ogre::Vector3 pos);
+    void Explode(Bomb* bomb); // libera bomba cuando explota
+
 private:
-	unsigned int maxBombs;
-	unsigned int nBombs;
-	std::vector<std::pair<Bomb*,bool>> bombVector;
+    ObjectPool<Bomb*> bombPool;
+    std::list<Bomb*> bombInUse;
+    Ogre::SceneManager* mSM;
+    PlayerManager* mPM;
 };

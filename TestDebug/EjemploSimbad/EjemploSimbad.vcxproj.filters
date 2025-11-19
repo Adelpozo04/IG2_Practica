@@ -1,151 +1,52 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Archivos de origen">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Archivos de encabezado">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
-    <Filter Include="Archivos de recursos">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
+    <ClCompile Include="Bomb.cpp" />
+    <ClCompile Include="Character.cpp" />
+    <ClCompile Include="CharacterManager.cpp" />
+    <ClCompile Include="ColisionManager.cpp" />
+    <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="EnemyHead.cpp" />
+    <ClCompile Include="EnemyManager.cpp" />
+    <ClCompile Include="EnemyPenguin.cpp" />
+    <ClCompile Include="GameScene.cpp" />
+    <ClCompile Include="LightManager.cpp" />
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="IG2Object.cpp" />
+    <ClCompile Include="MazeCreator.cpp" />
+    <ClCompile Include="MazeManager.cpp" />
+    <ClCompile Include="OpeningScene.cpp" />
+    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PlayerManager.cpp" />
+    <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="SinbadExample.cpp" />
+    <ClCompile Include="Tile.cpp" />
+    <ClCompile Include="UIManager.cpp" />
+    <ClCompile Include="BombsManager.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Main.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="SinbadExample.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="IG2Object.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="MazeCreator.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="MazeManager.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="Tile.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="Character.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerManager.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="CharacterManager.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="Enemy.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="EnemyHead.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="EnemyPenguin.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="EnemyManager.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="ColisionManager.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="UIManager.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="LightManager.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="OpeningScene.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="GameScene.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="Scene.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="BombsManager.cpp">
-      <Filter>Archivos de origen</Filter>
-    <ClCompile Include="Bomb.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="SinbadExample.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="IG2Object.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="MazeCreator.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="MazeManager.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="Tile.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="Character.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerManager.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="constantes.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="CharacterManager.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="Enemy.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="EnemyHead.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="EnemyPenguin.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="EnemyManager.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="ColisionManager.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="UIManager.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="LightManager.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="OpeningScene.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="GameScene.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="Scene.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="BombsManager.h">
-      <Filter>Archivos de origen</Filter>
-    <ClInclude Include="Bomb.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
+    <ClInclude Include="Bomb.h" />
+    <ClInclude Include="Character.h" />
+    <ClInclude Include="CharacterManager.h" />
+    <ClInclude Include="ColisionManager.h" />
+    <ClInclude Include="constantes.h" />
+    <ClInclude Include="Enemy.h" />
+    <ClInclude Include="EnemyHead.h" />
+    <ClInclude Include="EnemyManager.h" />
+    <ClInclude Include="EnemyPenguin.h" />
+    <ClInclude Include="GameScene.h" />
+    <ClInclude Include="IG2Object.h" />
+    <ClInclude Include="LightManager.h" />
+    <ClInclude Include="MazeCreator.h" />
+    <ClInclude Include="MazeManager.h" />
+    <ClInclude Include="OpeningScene.h" />
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="PlayerManager.h" />
+    <ClInclude Include="ObjectPool.h" />
+    <ClInclude Include="Scene.h" />
+    <ClInclude Include="SinbadExample.h" />
+    <ClInclude Include="Tile.h" />
+    <ClInclude Include="UIManager.h" />
+    <ClInclude Include="BombsManager.h" />
   </ItemGroup>
 </Project>

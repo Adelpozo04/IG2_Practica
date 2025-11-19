@@ -7,7 +7,7 @@ PlayerManager::PlayerManager() : CharacterManager()
 
 }
 
-PlayerManager::PlayerManager(Ogre::SceneManager* SM, MazeManager* MM, UIManager* UIM) : CharacterManager(SM, MM), UImgr(UIM)
+PlayerManager::PlayerManager(Ogre::SceneManager* SM, MazeManager* MM, UIManager* UIM, BombsManager* BM) : CharacterManager(SM, MM), UImgr(UIM), bombMgr(BM)
 {
 
 	CreateCharacters();
@@ -44,8 +44,11 @@ bool PlayerManager::keyPressed(const OgreBites::KeyboardEvent& evt) {
 
 		_characters.front()->setNextDir(Ogre::Vector3::NEGATIVE_UNIT_X);
 		break;
-
+	case SDLK_SPACE:
+		bombMgr->Shoot(_MM->getTileCenter(_characters.front()->getPosition()));
+		break;
 	}
+
 
 	return true;
 
