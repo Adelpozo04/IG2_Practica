@@ -13,10 +13,9 @@ OpeningScene::OpeningScene(Ogre::SceneManager* SM, OgreBites::ApplicationContext
 OpeningScene::~OpeningScene()
 {
 
-    mSM->destroySceneNode("OS_Floor");
-    mSM->destroySceneNode("OS_Simbad");
-    mSM->destroySceneNode("OS_OgreHead");
-    mSM->destroyLight("DirectionalLight1");
+    _simbad->setVisible(false);
+    _ogreHead->setVisible(false);
+    _light->setVisible(false);
 
 }
 
