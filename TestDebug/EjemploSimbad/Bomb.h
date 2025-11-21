@@ -8,7 +8,7 @@ class Bomb : public IG2Object
 
 public:
 
-	Bomb(Vector3 initPos, SceneNode* node, SceneManager* sceneMng);
+	Bomb(Vector3 initPos, SceneNode* node, SceneManager* sceneMng, int index);
 
 	void InlineAnimation(float dt);
 
@@ -38,6 +38,7 @@ private:
 
 	float _elapsedTime = 0;
 	bool _isVisible = false;
+	int _index = 0;
 };
 
 #endif // !BOMB_H

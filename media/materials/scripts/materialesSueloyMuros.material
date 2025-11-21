@@ -50,6 +50,22 @@ material wall
 	}
 }
 
+material skyPlane{
+	technique{
+		pass{
+			ambient 0.75 0.75 0.75
+
+			texture_unit{
+				texture spaceSky.jpg
+
+				lighting off
+
+				scroll_anim 0.015  0.025
+			}
+		}
+	}
+}
+
 material bomb
 {
 	technique

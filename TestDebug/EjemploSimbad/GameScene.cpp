@@ -27,7 +27,6 @@ void GameScene::Update(float dt)
     mPlayerMgr->Update(dt);
     mEnemyMgr->Update(dt);
     mColisionMgr->Update();
-    b->Update(dt);
 }
 
 void GameScene::GenerateScene()
@@ -40,9 +39,11 @@ void GameScene::GenerateScene()
     mAplicCont->addInputListener(mCamMgr);
     mCamMgr->setStyle(OgreBites::CS_ORBIT);
 
-    //BombaTest
-    SceneNode* bNode = mSM->getRootSceneNode()->createChildSceneNode("BombTest");
-    b = new Bomb({ 150, -20, 250 }, bNode, mSM);
+    //SkyPlane
+    Ogre::Plane plane; 
+    plane.d = 1000; 
+    plane.normal = Ogre::Vector3::UNIT_Y; 
+    mSM->setSkyPlane(true, plane, "skyPlane", 1500, 50, true, 1.5, 50, 50);
 
     //Creacion managers
     mUIMgr = new UIManager(mTrayMgr, mAplicCont->getRenderWindow());

@@ -38,10 +38,6 @@ private:
     ColisionManager* mColisionMgr = nullptr;
     UIManager* mUIMgr = nullptr;
     LightManager* mLightMgr = nullptr;
-
-    //Testeo
-    Bomb* b = nullptr;
-
     BombsManager* mBombsMgr = nullptr;
 };
 

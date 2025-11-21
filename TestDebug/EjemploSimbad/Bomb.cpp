@@ -1,7 +1,7 @@
 #include "Bomb.h"
 #include "constantes.h"
 
-Bomb::Bomb(Vector3 initPos, SceneNode* node, SceneManager* sceneMng) : IG2Object(initPos, node, sceneMng)
+Bomb::Bomb(Vector3 initPos, SceneNode* node, SceneManager* sceneMng, int index) : _index(index), IG2Object(initPos, node, sceneMng)
 {
 	CompleteMesh(node);
 	CreateParticlesSystems(node);
@@ -67,12 +67,12 @@ void Bomb::CreateParticlesSystems(SceneNode* node)
 {
 
 	_pSysFlameNode = node->createChildSceneNode();
-	_pSysFlame = mSM->createParticleSystem("psFlameBomb", "flameSmoke");
+	_pSysFlame = mSM->createParticleSystem("psFlameBomb" + _index, "flameSmoke");
 	_pSysFlame->setEmitting(true);
 	_pSysFlameNode->attachObject(_pSysFlame);
 
 	_pSysSmokeNode = node->createChildSceneNode();
-	_pSysSmoke = mSM->createParticleSystem("psSmokeBomb", "explosionSmoke");
+	_pSysSmoke = mSM->createParticleSystem("psSmokeBomb" + _index, "explosionSmoke");
 	_pSysSmoke->setEmitting(false);
 	_pSysSmokeNode->attachObject(_pSysSmoke);
 
