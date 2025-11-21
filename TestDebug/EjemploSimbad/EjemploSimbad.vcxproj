@@ -137,6 +137,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Bomb.cpp" />
+    <ClCompile Include="BombsManager.cpp" />
     <ClCompile Include="Character.cpp" />
     <ClCompile Include="CharacterManager.cpp" />
     <ClCompile Include="ColisionManager.cpp" />
@@ -160,6 +161,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bomb.h" />
+    <ClInclude Include="BombsManager.h" />
     <ClInclude Include="Character.h" />
     <ClInclude Include="CharacterManager.h" />
     <ClInclude Include="ColisionManager.h" />
@@ -176,6 +178,7 @@
     <ClInclude Include="OpeningScene.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerManager.h" />
+    <ClInclude Include="ObjectPool.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SinbadExample.h" />
     <ClInclude Include="Tile.h" />

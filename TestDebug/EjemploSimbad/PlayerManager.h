@@ -6,6 +6,7 @@
 #include "Player.h"
 #include "CharacterManager.h"
 #include "UIManager.h"
+#include "BombsManager.h"
 
 class PlayerManager : public CharacterManager, public OgreBites::InputListener
 {
@@ -23,7 +24,7 @@ public:
 	 * @param mesh El mesh que va a representar al player
 	 * @param MM El manager del laberinto para calculos de movimientos respecto al layout
 	 */
-	PlayerManager(Ogre::SceneManager* SM, MazeManager* MM, UIManager* UIM);
+	PlayerManager(Ogre::SceneManager* SM, MazeManager* MM, UIManager* UIM, BombsManager* BM);
 
 	/**
 	 * @brief Recorrido que se hace por cada frame (Update de Unity)
@@ -56,6 +57,7 @@ private:
 	void CreateCharacters() override;
 
 	UIManager* UImgr;
+	BombsManager* bombMgr;
 };
 
 #endif // !PLAYERMANAGER_H

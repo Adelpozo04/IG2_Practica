@@ -47,7 +47,8 @@ void GameScene::GenerateScene()
     //Creacion managers
     mUIMgr = new UIManager(mTrayMgr, mAplicCont->getRenderWindow());
     mMazeMgr = new MazeManager(MAP_LAYOUT, mSM);
-    mPlayerMgr = new PlayerManager(mSM, mMazeMgr, mUIMgr);
+    mBombsMgr = new BombsManager(mSM);
+    mPlayerMgr = new PlayerManager(mSM, mMazeMgr, mUIMgr,mBombsMgr);
     mAplicCont->addInputListener(mPlayerMgr);
     mLightMgr = new LightManager(mPlayerMgr, mSM, mMazeMgr->getLight());
     mEnemyMgr = new EnemyManager(mSM, mMazeMgr);

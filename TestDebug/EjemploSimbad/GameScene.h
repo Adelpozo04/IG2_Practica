@@ -12,6 +12,7 @@
 #include "UIManager.h"
 #include "LightManager.h"
 #include "Bomb.h"
+#include "BombsManager.h"
 
 class GameScene : public Scene
 {
@@ -41,6 +42,7 @@ private:
     //Testeo
     Bomb* b = nullptr;
 
+    BombsManager* mBombsMgr = nullptr;
 };
 
 #endif // !GAMESCENE_H
