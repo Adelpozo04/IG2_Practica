@@ -42,7 +42,7 @@ void GameScene::GenerateScene()
 
     //BombaTest
     SceneNode* bNode = mSM->getRootSceneNode()->createChildSceneNode("BombTest");
-    b = new Bomb({ 150, -20, 250 }, bNode, mSM, 0);
+    b = new Bomb({ 150, -20, 250 }, bNode, mSM);
 
     //Creacion managers
     mUIMgr = new UIManager(mTrayMgr, mAplicCont->getRenderWindow());

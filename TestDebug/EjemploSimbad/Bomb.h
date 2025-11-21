@@ -8,7 +8,7 @@ class Bomb : public IG2Object
 
 public:
 
-	Bomb(Vector3 initPos, SceneNode* node, SceneManager* sceneMng, int index);
+	Bomb(Vector3 initPos, SceneNode* node, SceneManager* sceneMng);
 
 	void InlineAnimation(float dt);
 
@@ -18,7 +18,7 @@ public:
 
 private:
 
-	void CompleteMesh(int index, SceneNode* node);
+	void CompleteMesh(SceneNode* node);
 	void CreateParticlesSystems(SceneNode* node);
 	void Config(SceneNode* node);
 	void CreateAnimations();

@@ -1,9 +1,9 @@
 #include "Bomb.h"
 #include "constantes.h"
 
-Bomb::Bomb(Vector3 initPos, SceneNode* node, SceneManager* sceneMng, int index) : IG2Object(initPos, node, sceneMng)
+Bomb::Bomb(Vector3 initPos, SceneNode* node, SceneManager* sceneMng) : IG2Object(initPos, node, sceneMng)
 {
-	CompleteMesh(index, node);
+	CompleteMesh(node);
 	CreateParticlesSystems(node);
 	Config(node);
 	CreateAnimations();
@@ -47,7 +47,7 @@ void Bomb::Reset()
 	this->setVisible(true);
 }
 
-void Bomb::CompleteMesh(int index, SceneNode* node)
+void Bomb::CompleteMesh(SceneNode* node)
 {
 
 	Ogre::Entity* bombEnt = mSM->createEntity(BOMB_MESH);
@@ -56,10 +56,10 @@ void Bomb::CompleteMesh(int index, SceneNode* node)
 	Ogre::Entity* wickEnt = mSM->createEntity(WICK_MESH);
 	wickEnt->setMaterialName("wick");
 
-	_BombNode = node->createChildSceneNode("bomb" + index);
+	_BombNode = node->createChildSceneNode();
 	_BombNode->attachObject(bombEnt);
 
-	_wickNode = _BombNode->createChildSceneNode("wick" + index);
+	_wickNode = _BombNode->createChildSceneNode();
 	_wickNode->attachObject(wickEnt);
 }
 

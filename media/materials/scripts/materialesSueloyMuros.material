@@ -22,7 +22,14 @@ material animationFloor
 			texture_unit
 			{
 				texture terrain_texture.jpg
+				colour_op modulate
 			}
+			texture_unit
+			{
+				texture lightMap.jpg
+				colour_op modulate
+			}
+
 		}
 	}
 }
