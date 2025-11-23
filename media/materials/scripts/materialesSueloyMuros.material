@@ -55,10 +55,10 @@ material skyPlane{
 		pass{
 			ambient 0.75 0.75 0.75
 
+			lighting off
+
 			texture_unit{
 				texture spaceSky.jpg
-
-				lighting off
 
 				scroll_anim 0.015  0.025
 			}
@@ -96,4 +96,37 @@ material wick
 			}
 		}
 	}
+}
+
+vertex_program WaveShaderVertex glsl{
+    source WaveShaderVertex.glsl
+    default_params {
+        param_named_auto modelViewProjMat worldviewproj_matrix
+		param_named_auto sinTime sintime_0_2pi 15
+    }
+}
+
+fragment_program WaveShaderFragment glsl{
+    source WaveShaderFragment.glsl
+	default_params{
+		param_named_auto texturaAgua int 0
+	}
+}
+
+material WaveShader
+{
+
+    technique{
+        pass
+        {
+            vertex_program_ref WaveShaderVertex{}
+            fragment_program_ref WaveShaderFragment{}
+
+            lighting off
+            texture_unit
+            {
+                texture Water02.jpg 2d
+            }
+        }
+    }
 }

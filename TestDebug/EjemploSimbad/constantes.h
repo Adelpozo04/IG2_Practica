@@ -12,7 +12,7 @@ const std::string MAP_LAYOUT = "stage1.txt";
 const Ogre::Vector3 INITIAL_POS = Ogre::Vector3(0, 0, 0);
 
 ///OpeningAnimation
-const Ogre::Vector3 OS_SURFACE_SCALE = Ogre::Vector3(300, 1, 300);
+const Ogre::Vector3 OS_SURFACE_SCALE = Ogre::Vector3(80, 1, 80);
 
 ////Simbad
 const Ogre::Real OS_SIMBAD_STATIC_DUR = 5;

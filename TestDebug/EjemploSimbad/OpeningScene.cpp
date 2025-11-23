@@ -70,11 +70,11 @@ void OpeningScene::CreateFloor()
 {
     Ogre::MeshManager::getSingleton().createPlane("animationFloor", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME,
         Ogre::Plane(Ogre::Vector3::UNIT_Y, 0),
-        0.6, 0.6, SUBDIVISION_LUZ_PLANO, SUBDIVISION_LUZ_PLANO, true, 1, 5, 5,
+        200, 200, SUBDIVISION_LUZ_PLANO, SUBDIVISION_LUZ_PLANO, true, 1, 30, 30,
         Ogre::Vector3::UNIT_Z);
 
     Ogre::Entity* ent = mSM->createEntity("animationFloor");
-    ent->setMaterialName("animationFloor");
+    ent->setMaterialName("WaveShader");
 
     Ogre::SceneNode* floor = mSM->getRootSceneNode()->createChildSceneNode("OS_Floor");
     floor->attachObject(ent);
@@ -89,6 +89,7 @@ void OpeningScene::ConfigCamera()
 {
     mCamNode->setPosition(0, 0, 35);
     mCamNode->lookAt(Ogre::Vector3(0, 0, -100), Ogre::Node::TS_WORLD);
+
 }
 
 void OpeningScene::CreateLight()
