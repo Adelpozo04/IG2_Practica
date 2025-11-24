@@ -77,6 +77,7 @@ void SinbadExample::setup(void) {
 
     // Adds the listener for this object
     addInputListener(this);
+
 }
 
 void SinbadExample::setupScene(void) {

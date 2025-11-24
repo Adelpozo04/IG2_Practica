@@ -16,6 +16,7 @@ OpeningScene::~OpeningScene()
     _simbad->setVisible(false);
     _ogreHead->setVisible(false);
     _light->setVisible(false);
+    _floor->setVisible(false);
 
 }
 
@@ -70,25 +71,25 @@ void OpeningScene::CreateFloor()
 {
     Ogre::MeshManager::getSingleton().createPlane("animationFloor", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME,
         Ogre::Plane(Ogre::Vector3::UNIT_Y, 0),
-        200, 200, SUBDIVISION_LUZ_PLANO, SUBDIVISION_LUZ_PLANO, true, 1, 30, 30,
+        20, 20, SUBDIVISION_LUZ_PLANO, SUBDIVISION_LUZ_PLANO, true, 1, 30, 30,
         Ogre::Vector3::UNIT_Z);
 
     Ogre::Entity* ent = mSM->createEntity("animationFloor");
     ent->setMaterialName("WaveShader");
 
-    Ogre::SceneNode* floor = mSM->getRootSceneNode()->createChildSceneNode("OS_Floor");
-    floor->attachObject(ent);
+    _floor = mSM->getRootSceneNode()->createChildSceneNode("OS_Floor");
+    _floor->attachObject(ent);
 
     //Configuracion plano
-    floor->setPosition(0, -5, 0);
-    floor->setScale(OS_SURFACE_SCALE);
+    _floor->setPosition(0, -55, 0);
+    _floor->setScale(OS_SURFACE_SCALE);
 
 }
 
 void OpeningScene::ConfigCamera()
 {
-    mCamNode->setPosition(0, 0, 35);
-    mCamNode->lookAt(Ogre::Vector3(0, 0, -100), Ogre::Node::TS_WORLD);
+    mCamNode->setPosition(0, 0, 450);
+    mCamNode->lookAt(Ogre::Vector3(0, 0, -1000), Ogre::Node::TS_WORLD);
 
 }
 
@@ -104,24 +105,26 @@ void OpeningScene::CreateLight()
 }
 
 void OpeningScene::CreateCharacters() {
+
     //Simbad
     _simbadEnt = mSM->createEntity("Sinbad.mesh");
     _simbad = mSM->getRootSceneNode()->createChildSceneNode("OS_Simbad");
     _simbad->attachObject(_simbadEnt);
     _simbad->setPosition(0, 0, 0);
+    _simbad->setScale(OS_SIMBAD_DEFAULT_SCAL);
+    
 
     //OgreHead
     Ogre::Entity* ogreHeadEnt = mSM->createEntity("ogrehead.mesh");
     _ogreHead = mSM->getRootSceneNode()->createChildSceneNode("OS_OgreHead");
     _ogreHead->attachObject(ogreHeadEnt);
-    _ogreHead->setScale(0.15, 0.15, 0.15);
-    _ogreHead->setPosition(-55, 0, 0);
+    _ogreHead->setPosition(-733, 0, 0);
+    _ogreHead->setScale(OS_OGREHEAD_DEFAULT_SCAL);
     _ogreHead->rotate(Ogre::Quaternion(Ogre::Degree(90), Ogre::Vector3::UNIT_Y));
 
     //Espadas
     _leftSword = mSM->createEntity("Sword.mesh");
     _rightSword = mSM->createEntity("Sword.mesh");
-
 }
 
 void OpeningScene::CreateAnimations()
@@ -154,36 +157,39 @@ void OpeningScene::CreateAnimations()
     Ogre::TransformKeyFrame* kfSimbad = trackSimbad->createNodeKeyFrame(0);
     kfSimbad->setTranslate(keyframePos);
 
+    currentTime += 0.001;
+    CreateKeyframe(kfSimbad, trackSimbad, currentTime, keyframePos, { 0.01, 0, 0 }, { 0, 0, 0 }, 0, OS_SIMBAD_DEFAULT_SCAL);
+
     currentTime += OS_SIMBAD_STATIC_DUR;
-    CreateKeyframe(kfSimbad, trackSimbad, currentTime, keyframePos, {0.01, 0, 0});
+    CreateKeyframe(kfSimbad, trackSimbad, currentTime, keyframePos, { 0.01, 0, 0 }, { 0, 0, 0 }, 0, OS_SIMBAD_DEFAULT_SCAL);
 
     currentTime += OS_SIMBAD_FLIP_DER_DUR;
     CreateKeyframe(kfSimbad, trackSimbad, currentTime, keyframePos,{0, 0, 0},
-        Ogre::Vector3::UNIT_Y, OS_SIMBAD_FLIP_DER_DEGREES);
+        Ogre::Vector3::UNIT_Y, OS_SIMBAD_FLIP_DER_DEGREES, OS_SIMBAD_DEFAULT_SCAL);
 
     currentTime += OS_SIMBAD_DER_DUR;
     CreateKeyframe(kfSimbad, trackSimbad, currentTime, keyframePos, OS_SIMBAD_DER_MOV * Ogre::Vector3::UNIT_X,
-        Ogre::Vector3::UNIT_Y, OS_SIMBAD_FLIP_DER_DEGREES);
+        Ogre::Vector3::UNIT_Y, OS_SIMBAD_FLIP_DER_DEGREES, OS_SIMBAD_DEFAULT_SCAL);
 
     currentTime += OS_SIMBAD_FLIP_IZQ_DUR;
     CreateKeyframe(kfSimbad, trackSimbad, currentTime, keyframePos, { 0, 0, 0 },
-        Ogre::Vector3::UNIT_Y, OS_SIMBAD_FLIP_IZQ_DEGREES);
+        Ogre::Vector3::UNIT_Y, OS_SIMBAD_FLIP_IZQ_DEGREES, OS_SIMBAD_DEFAULT_SCAL);
 
     currentTime += OS_SIMBAD_IZQ_DUR;
     CreateKeyframe(kfSimbad, trackSimbad, currentTime, keyframePos, OS_SIMBAD_IZQ_MOV * Ogre::Vector3::NEGATIVE_UNIT_X,
-        Ogre::Vector3::UNIT_Y, OS_SIMBAD_FLIP_IZQ_DEGREES);
+        Ogre::Vector3::UNIT_Y, OS_SIMBAD_FLIP_IZQ_DEGREES, OS_SIMBAD_DEFAULT_SCAL);
 
     currentTime += OS_SIMBAD_FLIP_DER2_DUR;
     CreateKeyframe(kfSimbad, trackSimbad, currentTime, keyframePos, {0, 0, 0},
-        Ogre::Vector3::UNIT_Y, OS_SIMBAD_FLIP_DER2_DEGREES);
+        Ogre::Vector3::UNIT_Y, OS_SIMBAD_FLIP_DER2_DEGREES, OS_SIMBAD_DEFAULT_SCAL);
 
     currentTime += OS_SIMBAD_DER2_DUR;
     CreateKeyframe(kfSimbad, trackSimbad, currentTime, keyframePos, OS_SIMBAD_DER2_MOV * Ogre::Vector3::UNIT_X,
-        Ogre::Vector3::UNIT_Y, OS_SIMBAD_FLIP_DER2_DEGREES);
+        Ogre::Vector3::UNIT_Y, OS_SIMBAD_FLIP_DER2_DEGREES, OS_SIMBAD_DEFAULT_SCAL);
 
     currentTime += OS_SIMBAD_FLIP_CENTER_DUR;
     CreateKeyframe(kfSimbad, trackSimbad, currentTime, keyframePos, {0, 0, 0},
-        Ogre::Vector3::UNIT_Y, OS_SIMBAD_FLIP_CENTER_DEGREES);
+        Ogre::Vector3::UNIT_Y, OS_SIMBAD_FLIP_CENTER_DEGREES, OS_SIMBAD_DEFAULT_SCAL);
 
 
     _animationNodeSimbad = mSM->createAnimationState("sinbadOpeningScene");
@@ -203,7 +209,7 @@ void OpeningScene::CreateAnimations()
     Ogre::TransformKeyFrame* kfOgreHead = trackOgreHead->createNodeKeyFrame(0);
     kfOgreHead->setTranslate(keyframePosOgreHead);
 
-    currentTimeOgreHead = 0.1;
+    currentTimeOgreHead = 0;
     CreateKeyframe(kfOgreHead, trackOgreHead, currentTimeOgreHead, keyframePosOgreHead, {0.1, 0, 0},
         Ogre::Vector3::UNIT_Y, OS_OGREHEAD_FLIP_DER_DEGREES, OS_OGREHEAD_DEFAULT_SCAL);
 
