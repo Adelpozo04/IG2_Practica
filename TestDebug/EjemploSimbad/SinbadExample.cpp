@@ -3,6 +3,7 @@
 #include "GameScene.h"
 #include "OpeningScene.h"
 #include "constantes.h"
+//#include <OgreBitesConfigDialog.h>
 
 using namespace std;
 using namespace Ogre;
@@ -55,8 +56,8 @@ void SinbadExample::shutdown() {
 }
 
 void SinbadExample::setup(void) {
+    //mRoot->showConfigDialog(OgreBites::getNativeConfigDialog());
 
-    mRoot->showConfigDialog(NULL);
     // do not forget to call the base first
     OgreBites::ApplicationContext::setup();
     // Create the scene manager
