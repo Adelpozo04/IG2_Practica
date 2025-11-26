@@ -37,6 +37,8 @@ private:
 
 	Ogre::SceneNode* _light = nullptr;
 
+	Ogre::SceneNode* _floor = nullptr;
+
 	Ogre::Entity* _simbadEnt = nullptr;
 	Ogre::Entity* _rightSword = nullptr;
 	Ogre::Entity* _leftSword = nullptr;

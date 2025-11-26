@@ -18,7 +18,7 @@ public:
 
 private:
 
-	void CompleteMesh(int index, SceneNode* node);
+	void CompleteMesh(SceneNode* node);
 	void CreateParticlesSystems(SceneNode* node);
 	void Config(SceneNode* node);
 	void CreateAnimations();
@@ -38,6 +38,7 @@ private:
 
 	float _elapsedTime = 0;
 	bool _isVisible = false;
+	int _index = 0;
 };
 
 #endif // !BOMB_H

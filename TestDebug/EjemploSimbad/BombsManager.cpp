@@ -10,7 +10,7 @@ BombsManager::BombsManager(Ogre::SceneManager* SM) : mSM(SM), bombPool(0)
 
     for (int i = 0; i < MAX_NUM_BOMBS; ++i)
     {
-        Bomb* b = new Bomb(Ogre::Vector3(0, 0, 0),mSM->getRootSceneNode()->createChildSceneNode(),mSM,BOMB_MESH);
+        Bomb* b = new Bomb(Ogre::Vector3(0, 0, 0),mSM->getRootSceneNode()->createChildSceneNode(),mSM, i);
         b->setVisible(false);
         mbombs.push_back(b);
     }
@@ -29,7 +29,7 @@ void BombsManager::Shoot(Ogre::Vector3 pos)
 
     b->setVisible(true);
     b->setPosition(pos);
-    b->setTimeToExplode(BOMB_EXPLOSION_TIME);
+    //b->setTimeToExplode(BOMB_EXPLOSION_TIME);
     bombInUse.push_back(b);
 }
 

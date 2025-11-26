@@ -77,6 +77,7 @@ void SinbadExample::setup(void) {
 
     // Adds the listener for this object
     addInputListener(this);
+
 }
 
 void SinbadExample::setupScene(void) {
@@ -92,10 +93,10 @@ void SinbadExample::setupScene(void) {
 
     Ogre::Viewport* vp = getRenderWindow()->addViewport(cam);
 
-    /*mCamMgr = new OgreBites::CameraMan(mCamNode);
-    mAplicCont->addInputListener(mCamMgr);*/
+    mCamMgr = new OgreBites::CameraMan(mCamNode);
+    addInputListener(mCamMgr);
 
     mOpeningScn = new OpeningScene(mSM, this, mCamNode);
-    mGameScn = new GameScene(mSM, mTrayMgr, (OgreBites::ApplicationContext*)this, mCamNode);
+    //mGameScn = new GameScene(mSM, mTrayMgr, (OgreBites::ApplicationContext*)this, mCamNode);
     
 }
