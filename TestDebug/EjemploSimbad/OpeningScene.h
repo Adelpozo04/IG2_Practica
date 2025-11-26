@@ -34,6 +34,7 @@ private:
 
 	Ogre::SceneNode* _simbad = nullptr;
 	Ogre::SceneNode* _ogreHead = nullptr;
+	Ogre::SceneNode* _sphere = nullptr;
 
 	Ogre::SceneNode* _light = nullptr;
 

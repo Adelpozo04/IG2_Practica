@@ -122,6 +122,14 @@ void OpeningScene::CreateCharacters() {
     _ogreHead->setScale(OS_OGREHEAD_DEFAULT_SCAL);
     _ogreHead->rotate(Ogre::Quaternion(Ogre::Degree(90), Ogre::Vector3::UNIT_Y));
 
+    //Sphere
+    Ogre::Entity* sphereEnt = mSM->createEntity("uv_sphere.mesh");
+    _sphere = mSM->getRootSceneNode()->createChildSceneNode("OS_Sphere");
+    _sphere->attachObject(sphereEnt);
+    _sphere->setPosition(0, 20, -60);
+    //_sphere->setScale(OS_SPHERE_SIZE / _sphere->getScale());
+    sphereEnt->setMaterialName("CorrosionShader");
+
     //Espadas
     _leftSword = mSM->createEntity("Sword.mesh");
     _rightSword = mSM->createEntity("Sword.mesh");
