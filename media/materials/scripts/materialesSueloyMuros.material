@@ -42,3 +42,35 @@ material wall
 		}
 	}
 }
+
+material bomb
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.75 0.75 0.75
+
+			texture_unit
+			{
+				texture Black2.png
+			}
+		}
+	}
+}
+
+material wick
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.75 0.75 0.75
+
+			texture_unit
+			{
+				texture wick.jpg
+			}
+		}
+	}
+}

@@ -8,9 +8,13 @@ class Bomb : public IG2Object
 
 public:
 
-	Bomb(Vector3 initPos, SceneNode* node, SceneManager* sceneMng, String mesh, int index);
+	Bomb(Vector3 initPos, SceneNode* node, SceneManager* sceneMng, int index);
 
 	void InlineAnimation(float dt);
+
+	void Update(float dt);
+
+	void Reset();
 
 private:
 
@@ -19,7 +23,10 @@ private:
 	void Config(SceneNode* node);
 	void CreateAnimations();
 
+	void Explote();
+
 	SceneNode* _wickNode = nullptr;
+	SceneNode* _BombNode = nullptr;
 
 	SceneNode* _pSysFlameNode = nullptr;
 	Ogre::ParticleSystem* _pSysFlame = nullptr;
@@ -29,6 +36,8 @@ private:
 	Ogre::AnimationState* _animationNodeBomb = nullptr;
 	Ogre::AnimationState* _animationNodeFlame = nullptr;
 
+	float _elapsedTime = 0;
+	bool _isVisible = false;
 };
 
 #endif // !BOMB_H

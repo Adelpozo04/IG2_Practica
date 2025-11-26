@@ -103,17 +103,20 @@ const int ENEMIES_DAMAGE = 1;
 //BOMB
 
 ///Properties
+const std::string BOMB_MESH = "geosphere4500.mesh";
+const std::string WICK_MESH = "column.mesh";
 const Ogre::Vector3 BOMB_SCALE = { 0.075, 0.075, 0.075 };
 const Ogre::Vector3 BOMB_WICK_SCALE = { 0.9, 0.9, 0.9 };
 const Ogre::Vector3 BOMB_FLAME_INI_MOVE = { 0, 300, 0 };
 const int BOMB_AMOUNT = 3;
-const float BOMB_EXPLOSION_TIME = 4;
+const float BOMB_EXPLOSION_TIME = 6;
+const float BOMB_SMOKE_TIME = 3 + BOMB_EXPLOSION_TIME;
 const int BOMB_EXPLOSION_RANGE = 3;
 const int BOMB_EXPLOSION_DAMAGE = 1;
 const std::string BOMB_MESH = "geosphere4500.mesh";
 ///Animation
 
-////Bomb
+
 
 
 //UI

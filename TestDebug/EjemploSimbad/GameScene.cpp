@@ -1,6 +1,5 @@
 #include "GameScene.h"
 #include "constantes.h"
-#include "Bomb.h"
 
 GameScene::GameScene(Ogre::SceneManager* SM, OgreBites::TrayManager* TM, OgreBites::ApplicationContext* AC, Ogre::SceneNode* cam):
     mTrayMgr(TM), Scene(SM, AC, cam)
@@ -28,6 +27,7 @@ void GameScene::Update(float dt)
     mPlayerMgr->Update(dt);
     mEnemyMgr->Update(dt);
     mColisionMgr->Update();
+    b->Update(dt);
 }
 
 void GameScene::GenerateScene()
