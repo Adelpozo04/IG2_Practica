@@ -18,7 +18,8 @@ BombsManager::BombsManager(Ogre::SceneManager* SM, MazeManager* MZ) : mSM(SM), b
     bombPool.resize(mbombs);
 
     std::vector<SmokeObject*> mSmokes;
-    for (int i = 0; i <= MAX_NUM_BOMBS * BOMB_EXPLOSION_RANGE*4;++i) {
+    // el tamaño es el numero de bombas + 1 ya que al desaparecer una puedes poner otra mientra el humo de la anterior sigue,* el rango,* 4 direcciones
+    for (int i = 0; i <= (MAX_NUM_BOMBS + 1) * BOMB_EXPLOSION_RANGE*4;++i) {
         SmokeObject* s = new SmokeObject(Ogre::Vector3(0, 0, 0), mSM->getRootSceneNode()->createChildSceneNode(), mSM, i);
         mSmokes.push_back(s);
     }
