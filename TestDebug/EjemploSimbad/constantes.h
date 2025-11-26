@@ -112,8 +112,8 @@ const Ogre::Vector3 BOMB_SCALE = { 0.075, 0.075, 0.075 };
 const Ogre::Vector3 BOMB_WICK_SCALE = { 0.9, 0.9, 0.9 };
 const Ogre::Vector3 BOMB_FLAME_INI_MOVE = { 0, 300, 0 };
 const int BOMB_AMOUNT = 3;
-const float BOMB_EXPLOSION_TIME = 2;
-const float BOMB_SMOKE_TIME = 3;
+const float BOMB_EXPLOSION_TIME = 3;
+const float BOMB_SMOKE_TIME = 2;
 const int BOMB_EXPLOSION_RANGE = 3;
 const int BOMB_EXPLOSION_DAMAGE = 1;
 ///Animation

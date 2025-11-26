@@ -4,7 +4,7 @@
 SmokeObject::SmokeObject(Vector3 initPos, SceneNode* node, SceneManager* sceneMng, int index): IG2Object(initPos,node,sceneMng)
 {
 	//_pSysSmokeNode = node->createChildSceneNode();
-	_pSysSmoke = mSM->createParticleSystem("psSmokeBomb" + index, "explosionSmoke");
+	_pSysSmoke = mSM->createParticleSystem("psSmokeBomb" + std::to_string(index), "explosionSmoke");
 	_pSysSmoke->setEmitting(false);
 	mNode->attachObject(_pSysSmoke);
 }

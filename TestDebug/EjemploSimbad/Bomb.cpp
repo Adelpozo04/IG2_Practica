@@ -66,8 +66,8 @@ void Bomb::CreateParticlesSystems(SceneNode* node)
 {
 
 	_pSysFlameNode = node->createChildSceneNode();
-	_pSysFlame = mSM->createParticleSystem("psFlameBomb" + _index, "flameSmoke");
-	_pSysFlame->setEmitting(true);
+	_pSysFlame = mSM->createParticleSystem("psFlameBomb" + std::to_string(_index), "flameSmoke");
+	_pSysFlame->setEmitting(false);
 	_pSysFlameNode->attachObject(_pSysFlame);
 
 	/*_pSysSmokeNode = node->createChildSceneNode();
@@ -84,6 +84,7 @@ void Bomb::Config(SceneNode* node)
 	_wickNode->setScale(BOMB_WICK_SCALE);
 	_wickNode->translate({ 0, node->getScale().y / 2, 0 });
 	_pSysFlameNode->setPosition(BOMB_FLAME_INI_MOVE);
+	mNode->setVisible(false);
 }
 
 void Bomb::CreateAnimations()

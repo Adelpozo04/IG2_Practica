@@ -5,13 +5,13 @@
 #include "ObjectPool.h"
 
 class Bomb;
-class PlayerManager;
 class SmokeObject;
+class MazeManager;
 
 class BombsManager
 {
 public:
-    BombsManager(Ogre::SceneManager* SM);
+    BombsManager(Ogre::SceneManager* SM, MazeManager* mz);
     ~BombsManager() = default;
 
     void Shoot(Ogre::Vector3 pos);
@@ -19,6 +19,7 @@ public:
     void Update(float dt);
 
 private:
+    void applyDamage(Ogre::Vector3 pos, int range);
     ObjectPool<Bomb*> bombPool;
     std::list<Bomb*> bombsInUse;
     std::list<Bomb*> bombsToExplode;
@@ -26,5 +27,6 @@ private:
     std::list<SmokeObject*> smokesInUse;
     std::list<SmokeObject*> smokesToStop;
     Ogre::SceneManager* mSM;
-    PlayerManager* mPM;
+    std::vector< Ogre::Vector3> positionsWithDamage;
+    MazeManager* mMZ = nullptr;
 };
