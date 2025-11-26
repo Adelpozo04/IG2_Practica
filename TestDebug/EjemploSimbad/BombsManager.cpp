@@ -27,15 +27,28 @@ void BombsManager::Shoot(Ogre::Vector3 pos)
     if (!b)
         return;
 
-    b->setVisible(true);
+    b->Reset();
     b->setPosition(pos);
     //b->setTimeToExplode(BOMB_EXPLOSION_TIME);
     bombInUse.push_back(b);
 }
 
-void BombsManager::Explode(Bomb* bomb)
+void BombsManager::explode(Bomb* bomb)
 {
-    bomb->setVisible(false);
+    bomb->explode();
     bombPool.release(bomb);
     bombInUse.remove(bomb);
+}
+
+void BombsManager::Update(float dt)
+{
+    for (Bomb* b : bombInUse) {
+        if (b != nullptr && !b->Update(dt))
+            bombToExplode.push_back(b);
+    }
+
+    for (Bomb* b : bombToExplode) {
+        explode(b);
+    }
+    bombToExplode.clear();
 }

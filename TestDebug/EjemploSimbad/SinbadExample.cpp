@@ -56,9 +56,9 @@ void SinbadExample::shutdown() {
 
 void SinbadExample::setup(void) {
 
+    mRoot->showConfigDialog(NULL);
     // do not forget to call the base first
     OgreBites::ApplicationContext::setup();
-
     // Create the scene manager
     mSM = mRoot->createSceneManager();
 

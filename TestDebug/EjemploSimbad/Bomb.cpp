@@ -18,21 +18,19 @@ void Bomb::InlineAnimation(float dt)
 
 }
 
-void Bomb::Update(float dt)
+bool Bomb::Update(float dt)
 {
 
 	_elapsedTime += dt;
 
-	if (_elapsedTime >= BOMB_EXPLOSION_TIME) {
-		Explote();		
-	}
+	//if (_elapsedTime >= BOMB_EXPLOSION_TIME)
+		//Explote();
 
-	if (_elapsedTime >= BOMB_SMOKE_TIME) {
+	/*if (_elapsedTime >= BOMB_SMOKE_TIME) {
 		_pSysSmoke->setEmitting(false);
 		_elapsedTime = 0;
-
-	}
-
+	}*/
+	return _elapsedTime <= BOMB_EXPLOSION_TIME;
 }
 
 void Bomb::Reset()
@@ -40,9 +38,9 @@ void Bomb::Reset()
 
 	_pSysFlame->clear();
 	_pSysFlame->setEmitting(true);
-
-	_pSysSmoke->clear();
-	_pSysSmoke->setEmitting(false);
+	_elapsedTime = 0;
+	//_pSysSmoke->clear();
+	//_pSysSmoke->setEmitting(false);
 
 	this->setVisible(true);
 }
@@ -71,10 +69,10 @@ void Bomb::CreateParticlesSystems(SceneNode* node)
 	_pSysFlame->setEmitting(true);
 	_pSysFlameNode->attachObject(_pSysFlame);
 
-	_pSysSmokeNode = node->createChildSceneNode();
+	/*_pSysSmokeNode = node->createChildSceneNode();
 	_pSysSmoke = mSM->createParticleSystem("psSmokeBomb" + _index, "explosionSmoke");
 	_pSysSmoke->setEmitting(false);
-	_pSysSmokeNode->attachObject(_pSysSmoke);
+	_pSysSmokeNode->attachObject(_pSysSmoke);*/
 
 }
 
@@ -96,12 +94,13 @@ void Bomb::CreateAnimations()
 
 }
 
-void Bomb::Explote()
+void Bomb::explode()
 {
 	_pSysFlame->clear();
 	_pSysFlame->setEmitting(false);
-	_pSysSmoke->setEmitting(true);
-	_BombNode->setVisible(false);
+	mNode->setVisible(false);
+	//_pSysSmoke->setEmitting(true);
+	//_BombNode->setVisible(false);
 	//Llamada a BombManager para que gestione el danyo hablando con colision manager
 
 }

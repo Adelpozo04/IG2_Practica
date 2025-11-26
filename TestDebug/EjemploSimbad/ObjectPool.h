@@ -50,7 +50,7 @@ template<typename T>
 void ObjectPool<T>::release(T& elem)
 {
     for (size_t i = 0; i < elements.size(); ++i) {
-        if (&elements[i] == &elem) {
+        if (elements[i] == elem) {
             useVec[i] = false;
             nInUse--;
             return;

@@ -14,11 +14,13 @@ public:
     ~BombsManager() = default;
 
     void Shoot(Ogre::Vector3 pos);
-    void Explode(Bomb* bomb); // libera bomba cuando explota
+    void explode(Bomb* bomb); // libera bomba cuando explota
+    void Update(float dt);
 
 private:
     ObjectPool<Bomb*> bombPool;
     std::list<Bomb*> bombInUse;
+    std::list<Bomb*> bombToExplode;
     Ogre::SceneManager* mSM;
     PlayerManager* mPM;
 };

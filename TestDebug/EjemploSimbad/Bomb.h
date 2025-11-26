@@ -12,10 +12,11 @@ public:
 
 	void InlineAnimation(float dt);
 
-	void Update(float dt);
+	bool Update(float dt);
 
 	void Reset();
 
+	void explode();
 private:
 
 	void CompleteMesh(SceneNode* node);
@@ -23,7 +24,6 @@ private:
 	void Config(SceneNode* node);
 	void CreateAnimations();
 
-	void Explote();
 
 	SceneNode* _wickNode = nullptr;
 	SceneNode* _BombNode = nullptr;
