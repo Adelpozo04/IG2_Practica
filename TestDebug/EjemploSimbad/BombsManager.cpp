@@ -1,21 +1,28 @@
 #include "BombsManager.h"
 #include "Bomb.h"
 #include "PlayerManager.h"
+#include "SmokeObject.h"
 #include "constantes.h"
 
-BombsManager::BombsManager(Ogre::SceneManager* SM) : mSM(SM), bombPool(0)
+BombsManager::BombsManager(Ogre::SceneManager* SM) : mSM(SM), bombPool(0),smokePool(0)
 {
     std::vector<Bomb*> mbombs;
     mbombs.reserve(MAX_NUM_BOMBS);
 
     for (int i = 0; i < MAX_NUM_BOMBS; ++i)
     {
-        Bomb* b = new Bomb(Ogre::Vector3(0, 0, 0),mSM->getRootSceneNode()->createChildSceneNode(),mSM, i);
-        b->setVisible(false);
+        Bomb* b = new Bomb(Ogre::Vector3(0, 0, 0),mSM->getRootSceneNode()->createChildSceneNode(),mSM,i);
         mbombs.push_back(b);
     }
 
     bombPool.resize(mbombs);
+
+    std::vector<SmokeObject*> mSmokes;
+    for (int i = 0; i < MAX_NUM_BOMBS * BOMB_EXPLOSION_RANGE;++i) {
+        SmokeObject* s = new SmokeObject(Ogre::Vector3(0, 0, 0), mSM->getRootSceneNode()->createChildSceneNode(), mSM, i);
+        mSmokes.push_back(s);
+    }
+    smokePool.resize(mSmokes);
 }
 
 void BombsManager::Shoot(Ogre::Vector3 pos)
@@ -27,28 +34,47 @@ void BombsManager::Shoot(Ogre::Vector3 pos)
     if (!b)
         return;
 
-    b->Reset();
-    b->setPosition(pos);
+    b->reset(pos);
     //b->setTimeToExplode(BOMB_EXPLOSION_TIME);
-    bombInUse.push_back(b);
+    bombsInUse.push_back(b);
 }
 
 void BombsManager::explode(Bomb* bomb)
 {
+    Ogre::Vector3 pos = bomb->getPosition();
     bomb->explode();
     bombPool.release(bomb);
-    bombInUse.remove(bomb);
+    bombsInUse.remove(bomb);
+
+    SmokeObject* s = smokePool.acquire();
+
+    if (!s)
+        return;
+    s->reset(pos);
+    smokesInUse.push_back(s);
 }
 
 void BombsManager::Update(float dt)
 {
-    for (Bomb* b : bombInUse) {
+    for (Bomb* b : bombsInUse) {
         if (b != nullptr && !b->Update(dt))
-            bombToExplode.push_back(b);
+            bombsToExplode.push_back(b);
     }
 
-    for (Bomb* b : bombToExplode) {
+    for (Bomb* b : bombsToExplode) {
         explode(b);
     }
-    bombToExplode.clear();
+    bombsToExplode.clear();
+
+    for (SmokeObject* s : smokesInUse) {
+        if (s != nullptr && !s->update(dt))
+            smokesToStop.push_back(s);
+    }
+
+    for (SmokeObject* s : smokesToStop) {
+        s->stop();
+        smokePool.release(s);
+        smokesInUse.remove(s);
+    }
+    smokesToStop.clear();
 }

@@ -6,6 +6,7 @@
 
 class Bomb;
 class PlayerManager;
+class SmokeObject;
 
 class BombsManager
 {
@@ -19,8 +20,11 @@ public:
 
 private:
     ObjectPool<Bomb*> bombPool;
-    std::list<Bomb*> bombInUse;
-    std::list<Bomb*> bombToExplode;
+    std::list<Bomb*> bombsInUse;
+    std::list<Bomb*> bombsToExplode;
+    ObjectPool<SmokeObject*> smokePool;
+    std::list<SmokeObject*> smokesInUse;
+    std::list<SmokeObject*> smokesToStop;
     Ogre::SceneManager* mSM;
     PlayerManager* mPM;
 };

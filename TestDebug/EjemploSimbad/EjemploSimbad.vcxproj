@@ -156,6 +156,7 @@
     <ClCompile Include="PlayerManager.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SinbadExample.cpp" />
+    <ClCompile Include="SmokeObject.cpp" />
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="UIManager.cpp" />
   </ItemGroup>
@@ -181,6 +182,7 @@
     <ClInclude Include="ObjectPool.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SinbadExample.h" />
+    <ClInclude Include="SmokeObject.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="UIManager.h" />
   </ItemGroup>

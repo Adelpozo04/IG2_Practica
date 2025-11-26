@@ -23,6 +23,7 @@
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="UIManager.cpp" />
     <ClCompile Include="BombsManager.cpp" />
+    <ClCompile Include="SmokeObject.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bomb.h" />
@@ -48,5 +49,6 @@
     <ClInclude Include="Tile.h" />
     <ClInclude Include="UIManager.h" />
     <ClInclude Include="BombsManager.h" />
+    <ClInclude Include="SmokeObject.h" />
   </ItemGroup>
 </Project>

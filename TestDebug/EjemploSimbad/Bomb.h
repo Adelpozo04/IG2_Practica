@@ -14,7 +14,7 @@ public:
 
 	bool Update(float dt);
 
-	void Reset();
+	void reset(Ogre::Vector3 pos);
 
 	void explode();
 private:
@@ -31,7 +31,7 @@ private:
 	SceneNode* _pSysFlameNode = nullptr;
 	Ogre::ParticleSystem* _pSysFlame = nullptr;
 	SceneNode* _pSysSmokeNode = nullptr;
-	Ogre::ParticleSystem* _pSysSmoke = nullptr;
+	//Ogre::ParticleSystem* _pSysSmoke = nullptr;
 
 	Ogre::AnimationState* _animationNodeBomb = nullptr;
 	Ogre::AnimationState* _animationNodeFlame = nullptr;

@@ -33,12 +33,13 @@ bool Bomb::Update(float dt)
 	return _elapsedTime <= BOMB_EXPLOSION_TIME;
 }
 
-void Bomb::Reset()
+void Bomb::reset(Ogre::Vector3 pos)
 {
 
 	_pSysFlame->clear();
 	_pSysFlame->setEmitting(true);
 	_elapsedTime = 0;
+	setPosition(pos);
 	//_pSysSmoke->clear();
 	//_pSysSmoke->setEmitting(false);
 
