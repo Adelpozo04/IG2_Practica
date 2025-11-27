@@ -7,7 +7,6 @@ public:
 
 	Player();
 	Player(Vector3 initPos, SceneNode* node, SceneManager* sceneMng);
-	Player(Vector3 initPos, SceneNode* node, SceneManager* sceneMng, String mesh);
 
 	void move(MazeManager* MM, float dt) override;
 
@@ -16,5 +15,8 @@ public:
 private:
 
 	void Config() override;	
+
+	Ogre::AnimationState* _animationStateRunTop = nullptr;
+	Ogre::AnimationState* _animationStateRunBase = nullptr;
 };
 

@@ -9,7 +9,6 @@ GameScene::GameScene(Ogre::SceneManager* SM, OgreBites::TrayManager* TM, OgreBit
 
 GameScene::~GameScene()
 {
-
     delete mMazeMgr;
     delete mPlayerMgr;
     delete mEnemyMgr;
@@ -19,7 +18,6 @@ GameScene::~GameScene()
     mPlayerMgr = nullptr;
     mEnemyMgr = nullptr;
     mColisionMgr = nullptr;
-
 }
 
 void GameScene::Update(float dt)
@@ -33,16 +31,13 @@ void GameScene::Update(float dt)
 void GameScene::GenerateScene()
 {
     //Creacion camara
-    mCamNode->setPosition(0, -3000, 0);
-    mCamNode->lookAt(Ogre::Vector3(0, 3000, 0), Ogre::Node::TS_WORLD);
+    mCamNode->setPosition(0, -2000, 0);
+    mCamNode->lookAt(Ogre::Vector3(0, -100, 0), Ogre::Node::TS_WORLD);
 
     mCamMgr = new OgreBites::CameraMan(mCamNode);
     mAplicCont->addInputListener(mCamMgr);
     mCamMgr->setStyle(OgreBites::CS_ORBIT);
 
-    //BombaTest
-    //SceneNode* bNode = mSM->getRootSceneNode()->createChildSceneNode("BombTest");
-    //Bomb* b = new Bomb({ 150, -20, 250 }, bNode, mSM, "geosphere4500.mesh");
     //SkyPlane
     Ogre::Plane plane; 
     plane.d = 1000; 

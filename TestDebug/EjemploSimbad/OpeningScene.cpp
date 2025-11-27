@@ -17,7 +17,7 @@ OpeningScene::~OpeningScene()
     _ogreHead->setVisible(false);
     _light->setVisible(false);
     _floor->setVisible(false);
-
+    _sphere->setVisible(false);
 }
 
 void OpeningScene::Update(float dt)
@@ -126,7 +126,7 @@ void OpeningScene::CreateCharacters() {
     Ogre::Entity* sphereEnt = mSM->createEntity("uv_sphere.mesh");
     _sphere = mSM->getRootSceneNode()->createChildSceneNode("OS_Sphere");
     _sphere->attachObject(sphereEnt);
-    _sphere->setPosition(0, 20, -60);
+    _sphere->setPosition(0, 20, -120);
     //_sphere->setScale(OS_SPHERE_SIZE / _sphere->getScale());
     sphereEnt->setMaterialName("CorrosionShader");
 

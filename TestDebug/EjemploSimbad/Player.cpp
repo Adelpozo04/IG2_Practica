@@ -21,17 +21,19 @@ Player::Player(Vector3 initPos, SceneNode* node, SceneManager* sceneMng) :
 	_points = INITIAL_POINTS;
 	_currentDir = { 0, 0, 0 };
 	_nextDir = { 0, 0, 0 };
-	Config();
-}
 
-Player::Player(Vector3 initPos, SceneNode* node, SceneManager* sceneMng, String mesh):
-	Character(initPos, node, sceneMng, mesh)
-{
-	_lifes = PLAYER_LIFES;
-	_speed = PLAYER_SPEED;
-	_points = INITIAL_POINTS;
-	_currentDir = { 0, 0, 0 };
-	_nextDir = { 0, 0, 0 };
+	Ogre::Entity* _simbadEnt = sceneMng->createEntity(PLAYER_MESH_NAME);
+
+	_animationStateRunTop = _simbadEnt->getAnimationState("RunTop");
+	_animationStateRunTop->setLoop(true);
+	_animationStateRunTop->setEnabled(true);
+
+	_animationStateRunBase = _simbadEnt->getAnimationState("RunBase");
+	_animationStateRunBase->setLoop(true);
+	_animationStateRunBase->setEnabled(true);
+
+	node->attachObject(_simbadEnt);
+
 	Config();
 }
 
@@ -64,6 +66,11 @@ void Player::move(MazeManager* MM, float dt)
 	if (newPos.x < MM->GetNumTilesX() * CUBE_SIZE.x && newPos.z < MM->GetNumTilesZ() * CUBE_SIZE.z &&
 		newPos.x >= 0 && newPos.z >= 0) {
 		IG2Object::move(getDir() * getSpeed() * dt);
+
+		if (getDir() != Ogre::Vector3::ZERO) {
+			_animationStateRunTop->addTime(dt);
+			_animationStateRunBase->addTime(dt);
+		}	
 	}
 
 }
