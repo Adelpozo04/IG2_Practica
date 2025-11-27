@@ -109,7 +109,7 @@ vertex_program WaveShaderVertex glsl{
 fragment_program WaveShaderFragment glsl{
     source WaveShaderFragment.glsl
 	default_params{
-		param_named_auto texturaAgua int 0
+		param_named texturaAgua int 0
 	}
 }
 
@@ -126,6 +126,57 @@ material WaveShader
             texture_unit
             {
                 texture Water02.jpg 2d
+            }
+        }
+    }
+}
+
+vertex_program CorrosionShaderVertex glsl{
+    source CorrosionShaderVertex.glsl
+    default_params {
+		param_named_auto modelViewMat worldview_matrix
+        param_named_auto modelViewProjMat worldviewproj_matrix
+		param_named_auto normalMat normal_matrix
+
+		param_named_auto lightDiffuse light_diffuse_colour 0
+		param_named_auto lightPosition light_position 0
+
+		param_named materialDiffuse float3 1 1 1
+    }
+}
+
+fragment_program CorrosionShaderFragment glsl{
+    source CorrosionShaderFragment.glsl
+	default_params{
+		param_named texturaCorrosionFront int 0
+		param_named texturaCorrosionBack int 1
+		param_named_auto Flipping render_target_flipping
+	}
+}
+
+material CorrosionShader
+{
+
+    technique{
+        pass
+        {
+
+			lighting off
+			cull_hardware none
+			cull_software none
+
+            vertex_program_ref CorrosionShaderVertex{}
+            fragment_program_ref CorrosionShaderFragment{}        
+
+            texture_unit
+            {
+                texture oxido.jpg 2d
+				tex_address_mode clamp
+            }
+			texture_unit
+            {
+                texture rainbow.png 2d
+				tex_address_mode clamp
             }
         }
     }
