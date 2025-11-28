@@ -22,10 +22,10 @@ bool SmokeObject::update(float dt)
 
 void SmokeObject::reset(Ogre::Vector3 pos)
 {
+	setPosition(pos);
 	_elapsedTime = 0;
 	_pSysSmoke->clear();
 	_pSysSmoke->setEmitting(true);
-	setPosition(pos);
 	mNode->setVisible(true);
 }
 
