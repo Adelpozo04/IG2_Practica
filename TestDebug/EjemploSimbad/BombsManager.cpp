@@ -35,14 +35,14 @@ void BombsManager::Shoot(Ogre::Vector3 pos)
     if (!b)
         return;
 
-    b->reset(pos);
+    b->reset(mMZ->getTileCenter(pos));
     //b->setTimeToExplode(BOMB_EXPLOSION_TIME);
     bombsInUse.push_back(b);
 }
 
 void BombsManager::explode(Bomb* bomb)
 {
-    Ogre::Vector3 pos = bomb->getPosition();
+    Ogre::Vector3 pos = mMZ->getTileCenter(bomb->getPosition());
     bomb->explode();
     bombPool.release(bomb);
     bombsInUse.remove(bomb);
@@ -96,8 +96,25 @@ void BombsManager::applyDamage(Ogre::Vector3 pos, int range)
     smokesInUse.push_back(s);
     positionsWithDamage.push_back(pos);
 
-    applyDamage(pos + (mMZ->GetTileSize() * Ogre::Vector3::UNIT_X), --range);
-    applyDamage(pos + (mMZ->GetTileSize() * Ogre::Vector3::UNIT_Z), --range);
-    applyDamage(pos + (mMZ->GetTileSize() * Ogre::Vector3::NEGATIVE_UNIT_X), --range);
-    applyDamage(pos + (mMZ->GetTileSize() * Ogre::Vector3::NEGATIVE_UNIT_Z), --range);
+    applyDamage(pos + (mMZ->GetTileSize() * Ogre::Vector3::UNIT_X), range - 1, Ogre::Vector3::UNIT_X);
+    applyDamage(pos + (mMZ->GetTileSize() * Ogre::Vector3::UNIT_Z), range -1, Ogre::Vector3::UNIT_Z);
+    applyDamage(pos + (mMZ->GetTileSize() * Ogre::Vector3::NEGATIVE_UNIT_X), range - 1, Ogre::Vector3::NEGATIVE_UNIT_X);
+    applyDamage(pos + (mMZ->GetTileSize() * Ogre::Vector3::NEGATIVE_UNIT_Z), range - 1, Ogre::Vector3::NEGATIVE_UNIT_Z);
+}
+
+void BombsManager::applyDamage(Ogre::Vector3 pos, int range, Ogre::Vector3 dir)
+{
+    if (!mMZ->IsTrasferable(pos) || range < 0)
+        return;
+
+    SmokeObject* s = smokePool.acquire();
+
+    if (!s)
+        return;
+
+    s->reset(pos);
+    smokesInUse.push_back(s);
+    positionsWithDamage.push_back(pos);
+
+    applyDamage(pos + (mMZ->GetTileSize() * dir), range - 1, dir);
 }

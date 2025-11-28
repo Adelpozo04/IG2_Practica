@@ -20,6 +20,7 @@ public:
 
 private:
     void applyDamage(Ogre::Vector3 pos, int range);
+    void applyDamage(Ogre::Vector3 pos, int range, Ogre::Vector3 dir);
     ObjectPool<Bomb*> bombPool;
     std::list<Bomb*> bombsInUse;
     std::list<Bomb*> bombsToExplode;
