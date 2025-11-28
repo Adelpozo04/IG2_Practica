@@ -36,10 +36,10 @@ bool Bomb::Update(float dt)
 void Bomb::reset(Ogre::Vector3 pos)
 {
 
+	setPosition(pos);
 	_pSysFlame->clear();
 	_pSysFlame->setEmitting(true);
 	_elapsedTime = 0;
-	setPosition(pos);
 	//_pSysSmoke->clear();
 	//_pSysSmoke->setEmitting(false);
 
