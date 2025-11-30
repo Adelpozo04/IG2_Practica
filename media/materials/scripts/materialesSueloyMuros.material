@@ -134,14 +134,10 @@ material WaveShader
 vertex_program CorrosionShaderVertex glsl{
     source CorrosionShaderVertex.glsl
     default_params {
-		param_named_auto modelViewMat worldview_matrix
         param_named_auto modelViewProjMat worldviewproj_matrix
 		param_named_auto normalMat normal_matrix
 
-		param_named_auto lightDiffuse light_diffuse_colour 0
-		param_named_auto lightPosition light_position 0
-
-		param_named materialDiffuse float3 1 1 1
+		
     }
 }
 
@@ -151,6 +147,11 @@ fragment_program CorrosionShaderFragment glsl{
 		param_named texturaCorrosionFront int 0
 		param_named texturaCorrosionBack int 1
 		param_named_auto Flipping render_target_flipping
+
+		param_named_auto lightDiffuse light_diffuse_colour 0
+		param_named_auto lightDirection light_direction_view_space 0
+
+		param_named materialDiffuse float3 1 1 1
 	}
 }
 
