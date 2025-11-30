@@ -87,14 +87,14 @@ const int INITIAL_POINTS = 0;
 //ENEMIES
 ///Simple enemy
 const float SIMPLE_ENEMY_SPEED = 200;
-const uint SIMPLE_ENEMY_LIFES = 3;
+const uint SIMPLE_ENEMY_LIFES = 1;
 const std::string SIMPLE_ENEMY_MESH_NAME = "ogrehead.mesh";
 const Ogre::Vector3 SIMPLE_ENEMY_SCALE = Ogre::Vector3(1, 1, 1);
 const int SIMPLE_ENEMY_AMOUNT = 1;
 
 ///Complex enemy
 const float COMPLEX_ENEMY_SPEED = 300;
-const uint COMPLEX_ENEMY_LIFES = 3;
+const uint COMPLEX_ENEMY_LIFES = 1;
 const std::string COMPLEX_ENEMY_MAIN_MESH_NAME = "penguin.mesh";
 const Ogre::Vector3 COMPLEX_ENEMY_SCALE = Ogre::Vector3(2, 2, 2);
 const int COMPLEX_ENEMY_FISH_AMOUNT = 4;
