@@ -10,8 +10,6 @@ public:
 
 	Bomb(Vector3 initPos, SceneNode* node, SceneManager* sceneMng, int index);
 
-	void InlineAnimation(float dt);
-
 	bool Update(float dt);
 
 	void reset(Ogre::Vector3 pos);
