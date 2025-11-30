@@ -120,6 +120,8 @@ const float BOMB_SMOKE_TIME = 2;
 const int BOMB_EXPLOSION_RANGE = 3;
 const int BOMB_EXPLOSION_DAMAGE = 1;
 ///Animation
+const Ogre::Vector3 BOMB_ANIM_SCALE = Ogre::Vector3(1.2,1.2,1.2);
+const float ANIMATIONTIME = 1;
 
 
 
@@ -131,9 +133,6 @@ const std::string GAMEOVER_TEXT = "Has muerto";
 const uint MAX_NUM_BOMBS = 3;
 const uint EXPLOSION_AREA = 4;
 const double TIME_TO_EXPLODE = 3;
-//ANMATION BOMS
-const Ogre::Vector3 MIN_BOMB_SCALE = Ogre::Vector3(20, 20, 20);
-const Ogre::Vector3 MAX_BOMB_SCALE = Ogre::Vector3(40, 40, 40);
 const uint SMOKE_TIME = 4;
 
 

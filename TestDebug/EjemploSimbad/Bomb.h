@@ -23,6 +23,8 @@ private:
 	void CreateParticlesSystems(SceneNode* node);
 	void Config(SceneNode* node);
 	void CreateAnimations();
+	void createKf(Ogre::TransformKeyFrame* kf, Ogre::NodeAnimationTrack* track, Ogre::Real durStep,Ogre::Vector3& keyframePos,
+		Ogre::Vector3 traslationValue,Ogre::Vector3 rotationValue,float degrees,Ogre::Vector3 scaleValue);
 
 
 	SceneNode* _wickNode = nullptr;
