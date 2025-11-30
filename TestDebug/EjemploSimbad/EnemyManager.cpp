@@ -48,8 +48,22 @@ void EnemyManager::CreateCharacters()
 void EnemyManager::Update(float dt) {
 
 	for (auto it = _characters.begin(); it != _characters.end(); ++it) {
+		
+		if (!(*it)->getIfAlive())
+			return;
+
 		(*it)->move(_MM, dt);
 		(*it)->inlineAnimation(dt);
 	}
 
+}
+
+void EnemyManager::hitEnemy(Character* enemy, int damage)
+{
+	enemy->reciveDamage(damage);
+	if (!enemy->getIfAlive()) {
+		enemy->setVisible(false);
+		enemy->setDir({ 0, 0, 0 });
+		enemy->setNextDir({ 0, 0, 0 });
+	}
 }

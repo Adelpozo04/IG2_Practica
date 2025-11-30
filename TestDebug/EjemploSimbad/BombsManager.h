@@ -17,7 +17,7 @@ public:
     void Shoot(Ogre::Vector3 pos);
     void explode(Bomb* bomb); // libera bomba cuando explota
     void Update(float dt);
-
+    inline  std::vector< Ogre::Vector3>& const getPositionsWithDamage() { return positionsWithDamage; }
 private:
     void applyDamage(Ogre::Vector3 pos, int range);
     void applyDamage(Ogre::Vector3 pos, int range, Ogre::Vector3 dir);

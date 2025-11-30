@@ -58,6 +58,9 @@ void BombsManager::explode(Bomb* bomb)
 
 void BombsManager::Update(float dt)
 {
+
+    positionsWithDamage.clear();
+
     for (SmokeObject* s : smokesInUse) {
         if (s != nullptr && !s->update(dt))
             smokesToStop.push_back(s);

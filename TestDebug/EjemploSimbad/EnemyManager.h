@@ -26,6 +26,8 @@ public:
 	 */
 	void Update(float dt) override;
 
+	void hitEnemy(Character* enemy, int damage);
+
 private:
 
 	/**

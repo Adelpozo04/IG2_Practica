@@ -24,6 +24,12 @@ public:
 		return _lifes;
 	}
 
+	/**
+	 * @brief Devuelve si tienes 1 o mas vidas
+	 * @return true si si tienes 1 o mas vidas
+	 */
+	inline bool getIfAlive() { return _lifes > 0; }
+
 	inline int getPoints() const{ return _points; }
 
 	inline void addPoints(int p) { _points += p; }

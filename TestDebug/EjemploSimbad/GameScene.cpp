@@ -52,7 +52,7 @@ void GameScene::GenerateScene()
     mAplicCont->addInputListener(mPlayerMgr);
     mLightMgr = new LightManager(mPlayerMgr, mSM, mMazeMgr->getLight());
     mEnemyMgr = new EnemyManager(mSM, mMazeMgr);
-    mColisionMgr = new ColisionManager(mPlayerMgr, mEnemyMgr);
+    mColisionMgr = new ColisionManager(mPlayerMgr, mEnemyMgr, mBombsMgr, mMazeMgr);
 
 }
 
