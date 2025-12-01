@@ -20,13 +20,13 @@ bool Bomb::Update(float dt)
 
 void Bomb::reset(Ogre::Vector3 pos)
 {
-
 	setPosition(pos);
+	this->setVisible(true);
+
 	_pSysFlame->clear();
 	_pSysFlame->setEmitting(true);
 	_elapsedTime = 0;
-
-	this->setVisible(true);
+	
 	_animationNodeBomb->setEnabled(true);
 	_animationNodeBomb->setTimePosition(0);
 
@@ -126,7 +126,7 @@ void Bomb::createKf(Ogre::TransformKeyFrame* kf, Ogre::NodeAnimationTrack* track
 
 void Bomb::explode()
 {
-	_pSysFlame->clear();
 	_pSysFlame->setEmitting(false);
+	_pSysFlame->clear();
 	mNode->setVisible(false);
 }
