@@ -129,6 +129,4 @@ void Bomb::explode()
 	_pSysFlame->clear();
 	_pSysFlame->setEmitting(false);
 	mNode->setVisible(false);
-	//Llamada a BombManager para que gestione el danyo hablando con colision manager
-
 }
