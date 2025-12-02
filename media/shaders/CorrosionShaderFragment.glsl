@@ -1,6 +1,7 @@
 #version 330 core 
 
 in vec3 vNormals;
+in vec3 vNormal;
 in vec2 vUv0; 
 
 uniform sampler2D texturaCorrosionFront;
@@ -36,7 +37,7 @@ void main()
         color = diff(vNormals) * lightDiffuse * materialDiffuse * color;
     }
     else{
-        color = texture(texturaCorrosionBack, vUv0).rgb; // Acceso a texel
+        color = abs(vNormal.rgb);
         color = diff(-vNormals) * lightDiffuse * materialDiffuse * color;
     }
     
