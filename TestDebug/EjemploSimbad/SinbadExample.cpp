@@ -15,7 +15,7 @@ bool SinbadExample::keyPressed(const OgreBites::KeyboardEvent& evt) {
     if (evt.keysym.sym == SDLK_ESCAPE) {
         getRoot()->queueEndRendering();
     }
-    if (evt.keysym.sym == SDLK_x && currentScene == OpeningSceneIndex) {
+    if (evt.keysym.sym == SDLK_s && currentScene == OpeningSceneIndex) {
         delete mOpeningScn;
         mGameScn = new GameScene(mSM, mTrayMgr, this, mCamNode);
         currentScene = GameSceneIndex;
@@ -94,8 +94,8 @@ void SinbadExample::setupScene(void) {
 
     Ogre::Viewport* vp = getRenderWindow()->addViewport(cam);
 
-    mCamMgr = new OgreBites::CameraMan(mCamNode);
-    addInputListener(mCamMgr);
+    /*mCamMgr = new OgreBites::CameraMan(mCamNode);
+    addInputListener(mCamMgr);*/
 
     mOpeningScn = new OpeningScene(mSM, this, mCamNode);
     

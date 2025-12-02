@@ -145,7 +145,6 @@ fragment_program CorrosionShaderFragment glsl{
     source CorrosionShaderFragment.glsl
 	default_params{
 		param_named texturaCorrosionFront int 0
-		param_named texturaCorrosionBack int 1
 		param_named_auto Flipping render_target_flipping
 
 		param_named_auto lightDiffuse light_diffuse_colour 0
@@ -172,11 +171,6 @@ material CorrosionShader
             texture_unit
             {
                 texture oxido.jpg 2d
-				tex_address_mode clamp
-            }
-			texture_unit
-            {
-                texture rainbow.png 2d
 				tex_address_mode clamp
             }
         }

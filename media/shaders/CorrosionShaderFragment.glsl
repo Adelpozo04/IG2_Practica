@@ -5,7 +5,6 @@ in vec3 vNormal;
 in vec2 vUv0; 
 
 uniform sampler2D texturaCorrosionFront;
-uniform sampler2D texturaCorrosionBack;
 uniform float Flipping;
 
 uniform vec3 lightDiffuse;
