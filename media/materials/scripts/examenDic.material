@@ -1,0 +1,252 @@
+material body{
+    technique {
+        pass{
+            diffuse 1 1 1
+
+            texture_unit{
+                texture oxido.jpg
+            }
+        }
+    }
+}
+
+material engine{
+    technique {
+        pass{
+            diffuse 1 1 1
+
+            texture_unit{
+                texture MtlPlat2.jpg
+            }
+        }
+    }
+}
+
+material rocket_sphere{
+    technique {
+        pass{
+            diffuse 1 1 1
+
+            texture_unit{
+                texture MtlPlat2.jpg
+            }
+        }
+    }
+}
+
+material rocket_cube{
+    technique {
+        pass{
+            diffuse 1 1 1
+
+            lighting off
+
+            texture_unit{
+                texture BumpyMetal.jpg
+            }
+        }
+    }
+}
+
+material rocket_floor{
+    technique {
+        pass{
+            diffuse 1 1 1
+
+            texture_unit{
+                texture Water01.jpg
+                colour_op modulate
+            }
+
+            texture_unit {
+                texture lightMap.jpg
+                colour_op modulate
+                scroll_anim -0.1 0.1
+            }
+        }
+    }
+}
+
+material rocket_sky{
+    technique {
+        pass{
+            diffuse 1 1 1
+
+            lighting off
+
+            texture_unit {
+                texture spaceSky.jpg
+                scroll_anim -0.1 0.1
+            }
+        }
+    }
+}
+
+material examSmoke{
+    technique {
+        pass{
+            lighting off
+            scene_blend alpha_blend
+            depth_write off
+            diffuse vertexcolour
+
+            texture_unit {
+                texture smoke.png
+                tex_address_mode clamp
+            }
+        }
+    }
+}
+
+vertex_program PicoShaderVS glsl{
+    source PicoShaderVertexExamen.glsl
+
+    default_params{
+        param_named_auto modelViewProjectionMatrix worldviewproj_matrix
+        param_named Amplitud float 30
+        param_named_auto senotiempo sintime_0_2pi 10
+    }
+}
+
+fragment_program PicoShaderFS glsl{
+    source PicoShaderFragmentExamen.glsl
+
+    default_params{
+        param_named TexturaAgua int 0
+    }
+}
+
+material PicoShader{
+    technique{
+        pass{
+
+            lighting off
+
+            vertex_program_ref PicoShaderVS{
+
+            }
+            fragment_program_ref PicoShaderFS{
+
+            }
+
+            texture_unit{
+                texture Water01.jpg 2d
+            }
+        }
+    }
+}
+
+vertex_program NegativeShaderVS glsl{
+    source NegativeShaderVertex.glsl
+
+    default_params{
+        param_named_auto modelViewProjMat worldviewproj_matrix
+    }
+}
+
+fragment_program NegativeShaderFS glsl{
+    source NegativeShaderFragment.glsl
+
+    default_params{
+        param_named TexturaNegativa int 0
+        param_named_auto senotiempo sintime_0_2pi 30
+    }
+}
+
+material NegativeShader{
+    technique{
+        pass{
+            lighting off
+
+            vertex_program_ref NegativeShaderVS{
+
+            }
+
+            fragment_program_ref NegativeShaderFS{
+
+            }
+
+            texture_unit{
+                texture oxido.jpg 2d
+            }
+        }
+    }
+}
+
+vertex_program ZoomShaderVS glsl{
+    source ZoomShaderVertex.glsl
+
+    default_params{
+        param_named_auto modelViewProjMat worldviewproj_matrix
+        param_named ZoomFactor float 0;
+        param_named_auto senotiempo sintime_0_2pi 10
+    }
+}
+
+fragment_program ZoomShaderFS glsl{
+    source ZoomShaderFragment.glsl
+
+    default_params{
+        param_named TexturaZoom int 0
+        
+    }
+}
+
+material ZoomShader{
+    technique{
+        pass{
+            lighting off
+
+            vertex_program_ref ZoomShaderVS{
+
+            }
+
+            fragment_program_ref ZoomShaderFS{
+            }
+
+            texture_unit{
+                texture oxido.jpg 2d
+            }
+        }
+    }
+}
+
+vertex_program GranoShaderVS glsl{
+    source GranoShaderVertex.glsl
+
+    default_params{
+        param_named_auto modelViewProjMat worldviewproj_matrix
+        param_named pos vec2 750 750
+        param_named rad int 100
+        param_named altura float 20
+    }
+}
+
+fragment_program GranoShaderFS glsl{
+    source GranoShaderFragment.glsl
+
+    default_params{
+        param_named TexturaGrano int 0
+    }
+}
+
+material GranoShader{
+    technique{
+        pass{
+            lighting off
+
+            vertex_program_ref GranoShaderVS{
+
+            }
+
+            fragment_program_ref GranoShaderFS{
+
+            }
+
+            texture_unit{
+                texture oxido.jpg 2d
+            }
+
+        }
+    }
+}
