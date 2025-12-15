@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="IG2Object.cpp" />
+    <ClCompile Include="IG2Project.cpp" />
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="DataSizes.cpp" />
+    <ClCompile Include="Body.cpp" />
+    <ClCompile Include="Wing.cpp" />
+    <ClCompile Include="Rockets.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="IG2Object.h" />
+    <ClInclude Include="IG2Project.h" />
+    <ClInclude Include="DataSizes.h" />
+    <ClInclude Include="Body.h" />
+    <ClInclude Include="Wing.h" />
+    <ClInclude Include="Rockets.h" />
+  </ItemGroup>
+</Project>

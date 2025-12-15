@@ -7,25 +7,33 @@ uniform mat4 modelViewProjMat;
 uniform vec2 pos;
 uniform int rad;
 uniform float altura;
+uniform float senotiempo;
 
 out vec2 Vuv0;
+out vec4 VvertexCoord;
+out vec2 Vpos;
 
 void main(){
 
-    Vuv0 = uv0;
-
     vec4 vertexCoord = vertex;
 
-    if(vertexCoord.x > pos.x - rad && vertexCoord.x < pos.x + rad &&
-       vertexCoord.z > pos.y - rad && vertexCoord.z < pos.y + rad){
+    Vuv0 = uv0;
+    VvertexCoord = vertexCoord;
+    Vpos = pos;
+    
+    if(vertexCoord.x > pos.x - rad && vertexCoord.x < pos.x + rad && vertexCoord.z > pos.y - rad && vertexCoord.z < pos.y + rad){
 
         float cercania = rad - abs(vertexCoord.x - pos.x);
 
-        float trueAltura = cercania * altura / (float)rad;
+        float trueAltura = (cercania * altura) / rad;
 
-        vertexCoord.y += trueAltura;
+        float cercaniaZ = rad - abs(vertexCoord.z - pos.y);
+
+        float trueAlturaZ = (cercaniaZ * altura) / rad;
+
+        vertexCoord.y = vertexCoord.y + (trueAltura * abs(senotiempo)) + (trueAlturaZ * abs(senotiempo) );
     }
-
+    
     gl_Position = modelViewProjMat * vertexCoord;
     
 }

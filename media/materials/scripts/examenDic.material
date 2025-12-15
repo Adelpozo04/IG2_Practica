@@ -217,8 +217,9 @@ vertex_program GranoShaderVS glsl{
     default_params{
         param_named_auto modelViewProjMat worldviewproj_matrix
         param_named pos vec2 750 750
-        param_named rad int 100
-        param_named altura float 20
+        param_named rad int 150
+        param_named altura float 50
+        param_named_auto senotiempo sintime_0_2pi 10
     }
 }
 
@@ -227,6 +228,9 @@ fragment_program GranoShaderFS glsl{
 
     default_params{
         param_named TexturaGrano int 0
+        param_named rad int 150
+        param_named colorIntensity float 0.4
+        param_named yellowZone float 0.25
     }
 }
 

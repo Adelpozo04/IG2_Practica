@@ -1,4 +1,5 @@
 #include "IG2Project.h"
+#include "DataSizes.h"
 
 using namespace std;
 using namespace Ogre;
@@ -11,8 +12,24 @@ bool IG2Project::keyPressed(const OgreBites::KeyboardEvent& evt) {
         getRoot()->queueEndRendering();
     }
 
-    if (evt.keysym.sym == SDLK_e) {
-        despegue = true;
+    if (evt.keysym.sym == SDLK_d) {
+        _planeRot = true;
+        _rightRot = true;
+    }
+
+    if (evt.keysym.sym == SDLK_a) {
+        _planeRot = true;
+        _rightRot = false;
+    }
+
+    if (evt.keysym.sym == SDLK_s) {
+        _planeRot = false;
+        _rightRot = false;
+    }
+
+    if (evt.keysym.sym == SDLK_w) {
+        _turbo = true;
+        _plane->Turbo();
     }
 
     return true;
@@ -20,12 +37,26 @@ bool IG2Project::keyPressed(const OgreBites::KeyboardEvent& evt) {
 
 void IG2Project::frameRendered(const Ogre::FrameEvent& evt) {
 
-    if (despegue) {
-        mRocket->Update(evt.timeSinceLastFrame);
+    if (!_turbo) {
+        _flightControlNode->yaw(Ogre::Degree(DataSizes::AIRPLANE_SPEED * evt.timeSinceLastFrame));
+    }
+    else{
+    
+        _flightControlNode->yaw(Ogre::Degree(DataSizes::AIRPLANE_SPEED * evt.timeSinceLastFrame * 2));
+        
     }
     
-}
 
+    if (_planeRot) {
+        if (_rightRot) {
+            _planeNode->roll(Ogre::Degree(DataSizes::AIRPLANE_ROTATION * evt.timeSinceLastFrame), Ogre::Node::TS_LOCAL);
+        }
+        else {
+            _planeNode->roll(Ogre::Degree(-DataSizes::AIRPLANE_ROTATION * evt.timeSinceLastFrame), Ogre::Node::TS_LOCAL);
+        }
+    }
+
+}
 
 void IG2Project::shutdown() {
 
@@ -77,7 +108,7 @@ void IG2Project::setupScene(void) {
     mCamNode = mSM->getRootSceneNode()->createChildSceneNode("nCam");
     mCamNode->attachObject(cam);
 
-    mCamNode->setPosition(0, 0, 1000);
+    mCamNode->setPosition(1000, 0, 0);
     mCamNode->lookAt(Ogre::Vector3(0, 0, 0), Ogre::Node::TS_WORLD);
 
     // and tell it to render into the main window
@@ -101,31 +132,32 @@ void IG2Project::setupScene(void) {
     mLightNode->attachObject(luz);
     mLightNode->setDirection(Ogre::Vector3(-1, -1, -1));
  
-    mRocketNode = mSM->getRootSceneNode()->createChildSceneNode();
-    mRocket = new Rocket({ 0, 0, 0 }, mRocketNode, mSM);
+    //Plane creation
+    _flightControlNode = mSM->getRootSceneNode()->createChildSceneNode();
+    _planeNode = _flightControlNode->createChildSceneNode();
+    _plane = new Body({ 0, 0, 0 }, _planeNode, mSM);
 
-    //------------------------------------------------------------------------
-    // Creating the floor
-    MeshManager::getSingleton().createPlane("mPlane1080x800",
-        ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME,
-        Plane(Vector3::UNIT_Y, 0),
-        1500, 1500, 200, 200,
-        true, 1, 1.0, 1.0, Vector3::UNIT_Z);
-
-    mPlaneEntity = mSM->createEntity("mPlane1080x800");
-    mPlaneNode = mSM->getRootSceneNode()->createChildSceneNode();
-
-    mPlaneEntity->setMaterialName("NegativeShader");
-
-    mPlaneNode->attachObject(mPlaneEntity);
-    mPlaneNode->setPosition({ 0, -420, 0 });
-
-    //------------------------------------------------------------------------
-    // Creating the sky
-
-    Ogre::Plane skyPlane;
-    skyPlane.d = 1000;
-    skyPlane.normal = Ogre::Vector3::UNIT_Z;
-    mSM->setSkyPlane(true, skyPlane, "rocket_sky", 1500, 50, true, 1.5, 50, 50);
+    _plane->move({ -2500, 0, 0 });
    
+    //Floor
+
+    MeshManager::getSingleton().createPlane("floor", ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME,
+        Plane(Vector3::UNIT_Y, 0),
+        5000, 5000, 200, 200, true, 1, 5, 5, Vector3::UNIT_Z);
+
+    Entity* ent = mSM->createEntity("floor");
+
+    ent->setMaterialName("floorJun");
+
+    _floor = mSM->getRootSceneNode()->createChildSceneNode();
+    _floor->attachObject(ent);
+
+    _floor->translate({0, -450, 0});
+
+    //Sky
+    Ogre::Plane skyPlane;
+    skyPlane.d = 100;
+    skyPlane.normal = Ogre::Vector3::UNIT_Z;
+    mSM->setSkyPlane(true, skyPlane, "skyJun", 1500, 50, true, 1.5, 50, 50);
+
 }
