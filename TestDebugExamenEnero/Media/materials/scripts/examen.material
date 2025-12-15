@@ -1,0 +1,199 @@
+/*material CubeMat
+{
+technique
+{
+    pass
+    {
+        diffuse 1.00 0.00 0.00 1.00
+    }
+}
+}
+
+material BallMat{
+ technique
+{
+    pass
+    {
+        diffuse 0.00 0.10 1.00 1.00
+    }
+}   
+}
+
+material BaseMat{
+ technique
+{
+    lighting off
+    pass
+    {
+        diffuse 0.23 0.23 0.23 1.00
+    }
+}   
+}*/
+
+material BodyMaterial
+{
+    technique
+    {
+        pass
+        {
+            diffuse 1.00 1.00 1.00 1.00
+
+            texture_unit
+            {
+                texture corrosion.jpg
+                colour_op modulate
+            }
+        }
+    }
+}
+
+material BaseMaterial
+{
+    technique
+    {
+        pass
+        {
+            lighting off
+
+            texture_unit
+            {
+                texture MtlPlat2.jpg
+                colour_op modulate
+            }
+        }
+    }
+}
+
+material CubeMaterial
+{
+    technique
+    {
+        pass
+        {
+            diffuse 1.00 1.00 1.00 1.00
+
+            texture_unit
+            {
+                texture BumpyMetal.jpg
+                colour_op modulate
+            }
+        }
+    }
+}
+
+material SphereMaterial
+{
+    technique
+    {
+        pass
+        {
+            diffuse 1.00 1.00 1.00 1.00
+
+            texture_unit
+            {
+                texture MtlPlat2.jpg
+                colour_op modulate
+            }
+        }
+    }
+}
+
+material Sky
+{
+    technique
+    {
+        pass
+        {
+            lighting off
+
+            texture_unit
+            {
+                texture spaceSky.jpg
+                colour_op modulate
+                scroll_anim -0.05 0.05
+            }
+
+        }
+    }
+}
+
+material Floor
+{
+    technique
+    {
+        pass
+        {
+            lighting off
+
+            texture_unit
+            {
+                texture Noise.png
+                colour_op modulate
+                scroll_anim -0.5 0.5
+            }
+            texture_unit
+            {
+                texture Water02.jpg
+                colour_op modulate
+            }
+
+        }
+    }
+}
+
+material Smoke
+{
+    technique
+    {
+        pass
+        {
+            lighting off
+            scene_blend alpha_blend
+            depth_write off
+            diffuse vertexcolour
+            texture_unit
+            {
+                texture smoke.png
+                tex_address_mode clamp
+            }
+        }
+    }
+}
+
+
+vertex_program WaveShaderVertex glsl
+{
+    source WaveShaderVertex.glsl
+    default_params
+    {
+        param_named_auto modelViewProjMat worldviewproj_matrix
+        param_named_auto sintime sintime_0_2pi 10
+        param_named a float 20
+    }
+}
+
+fragment_program WaveShaderFragment glsl{
+    source WaveShaderFragment.glsl
+    default_params
+    {
+        param_named texturaL int 0
+    }
+}
+
+
+material WaveShader
+{
+    technique{
+        pass{
+            lighting off
+            vertex_program_ref WaveShaderVertex{}
+            fragment_program_ref WaveShaderFragment{}
+
+            texture_unit
+            {
+                texture Water02.jpg 2d
+            }
+        }
+    } 
+}
+
