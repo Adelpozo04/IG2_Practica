@@ -133,7 +133,8 @@ void SinbadExample::setupScene(void) {
 
     Entity* floor = mSM->createEntity("floor", "floor");
     //floor->setMaterialName("Floor");
-    floor->setMaterialName("WaveShader");
+    //floor->setMaterialName("WaveShader");ç
+    floor->setMaterialName("GranoShader");
 
     floorNode = mSM->getRootSceneNode()->createChildSceneNode();
     floorNode->attachObject(floor);

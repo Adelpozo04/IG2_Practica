@@ -1,34 +1,34 @@
-/*material CubeMat
+material CubeMat
 {
-technique
-{
-    pass
+    technique
     {
-        diffuse 1.00 0.00 0.00 1.00
+        pass
+        {
+            diffuse 1.00 0.00 0.00 1.00
+        }
     }
-}
 }
 
 material BallMat{
- technique
-{
-    pass
+    technique
     {
-        diffuse 0.00 0.10 1.00 1.00
-    }
-}   
+        pass
+        {
+            diffuse 0.00 0.10 1.00 1.00
+        }
+    }   
 }
 
 material BaseMat{
- technique
-{
-    lighting off
-    pass
+    technique
     {
-        diffuse 0.23 0.23 0.23 1.00
-    }
-}   
-}*/
+        lighting off
+        pass
+        {
+            diffuse 0.23 0.23 0.23 1.00
+        }
+    }   
+}
 
 material BodyMaterial
 {
@@ -195,5 +195,41 @@ material WaveShader
             }
         }
     } 
+}
+
+vertex_program GranoShaderVS glsl{
+    source  GranoShaderVertex.glsl
+    default_params
+    {
+        param_named_auto modelViewProjMat worldviewproj_matrix
+        param_named_auto sintime sintime_0_2pi 20
+        param_named radio float 100.0
+         param_named centro vec2 750 750
+        param_named altura float 100.0
+    }
+}
+
+fragment_program GranoShaderFS glsl{
+    source GranoShaderFragment.glsl
+    default_params
+    {
+        param_named texturaL int 0
+    }
+}
+
+
+material GranoShader{
+    technique
+    {
+        pass
+        {
+            vertex_program_ref GranoShaderVS{}
+            fragment_program_ref GranoShaderFS{}
+            texture_unit
+            {
+                texture Water02.jpg 2d
+            }
+        }
+    }
 }
 
