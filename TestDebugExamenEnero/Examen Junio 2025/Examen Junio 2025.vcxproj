@@ -19,11 +19,17 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Airplane.cpp" />
+    <ClCompile Include="DataSizes.cpp" />
+    <ClCompile Include="Engine.cpp" />
     <ClCompile Include="IG2Object.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="SinbadExample.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Airplane.h" />
+    <ClInclude Include="DataSizes.h" />
+    <ClInclude Include="Engine.h" />
     <ClInclude Include="IG2Object.h" />
     <ClInclude Include="SinbadExample.h" />
   </ItemGroup>

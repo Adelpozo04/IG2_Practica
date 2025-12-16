@@ -16,6 +16,7 @@
 #include "Ogre.h"
 #include <OgreWindowEventUtilities.h>
 #include <SDL_keycode.h>
+#include "Airplane.h"
 
 
 class SinbadExample: public OgreBites::ApplicationContext, OgreBites::InputListener {
@@ -42,6 +43,8 @@ protected:
 
     Ogre::SceneNode* mCamNode = nullptr;
     OgreBites::CameraMan* mCamMgr = nullptr;
+
+    Airplane* mAirplane = nullptr;
 };
 
 #endif
